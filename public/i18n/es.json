@@ -1,0 +1,60 @@
+{
+  "app": { "title": "ParkShare" },
+  "roles": { "driver": "Conductor", "owner": "Propietario" },
+  "nav": {
+    "driver": {
+      "search": "Buscar cochera",
+      "reservation": "Mi reserva",
+      "history": "Historial",
+      "profile": "Mi perfil"
+    },
+    "owner": { "dashboard": "Mis cocheras" }
+  },
+  "layout": {
+    "location": "Lima, Perú",
+    "copyright": "© {{year}} ParkShare"
+  },
+  "placeholder": { "comingSoon": "Vista en construcción." },
+  "profile": {
+    "title": "Mi perfil",
+    "subtitle": "Gestiona tu información personal, vehículo y verificaciones",
+    "saved": "Cambios guardados",
+    "userChip": { "verifiedDocuments": "{{verified}}/{{total}} documentos verificados" },
+    "vehicle": {
+      "title": "Vehículo registrado",
+      "plate": "Placa",
+      "platePlaceholder": "ABC-123",
+      "model": "Modelo",
+      "modelPlaceholder": "Toyota Yaris 2021",
+      "type": "Tipo de vehículo",
+      "save": "Guardar cambios"
+    },
+    "vehicleTypes": {
+      "sedan": "Sedán",
+      "suv": "SUV",
+      "hatchback": "Hatchback",
+      "pickup": "Camioneta pickup",
+      "van": "Van"
+    },
+    "documents": {
+      "title": "Documentos de verificación",
+      "lastUpdate": "Última actualización: {{time}}",
+      "update": "Actualizar",
+      "types": {
+        "national-id": "Documento Nacional de Identidad (DNI)",
+        "driver-license": "Licencia de conducir",
+        "vehicle-registration": "Tarjeta de propiedad vehicular"
+      },
+      "status": {
+        "verified": "Verificado",
+        "in-review": "En revisión",
+        "rejected": "Rechazado"
+      }
+    },
+    "errors": {
+      "required": "Este campo es obligatorio",
+      "plateInvalid": "Formato inválido (ej. ABC-123)",
+      "generic": "Ocurrió un error. Inténtalo de nuevo."
+    }
+  }
+}
