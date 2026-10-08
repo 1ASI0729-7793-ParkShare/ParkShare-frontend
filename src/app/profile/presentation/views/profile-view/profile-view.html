@@ -1,0 +1,15 @@
+<h1 class="title">{{ 'profile.title' | translate }}</h1>
+<p class="subtitle">{{ 'profile.subtitle' | translate }}</p>
+
+@if (store.error()) {
+  <p class="error">{{ 'profile.errors.generic' | translate }}</p>
+}
+
+@if (store.profile(); as profile) {
+  <div class="grid">
+    <app-vehicle-form [profile]="profile" (profileSubmitted)="onProfileSubmitted($event)"/>
+    <app-document-list [documents]="store.documents()" (documentUploaded)="onDocumentUploaded($event)"/>
+  </div>
+} @else if (store.loading()) {
+  <mat-spinner diameter="40"/>
+}
