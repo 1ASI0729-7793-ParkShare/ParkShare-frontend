@@ -1,0 +1,121 @@
+<div class="profile-page">
+  <!-- Profile Page Header -->
+  <header class="profile-header">
+    <h1 class="profile-title">Mi perfil</h1>
+    <p class="profile-subtitle">Gestiona tu información personal, vehículo y verificaciones</p>
+  </header>
+
+  <!-- Main Content Grid -->
+  <div class="profile-grid">
+    <!-- Left Column: Vehículo registrado -->
+    <section class="card vehicle-card">
+      <div class="card-header">
+        <mat-icon class="card-header-icon">directions_car</mat-icon>
+        <h2 class="card-title">Vehículo registrado</h2>
+      </div>
+
+      <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()" class="vehicle-form">
+        <div class="form-group">
+          <label class="form-label" for="plate">Placa</label>
+          <input
+            id="plate"
+            type="text"
+            formControlName="plate"
+            class="form-control"
+            placeholder="BXQ-418"
+            [class.is-invalid]="isInvalidControl(vehicleForm, 'plate')"
+          />
+          @if (isInvalidControl(vehicleForm, 'plate')) {
+            <span class="error-feedback">{{ errorMessagesForControl(vehicleForm, 'plate') }}</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="model">Modelo</label>
+          <input
+            id="model"
+            type="text"
+            formControlName="model"
+            class="form-control"
+            placeholder="Toyota Yaris 2021"
+            [class.is-invalid]="isInvalidControl(vehicleForm, 'model')"
+          />
+          @if (isInvalidControl(vehicleForm, 'model')) {
+            <span class="error-feedback">{{ errorMessagesForControl(vehicleForm, 'model') }}</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="vehicleType">Tipo de vehículo</label>
+          <div class="select-wrapper">
+            <select
+              id="vehicleType"
+              formControlName="vehicleType"
+              class="form-control form-select"
+              [class.is-invalid]="isInvalidControl(vehicleForm, 'vehicleType')"
+            >
+              @for (type of vehicleTypes; track type) {
+                <option [value]="type">{{ type }}</option>
+              }
+            </select>
+            <mat-icon class="select-chevron">keyboard_arrow_down</mat-icon>
+          </div>
+          @if (isInvalidControl(vehicleForm, 'vehicleType')) {
+            <span class="error-feedback">{{ errorMessagesForControl(vehicleForm, 'vehicleType') }}</span>
+          }
+        </div>
+
+        <button
+          type="submit"
+          class="btn-save"
+          [disabled]="store.loading()"
+        >
+          @if (store.loading()) {
+            <span>Guardando...</span>
+          } @else {
+            <span>Guardar cambios</span>
+          }
+        </button>
+      </form>
+    </section>
+
+    <!-- Right Column: Documentos de verificación -->
+    <section class="card documents-card">
+      <div class="card-header">
+        <mat-icon class="card-header-icon">verified_user</mat-icon>
+        <h2 class="card-title">Documentos de verificación</h2>
+      </div>
+
+      <div class="documents-list">
+        @for (doc of store.documents(); track doc.id) {
+          <article class="document-item">
+            <div class="document-top">
+              <h3 class="document-name" [title]="doc.name">{{ doc.name }}</h3>
+              <span
+                class="status-badge"
+                [class.status-verified]="doc.status === 'VERIFIED'"
+                [class.status-review]="doc.status === 'UNDER_REVIEW'"
+                [class.status-pending]="doc.status === 'PENDING'"
+              >
+                {{ doc.statusLabel }}
+              </span>
+            </div>
+
+            <div class="document-bottom">
+              <span class="document-meta">
+                Última actualización: {{ doc.lastUpdated }}
+              </span>
+              <button
+                type="button"
+                class="btn-update"
+                (click)="onUpdateDocument(doc)"
+              >
+                Actualizar
+              </button>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  </div>
+</div>
