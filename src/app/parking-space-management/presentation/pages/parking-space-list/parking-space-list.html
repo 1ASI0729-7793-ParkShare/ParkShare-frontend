@@ -1,1 +1,38 @@
-<p>parking-space-list works!</p>
+<main class="page-shell">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">{{ 'parkingSpace.list.eyebrow' | translate }}</p>
+      <h1>{{ 'parkingSpace.list.title' | translate }}</h1>
+      <p class="description">{{ 'parkingSpace.list.description' | translate }}</p>
+    </div>
+    <a mat-flat-button routerLink="/parking-spaces/new">
+      {{ 'parkingSpace.actions.create' | translate }}
+    </a>
+  </header>
+
+  @if (store.error(); as errorKey) {
+    <section class="feedback error" role="alert">{{ errorKey | translate }}</section>
+  }
+
+  @if (store.loading()) {
+    <section class="loading" aria-live="polite">
+      <mat-spinner diameter="42"></mat-spinner>
+      <span>{{ 'parkingSpace.common.loading' | translate }}</span>
+    </section>
+  } @else if (store.parkingSpaces().length === 0) {
+    <section class="empty-state">
+      <div class="empty-mark">P</div>
+      <h2>{{ 'parkingSpace.list.emptyTitle' | translate }}</h2>
+      <p>{{ 'parkingSpace.list.emptyDescription' | translate }}</p>
+      <a mat-flat-button routerLink="/parking-spaces/new">
+        {{ 'parkingSpace.actions.publishFirst' | translate }}
+      </a>
+    </section>
+  } @else {
+    <section class="parking-grid">
+      @for (parkingSpace of store.parkingSpaces(); track parkingSpace.id) {
+        <app-parking-space-card [parkingSpace]="parkingSpace" />
+      }
+    </section>
+  }
+</main>

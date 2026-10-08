@@ -1,1 +1,86 @@
-<p>parking-space-create works!</p>
+<main class="form-page">
+  <a class="back-link" routerLink="/parking-spaces">
+    {{ 'parkingSpace.actions.backToList' | translate }}
+  </a>
+
+  <header>
+    <p class="eyebrow">{{ 'parkingSpace.create.eyebrow' | translate }}</p>
+    <h1>{{ 'parkingSpace.create.title' | translate }}</h1>
+    <p>{{ 'parkingSpace.create.description' | translate }}</p>
+  </header>
+
+  @if (store.error(); as errorKey) {
+    <div class="feedback error" role="alert">{{ errorKey | translate }}</div>
+  }
+
+  <mat-card>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <section>
+        <h2>{{ 'parkingSpace.form.details' | translate }}</h2>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'parkingSpace.form.address' | translate }}</mat-label>
+          <input matInput formControlName="address" autocomplete="street-address" />
+          @if (form.controls.address.hasError('required')) {
+            <mat-error>{{ 'parkingSpace.validation.addressRequired' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'parkingSpace.form.photos' | translate }}</mat-label>
+          <textarea
+            matInput
+            formControlName="photoUrls"
+            rows="3"
+            [placeholder]="'parkingSpace.form.photosHint' | translate"
+          ></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'parkingSpace.form.hourlyRate' | translate }}</mat-label>
+          <input matInput type="number" min="0.01" step="0.01" formControlName="hourlyRate" />
+          @if (form.controls.hourlyRate.invalid) {
+            <mat-error>{{ 'parkingSpace.validation.ratePositive' | translate }}</mat-error>
+          }
+        </mat-form-field>
+      </section>
+
+      <section>
+        <h2>{{ 'parkingSpace.form.initialAvailability' | translate }}</h2>
+        <div class="schedule-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'parkingSpace.form.day' | translate }}</mat-label>
+            <mat-select formControlName="dayOfWeek">
+              @for (day of days; track day) {
+                <mat-option [value]="day">
+                  {{ 'parkingSpace.days.' + day | translate }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'parkingSpace.form.startTime' | translate }}</mat-label>
+            <input matInput type="time" formControlName="startTime" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'parkingSpace.form.endTime' | translate }}</mat-label>
+            <input matInput type="time" formControlName="endTime" />
+          </mat-form-field>
+        </div>
+        @if (form.hasError('invalidTimeRange') && form.touched) {
+          <p class="field-error">{{ 'parkingSpace.validation.timeRange' | translate }}</p>
+        }
+      </section>
+
+      <footer>
+        <a mat-button routerLink="/parking-spaces">
+          {{ 'parkingSpace.actions.cancel' | translate }}
+        </a>
+        <button mat-flat-button type="submit" [disabled]="store.loading()">
+          {{ 'parkingSpace.actions.publish' | translate }}
+        </button>
+      </footer>
+    </form>
+  </mat-card>
+</main>

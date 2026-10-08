@@ -1,1 +1,32 @@
-<p>parking-space-card works!</p>
+<mat-card class="parking-card">
+  <mat-card-header>
+    <mat-card-title>{{ parkingSpace().address }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ 'parkingSpace.card.hourlyRate' | translate }}:
+      {{ parkingSpace().hourlyRate | number: '1.2-2' }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p class="meta">
+      {{ parkingSpace().photos.length }}
+      {{ 'parkingSpace.card.photos' | translate }}
+    </p>
+    <p class="meta">
+      {{ parkingSpace().availability.length }}
+      {{ 'parkingSpace.card.periods' | translate }}
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <a mat-button [routerLink]="[parkingSpace().id, 'edit']">
+      {{ 'parkingSpace.actions.edit' | translate }}
+    </a>
+    <a mat-button [routerLink]="[parkingSpace().id, 'availability']">
+      {{ 'parkingSpace.actions.availability' | translate }}
+    </a>
+    <a mat-button [routerLink]="[parkingSpace().id, 'pricing']">
+      {{ 'parkingSpace.actions.pricing' | translate }}
+    </a>
+  </mat-card-actions>
+</mat-card>

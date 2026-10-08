@@ -1,0 +1,39 @@
+.app-header {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid #dfe7e1;
+  background: rgb(250 252 250 / 92%);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #142019;
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 10px;
+  background: #166534;
+  color: white;
+}
+
+nav a {
+  color: #33443a;
+  font-weight: 600;
+  text-decoration: none;
+}

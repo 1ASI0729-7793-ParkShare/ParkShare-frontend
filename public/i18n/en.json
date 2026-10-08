@@ -1,0 +1,91 @@
+{
+  "parkingSpace": {
+    "navigation": {
+      "mySpaces": "My parking spaces"
+    },
+    "common": {
+      "loading": "Loading parking spaces..."
+    },
+    "actions": {
+      "create": "Publish parking space",
+      "publishFirst": "Publish my first parking space",
+      "publish": "Publish space",
+      "edit": "Edit",
+      "availability": "Availability",
+      "pricing": "Pricing",
+      "backToList": "Back to my parking spaces",
+      "cancel": "Cancel",
+      "save": "Save changes",
+      "saveRate": "Save rate",
+      "saveAvailability": "Save availability",
+      "addPeriod": "Add period",
+      "remove": "Remove"
+    },
+    "list": {
+      "eyebrow": "Parking Space Management",
+      "title": "My parking spaces",
+      "description": "Publish your spaces and keep their availability and pricing conditions up to date.",
+      "emptyTitle": "You have not published a parking space yet",
+      "emptyDescription": "Create your first listing to start managing the space with ParkShare."
+    },
+    "card": {
+      "hourlyRate": "Hourly rate",
+      "photos": "photos",
+      "periods": "available periods"
+    },
+    "create": {
+      "eyebrow": "US06 · Publishing",
+      "title": "Publish a parking space",
+      "description": "Register the essential space information. You can adjust these details later."
+    },
+    "edit": {
+      "eyebrow": "US07 · Editing",
+      "title": "Edit parking space",
+      "description": "Update the listing address and photos."
+    },
+    "availability": {
+      "eyebrow": "US08 · Availability",
+      "title": "Configure availability",
+      "description": "Define one or more periods when the space can be booked.",
+      "period": "Period"
+    },
+    "pricing": {
+      "eyebrow": "US09 · Pricing",
+      "title": "Configure pricing",
+      "description": "Set a valid hourly rate for future bookings."
+    },
+    "form": {
+      "details": "Space details",
+      "address": "Address",
+      "photos": "Photo links",
+      "photosHint": "One link per line or separated by commas",
+      "hourlyRate": "Hourly rate",
+      "initialAvailability": "Initial availability",
+      "day": "Day",
+      "startTime": "Start time",
+      "endTime": "End time"
+    },
+    "validation": {
+      "addressRequired": "The address is required.",
+      "ratePositive": "The rate must be greater than zero.",
+      "timeRange": "The start time must be earlier than the end time."
+    },
+    "errors": {
+      "load": "The parking spaces could not be loaded.",
+      "notFound": "The requested parking space was not found.",
+      "create": "The parking space could not be published.",
+      "update": "The parking space could not be updated.",
+      "availability": "Availability could not be updated.",
+      "pricing": "The rate could not be updated."
+    },
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    }
+  }
+}
