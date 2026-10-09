@@ -7,7 +7,7 @@
 .back-link {
   display: inline-block;
   margin-bottom: 2rem;
-  color: #166534;
+  color: var(--color-primary-intense);
   font-weight: 600;
   text-decoration: none;
 }
@@ -18,7 +18,7 @@ header {
 
 .eyebrow {
   margin: 0 0 0.5rem;
-  color: #166534;
+  color: var(--color-primary-intense);
   font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -27,7 +27,7 @@ header {
 
 h1 {
   margin: 0;
-  color: #142019;
+  color: var(--color-primary-dark);
   font-size: clamp(1.75rem, 4vw, 2.125rem);
   font-weight: 700;
   line-height: 1.2;
@@ -35,12 +35,14 @@ h1 {
 
 header p:last-child {
   max-width: 640px;
-  color: #59675e;
+  color: var(--color-muted);
 }
 
 mat-card {
   padding: 1.5rem;
+  border: 1px solid var(--color-border);
   border-radius: 22px;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 6%);
 }
 
 form,
@@ -84,9 +86,9 @@ footer {
 
 .error,
 .field-error {
-  border: 1px solid #fecaca;
-  background: #fef2f2;
-  color: #991b1b;
+  border: 1px solid var(--color-red-alert);
+  background: rgb(221 61 61 / 8%);
+  color: var(--color-red-alert);
 }
 
 .field-error {
