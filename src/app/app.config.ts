@@ -21,5 +21,6 @@ export const appConfig: ApplicationConfig = {
       lang: 'es',
       fallbackLang: 'en',
     }),
+    REPUTATION_NOTIFICATIONS_PROVIDERS,
   ],
 };
