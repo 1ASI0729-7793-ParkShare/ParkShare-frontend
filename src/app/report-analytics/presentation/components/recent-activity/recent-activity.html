@@ -1,0 +1,23 @@
+<section class="card">
+  <h2 class="title">{{ 'reportAnalytics.activity.title' | translate }}</h2>
+
+  @if (items().length === 0) {
+    <p class="empty">{{ 'reportAnalytics.activity.empty' | translate }}</p>
+  } @else {
+    <ul class="list">
+      @for (item of items(); track item.id) {
+        <li class="row">
+          <div class="info">
+            <span class="name">{{ item.driverName }}</span>
+            <span class="meta">
+              {{ item.spaceName }} · {{ item.occurredAt | date: 'dd/MM · HH:mm' }}
+            </span>
+          </div>
+          <span class="chip" [attr.data-status]="item.status">
+            {{ 'reportAnalytics.status.' + item.status | translate }}
+          </span>
+        </li>
+      }
+    </ul>
+  }
+</section>

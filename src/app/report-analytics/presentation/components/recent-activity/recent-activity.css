@@ -1,0 +1,17 @@
+.card {
+  padding: 20px; background: var(--mat-sys-surface);
+  border: 1px solid var(--mat-sys-outline-variant); border-radius: var(--mat-sys-corner-medium);
+}
+.title { margin: 0 0 12px; font: var(--mat-sys-title-medium); }
+.list { margin: 0; padding: 0; list-style: none; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--mat-sys-outline-variant); }
+.row:first-child { border-top: 0; }
+.info { display: flex; flex-direction: column; min-width: 0; }
+.name { font: var(--mat-sys-title-small); }
+.meta { font: var(--mat-sys-body-small); color: var(--mat-sys-on-surface-variant); }
+.empty { margin: 0; color: var(--mat-sys-on-surface-variant); }
+.chip { padding: 4px 10px; font: var(--mat-sys-label-small); border-radius: 999px; white-space: nowrap; background: var(--mat-sys-surface-variant); color: var(--mat-sys-on-surface-variant); }
+.chip[data-status='in-use'] { background: var(--mat-sys-primary-container); color: var(--mat-sys-on-primary-container); }
+.chip[data-status='completed'] { background: var(--mat-sys-secondary-container); color: var(--mat-sys-on-secondary-container); }
+.chip[data-status='requested'] { background: var(--mat-sys-tertiary-container); color: var(--mat-sys-on-tertiary-container); }
+.chip[data-status='rejected'] { background: var(--mat-sys-error-container); color: var(--mat-sys-on-error-container); }

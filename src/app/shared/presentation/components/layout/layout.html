@@ -15,6 +15,9 @@
           [activated]="rla.isActive"
         >
           <mat-icon matListItemIcon>{{ option.icon }}</mat-icon>
+          @if (badgeFor(option); as count) {
+            <span matListItemMeta class="badge">{{ count }}</span>
+          }
           <span matListItemTitle>{{ option.labelKey | translate }}</span>
         </a>
       }

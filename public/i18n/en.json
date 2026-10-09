@@ -147,5 +147,50 @@
       "noActionRequired": "No action required",
       "empty": "You have no reservation requests yet."
     }
+  },
+
+  "reportAnalytics": {
+    "title": "Owner dashboard",
+    "subtitle": "Summary of your earnings, active reservations and parking spaces in Lima",
+    "kpi": {
+      "income": {
+        "label": "Income this month",
+        "up": "↑ {{percent}}% vs. last month",
+        "down": "↓ {{percent}}% vs. last month",
+        "noPrevious": "No data from last month"
+      },
+      "pending": { "label": "Pending requests", "hint": "Reply within {{minutes}} min" },
+      "ongoing": {
+        "label": "Reservations in progress",
+        "hint": "{{count}} parking spaces published"
+      },
+      "occupancy": {
+        "label": "Current occupancy",
+        "rating": "Rating {{rating}} ★",
+        "noRating": "No ratings yet"
+      }
+    },
+    "weekly": {
+      "title": "Income this week",
+      "subtitle": "Estimated daily performance",
+      "total": "Weekly total"
+    },
+    "weekDays": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    },
+    "activity": { "title": "Recent activity", "empty": "No recent activity." },
+    "status": {
+      "requested": "Requested",
+      "confirmed": "Confirmed",
+      "in-use": "In use",
+      "completed": "Completed",
+      "rejected": "Rejected"
+    }
   }
 }

@@ -5,7 +5,8 @@ import { MatListItem, MatListItemIcon, MatListItemTitle, MatNavList } from '@ang
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageSwitcher } from '../language-switcher/language-switcher';
-import { NAV_OPTIONS, RoleOption, ROLES, UserRole } from './navigation';
+import { NAV_OPTIONS, NavOption, RoleOption, ROLES, UserRole } from './navigation';
+import { NAV_BADGES } from './nav-badges';
 
 @Component({
   selector: 'app-layout',
@@ -28,12 +29,16 @@ import { NAV_OPTIONS, RoleOption, ROLES, UserRole } from './navigation';
 })
 export class Layout {
   private readonly router = inject(Router);
-
+  private readonly badges = inject(NAV_BADGES);
   protected readonly roles = ROLES;
   protected readonly year = new Date().getFullYear();
 
   protected currentRole(): UserRole {
     return this.router.url.startsWith('/owner') ? 'owner' : 'driver';
+  }
+
+  protected badgeFor(option: NavOption): number | null {
+    return (option.badgeKey && this.badges()[option.badgeKey]) || null;
   }
 
   protected navOptions() {

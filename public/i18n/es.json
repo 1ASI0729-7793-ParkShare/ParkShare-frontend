@@ -299,5 +299,47 @@
       "noActionRequired": "Acción no requerida",
       "empty": "Aún no tienes solicitudes de reserva."
     }
+  },
+
+  "reportAnalytics": {
+    "title": "Panel del propietario",
+    "subtitle": "Resumen de tus ganancias, reservas activas y cocheras en Lima",
+    "kpi": {
+      "income": {
+        "label": "Ingresos del mes",
+        "up": "↑ {{percent}}% vs. mes anterior",
+        "down": "↓ {{percent}}% vs. mes anterior",
+        "noPrevious": "Sin datos del mes anterior"
+      },
+      "pending": { "label": "Solicitudes pendientes", "hint": "Responde antes de {{minutes}} min" },
+      "ongoing": { "label": "Reservas en curso", "hint": "{{count}} cocheras publicadas" },
+      "occupancy": {
+        "label": "Ocupación actual",
+        "rating": "Calificación {{rating}} ★",
+        "noRating": "Aún sin calificaciones"
+      }
+    },
+    "weekly": {
+      "title": "Ingresos de la semana",
+      "subtitle": "Rendimiento diario estimado",
+      "total": "Total semanal"
+    },
+    "weekDays": {
+      "mon": "Lun",
+      "tue": "Mar",
+      "wed": "Mié",
+      "thu": "Jue",
+      "fri": "Vie",
+      "sat": "Sáb",
+      "sun": "Dom"
+    },
+    "activity": { "title": "Actividad reciente", "empty": "Sin actividad reciente." },
+    "status": {
+      "requested": "Solicitada",
+      "confirmed": "Confirmada",
+      "in-use": "En uso",
+      "completed": "Finalizada",
+      "rejected": "Rechazada"
+    }
   }
 }

@@ -1,0 +1,37 @@
+@let d = store.dashboard();
+
+<h1 class="title">{{ 'reportAnalytics.title' | translate }}</h1>
+<p class="subtitle">{{ 'reportAnalytics.subtitle' | translate }}</p>
+
+@if (store.error()) {
+  <p class="error">{{ store.error() }}</p>
+}
+
+<div class="kpis">
+  <app-kpi-card
+    [label]="'reportAnalytics.kpi.income.label' | translate"
+    [value]="(d.monthlyIncome | currency: currency.code : currency.symbol) ?? ''"
+    [hint]="incomeHintKey() | translate: { percent: incomeChange() }"
+    [tone]="incomeTone()"
+  />
+  <app-kpi-card
+    [label]="'reportAnalytics.kpi.pending.label' | translate"
+    [value]="'' + d.pendingRequests"
+    [hint]="'reportAnalytics.kpi.pending.hint' | translate: { minutes: responseMinutes }"
+  />
+  <app-kpi-card
+    [label]="'reportAnalytics.kpi.ongoing.label' | translate"
+    [value]="'' + d.ongoingReservations"
+    [hint]="'reportAnalytics.kpi.ongoing.hint' | translate: { count: d.publishedListings }"
+  />
+  <app-kpi-card
+    [label]="'reportAnalytics.kpi.occupancy.label' | translate"
+    [value]="d.occupancyPercent + '%'"
+    [hint]="ratingHintKey() | translate: { rating: d.averageRating }"
+  />
+</div>
+
+<div class="panels">
+  <app-weekly-income-chart [days]="d.weeklyIncome" [total]="d.weeklyTotal" />
+  <app-recent-activity [items]="d.recentActivity" />
+</div>

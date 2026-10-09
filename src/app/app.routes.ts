@@ -1,5 +1,10 @@
 import { Routes } from '@angular/router';
 
+const reportAnalyticsRoutes = () =>
+  import('./report-analytics/presentation/report-analytics.routes').then(
+    (m) => m.reportAnalyticsRoutes,
+  );
+
 const placeholder = () =>
   import('./shared/presentation/views/placeholder/placeholder').then((m) => m.Placeholder);
 const profileRoutes = () =>
@@ -33,11 +38,7 @@ export const routes: Routes = [
     path: 'owner',
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-      {
-        path: 'dashboard',
-        loadComponent: placeholder,
-        data: { titleKey: 'nav.owner.dashboard' },
-      },
+      { path: 'dashboard', loadChildren: reportAnalyticsRoutes },
       { path: '', loadChildren: bookingOwnerRoutes },
       {
         path: 'earnings',
@@ -51,7 +52,7 @@ export const routes: Routes = [
   { path: 'search', pathMatch: 'full', redirectTo: 'driver/search' },
   { path: 'reservations', pathMatch: 'full', redirectTo: 'driver/reservation' },
   { path: 'history', pathMatch: 'full', redirectTo: 'driver/history' },
-  { path: 'dashboard', pathMatch: 'full', redirectTo: 'owner/dashboard' },
+  { path: 'dashboard', loadChildren: reportAnalyticsRoutes },
   { path: 'requests', pathMatch: 'full', redirectTo: 'owner/requests' },
   { path: 'parking-spaces/new', pathMatch: 'full', redirectTo: 'owner/parking-spaces/new' },
   {
@@ -73,5 +74,4 @@ export const routes: Routes = [
   { path: 'parkings', pathMatch: 'full', redirectTo: 'owner/parking-spaces' },
   { path: 'earnings', pathMatch: 'full', redirectTo: 'owner/earnings' },
   { path: '**', redirectTo: 'driver/search' },
-
 ];

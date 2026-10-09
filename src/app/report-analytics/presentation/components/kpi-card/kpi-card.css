@@ -1,0 +1,24 @@
+.kpi {
+  display: flex; flex-direction: column; gap: 6px; height: 100%; box-sizing: border-box;
+  padding: 20px; background: var(--mat-sys-surface);
+  border: 1px solid var(--mat-sys-outline-variant); border-radius: var(--mat-sys-corner-medium);
+}
+.label {
+  font: var(--mat-sys-label-small); letter-spacing: 0.06em; text-transform: uppercase; color: var(--mat-sys-on-surface-variant);
+}
+
+.value {
+  font: var(--mat-sys-headline-large); color: var(--mat-sys-on-surface);
+}
+
+.hint {
+  font: var(--mat-sys-body-small); color: var(--mat-sys-on-surface-variant);
+}
+
+.positive {
+  color: var(--mat-sys-primary);
+}
+
+.negative {
+  color: var(--mat-sys-error);
+}
