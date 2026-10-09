@@ -8,6 +8,7 @@ const parkingSpaceRoutes = () =>
   import('./parking-space-management/presentation/parking-space-management.routes').then(
     (m) => m.parkingSpaceManagementRoutes,
   );
+import { REPUTATION_NOTIFICATIONS_ROUTES } from './reputation-notifications/presentation/reputation-notifications.routes';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'driver/search' },
@@ -73,4 +74,5 @@ export const routes: Routes = [
   { path: 'parkings', pathMatch: 'full', redirectTo: 'owner/parking-spaces' },
   { path: 'earnings', pathMatch: 'full', redirectTo: 'owner/earnings' },
   { path: '**', redirectTo: 'driver/search' },
+
 ];
