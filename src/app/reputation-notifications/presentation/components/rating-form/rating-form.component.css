@@ -1,0 +1,86 @@
+
+.rating-form {
+  max-width: 600px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.rating-form h2 {
+  margin: 0 0 12px;
+  color: #111827;
+}
+
+.description {
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.rating-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.score-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.score-fieldset legend {
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.score-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.score-button {
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #374151;
+  cursor: pointer;
+}
+
+.score-button.selected {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+
+.score-button:focus-visible,
+.submit-button:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font: inherit;
+  resize: vertical;
+}
+
+.submit-button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
