@@ -1,0 +1,32 @@
+
+.reputation-summary {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.reputation-summary h2 {
+  margin-top: 0;
+}
+
+.average {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.score {
+  font-size: 40px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.maximum {
+  color: #6b7280;
+}
+
+.stars {
+  color: #d97706;
+  letter-spacing: 3px;
+}
