@@ -1,0 +1,55 @@
+
+<section class="rating-form">
+  <h2>{{ 'reputation.rating.title' | translate }}</h2>
+
+  <p class="description">
+    {{ 'reputation.rating.description' | translate }}
+  </p>
+
+  <form (ngSubmit)="submit()">
+    <fieldset class="score-fieldset">
+      <legend>
+        {{ 'reputation.rating.scoreLabel' | translate }}
+      </legend>
+
+      <div class="score-options">
+        @for (score of scores; track score) {
+          <button
+            type="button"
+            class="score-button"
+            [class.selected]="selectedScore() === score"
+            [attr.aria-pressed]="selectedScore() === score"
+            [attr.aria-label]="
+              ('reputation.rating.scoreOption' | translate: { score: score })
+            "
+            (click)="selectScore(score)"
+          >
+            {{ score }} ★
+          </button>
+        }
+      </div>
+    </fieldset>
+
+    <label for="rating-comment">
+      {{ 'reputation.rating.commentLabel' | translate }}
+    </label>
+
+    <textarea
+      id="rating-comment"
+      name="comment"
+      rows="4"
+      maxlength="500"
+      [(ngModel)]="comment"
+      [placeholder]="'reputation.rating.commentPlaceholder' | translate"
+    ></textarea>
+
+    <button
+      class="submit-button"
+      type="submit"
+      [disabled]="selectedScore() === null || submitting()"
+    >
+      {{ 'reputation.rating.submit' | translate }}
+    </button>
+  </form>
+</section>
+
