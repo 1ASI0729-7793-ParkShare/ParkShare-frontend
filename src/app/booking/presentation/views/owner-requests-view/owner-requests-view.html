@@ -1,0 +1,18 @@
+<h1 class="title">{{ 'booking.requests.title' | translate }}</h1>
+<p class="subtitle">{{ 'booking.requests.subtitle' | translate }}</p>
+
+@if (store.error()) {
+  <p class="error">{{ 'booking.errors.generic' | translate }}</p>
+}
+
+<div class="list">
+  @for (reservation of store.ownerReservations(); track reservation.id) {
+    <app-request-card [reservation]="reservation" (accepted)="onAccepted($event)" (rejected)="onRejected($event)"/>
+  } @empty {
+    @if (store.loading()) {
+      <mat-spinner diameter="40"/>
+    } @else {
+      <p class="empty">{{ 'booking.requests.empty' | translate }}</p>
+    }
+  }
+</div>
