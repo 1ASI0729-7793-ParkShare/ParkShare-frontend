@@ -1,0 +1,34 @@
+<section class="balance-card">
+  <p class="balance-card__label">Saldo disponible</p>
+  <p class="balance-card__amount">
+    {{ payout().availableBalance | currency: 'PEN' : 'S/ ' : '1.2-2' }}
+  </p>
+  <p class="balance-card__note">
+    Tarifa por servicio de {{ payout().commissionRate }}% aplicada al cobrar.
+  </p>
+ 
+  <button
+    type="button"
+    class="balance-card__button"
+    [disabled]="!canTransfer()"
+    (click)="onTransfer()"
+  >
+    {{ transferring() ? 'Transfiriendo...' : 'Transferir a mi banco' }}
+  </button>
+ 
+  <dl class="balance-card__details">
+    <div class="balance-card__row">
+      <dt>Completadas:</dt>
+      <dd>{{ payout().completedAmount | currency: 'PEN' : 'S/ ' : '1.2-2' }}</dd>
+    </div>
+    <div class="balance-card__row">
+      <dt>En tránsito:</dt>
+      <dd>{{ payout().inTransitAmount | currency: 'PEN' : 'S/ ' : '1.2-2' }}</dd>
+    </div>
+    <div class="balance-card__row">
+      <dt>Cuenta vinculada:</dt>
+      <dd>{{ payout().linkedAccount }}</dd>
+    </div>
+  </dl>
+</section>
+ 

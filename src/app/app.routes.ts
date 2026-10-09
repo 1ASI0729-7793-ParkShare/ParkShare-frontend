@@ -10,6 +10,8 @@ const parkingSpaceRoutes = () =>
   );
 import { REPUTATION_NOTIFICATIONS_ROUTES }
   from './reputation-notifications/presentation/reputation-notifications.routes';
+const paymentsRoutes = () =>
+  import('./payments/presentation/payments.routes').then((m) => m.paymentsRoutes);
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'driver/search' },
@@ -44,7 +46,7 @@ export const routes: Routes = [
       },
       {
         path: 'earnings',
-        loadComponent: placeholder,
+        loadChildren: paymentsRoutes,
         data: { titleKey: 'nav.owner.earnings' },
       },
       { path: '', loadChildren: parkingSpaceRoutes },

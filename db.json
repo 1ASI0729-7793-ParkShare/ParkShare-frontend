@@ -34,6 +34,59 @@
       "fileName": "wswswsd"
     }
   ],
+  "ownerPayouts": [
+    {
+      "id": 1,
+      "ownerId": "2",
+      "availableBalance": 960,
+      "completedAmount": 2400,
+      "inTransitAmount": 0,
+      "linkedAccount": "BCP ******452",
+      "commissionRate": 10
+    }
+  ],
+  "paymentTransactions": [
+    {
+      "id": 1,
+      "ownerId": "2",
+      "reservationId": "20419",
+      "driverName": "Daniela R.",
+      "garageName": "Cochera Miraflores",
+      "date": "2024-10-30T10:00:00.000Z",
+      "durationMinutes": 240,
+      "amountReceived": 20
+    },
+    {
+      "id": 2,
+      "ownerId": "2",
+      "reservationId": "20281",
+      "driverName": "Alberto M.",
+      "garageName": "San Isidro Segura",
+      "date": "2024-10-29T15:30:00.000Z",
+      "durationMinutes": 150,
+      "amountReceived": 16.25
+    },
+    {
+      "id": 3,
+      "ownerId": "2",
+      "reservationId": "20112",
+      "driverName": "Carlos G.",
+      "garageName": "Cochera Miraflores",
+      "date": "2024-10-28T09:15:00.000Z",
+      "durationMinutes": 75,
+      "amountReceived": 6.25
+    },
+    {
+      "id": 4,
+      "ownerId": "2",
+      "reservationId": "19990",
+      "driverName": "Sofía L.",
+      "garageName": "Surco Familiar",
+      "date": "2024-10-26T18:00:00.000Z",
+      "durationMinutes": 180,
+      "amountReceived": 12
+    }
+  ],
   "ratings": [
     {
       "id": 1,
@@ -110,6 +163,4 @@
       "status": "confirmed"
     }
   ]
-
-
 }

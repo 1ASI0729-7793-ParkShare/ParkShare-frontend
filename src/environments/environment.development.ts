@@ -7,4 +7,7 @@ export const environment = {
   platformProviderUserReputationsEndpointPath: '/userReputations',
   platformProviderNotificationsEndpointPath: '/notifications',
   platformProviderBookingsEndpointPath: '/bookings',
+  platformProviderOwnerPayoutsEndpointPath: '/ownerPayouts',
+platformProviderPaymentTransactionsEndpointPath: '/paymentTransactions',
+
 };
