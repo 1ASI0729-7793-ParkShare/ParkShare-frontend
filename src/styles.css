@@ -32,7 +32,9 @@
   background: var(--color-light-bg);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -49,6 +51,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   background: var(--color-light-bg);
+  -webkit-font-smoothing: antialiased;
 }
 
 button,

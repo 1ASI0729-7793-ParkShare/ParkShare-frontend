@@ -1,0 +1,68 @@
+<div class="app-shell">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="brand">
+        <div class="brand-logo">
+          <span class="logo-letter">P</span>
+        </div>
+        <span class="brand-name">ParkShare</span>
+      </div>
+
+      <nav class="nav-menu">
+        @for (item of activeNavOptions(); track item.link) {
+          <a
+            class="nav-item"
+            [routerLink]="item.link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >
+            <div class="nav-item-main">
+              <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+              <span class="nav-label">{{ item.label }}</span>
+            </div>
+            @if (item.badge !== undefined) {
+              <span class="nav-badge">{{ item.badge }}</span>
+            }
+          </a>
+        }
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-location">LIMA, PERÚ</div>
+      <div class="sidebar-copyright">&copy; 2025 ParkShare</div>
+    </div>
+  </aside>
+
+  <!-- Main Body Wrapper -->
+  <div class="main-wrapper">
+    <!-- Header -->
+    <header class="top-header">
+      <!-- Role Switcher -->
+      <div class="role-switcher">
+        <button
+          type="button"
+          class="role-pill"
+          [class.active]="currentRole() === 'conductor'"
+          (click)="setRole('conductor')"
+        >
+          Conductor
+        </button>
+        <button
+          type="button"
+          class="role-pill"
+          [class.active]="currentRole() === 'propietario'"
+          (click)="setRole('propietario')"
+        >
+          Propietario
+        </button>
+      </div>
+    </header>
+
+    <!-- Page Content Container -->
+    <main class="page-container">
+      <router-outlet />
+    </main>
+  </div>
+</div>

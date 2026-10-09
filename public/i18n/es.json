@@ -1,4 +1,20 @@
 {
+  "BRAND": "ParkShare",
+  "PROFILE": {
+    "TITLE": "Mi perfil",
+    "SUBTITLE": "Gestiona tu información personal, vehículo y verificaciones",
+    "VEHICLE": {
+      "TITLE": "Vehículo registrado",
+      "PLATE": "Placa",
+      "MODEL": "Modelo",
+      "TYPE": "Tipo de vehículo",
+      "SAVE": "Guardar cambios"
+    },
+    "DOCUMENTS": {
+      "TITLE": "Documentos de verificación",
+      "UPDATE": "Actualizar"
+    }
+  },
   "parkingSpace": {
     "navigation": {
       "ownerMenu": "Navegación del propietario",

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { Layout } from './shared/presentation/components/layout/layout';
 
 @Component({
-  imports: [RouterLink, RouterOutlet, TranslatePipe],
+  imports: [Layout],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
