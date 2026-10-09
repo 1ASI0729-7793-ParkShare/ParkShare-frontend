@@ -1,11 +1,17 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AvailabilityPeriod } from '../domain/model/availability-period.entity';
-import { ParkingSpace, ParkingSpacePublicationStatus } from '../domain/model/parking-space.entity';
+import {
+  ParkingSpace,
+  ParkingSpaceFeature,
+  ParkingSpacePublicationStatus,
+} from '../domain/model/parking-space.entity';
 
 export interface CreateParkingSpaceCommand {
+  name: string;
   address: string;
   photos: string[];
+  features: ParkingSpaceFeature[];
   hourlyRate: number;
   availability: AvailabilityPeriod[];
 }

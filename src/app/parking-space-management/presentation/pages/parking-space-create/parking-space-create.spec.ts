@@ -20,4 +20,12 @@ describe('ParkingSpaceCreate', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should require a parking space title', () => {
+    expect(component['form'].controls.name.hasError('required')).toBe(true);
+
+    component['form'].controls.name.setValue('Cochera cerca al parque');
+
+    expect(component['form'].controls.name.valid).toBe(true);
+  });
 });

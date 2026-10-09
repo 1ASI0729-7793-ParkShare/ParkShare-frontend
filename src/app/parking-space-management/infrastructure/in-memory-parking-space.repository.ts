@@ -34,6 +34,8 @@ export class InMemoryParkingSpaceRepository extends ParkingSpaceRepository {
       [...command.photos],
       command.hourlyRate,
       this.cloneAvailability(command.availability),
+      command.name,
+      [...command.features],
     );
     this.parkingSpaces.push(parkingSpace);
     return of(this.clone(parkingSpace));

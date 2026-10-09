@@ -16,7 +16,7 @@
 
   <div class="tag-list" aria-label="Características y horario">
     @for (feature of parkingSpace().features; track feature) {
-      <span class="tag">{{ feature }}</span>
+      <span class="tag">{{ 'parkingSpace.features.' + feature | translate }}</span>
     }
     @if (firstPeriod(); as period) {
       <span class="tag schedule-tag">
