@@ -26,7 +26,7 @@ export const NAV_OPTIONS: Record<UserRole, NavOption[]> = {
   ],
   owner: [
     { labelKey: 'nav.owner.dashboard', icon: 'tune', route: '/owner/dashboard' },
-    { labelKey: 'nav.owner.requests', icon: 'schedule', route: '/owner/requests' },
+    { labelKey: 'nav.owner.requests', icon: 'schedule', route: '/owner/income' },
     {
       labelKey: 'nav.owner.parkingSpaces',
       icon: 'directions_car',

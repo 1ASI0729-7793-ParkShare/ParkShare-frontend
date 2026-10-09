@@ -46,7 +46,7 @@ export const routes: Routes = [
       },
       {
         path: 'earnings',
-        loadComponent: placeholder,
+        loadChildren: paymentsRoutes,
         data: { titleKey: 'nav.owner.earnings' },
       },
       { path: '', loadChildren: parkingSpaceRoutes },

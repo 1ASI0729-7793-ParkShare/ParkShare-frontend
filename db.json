@@ -38,9 +38,9 @@
     {
       "id": 1,
       "ownerId": "2",
-      "availableBalance": 0,
+      "availableBalance": 960,
       "completedAmount": 2400,
-      "inTransitAmount": 960,
+      "inTransitAmount": 0,
       "linkedAccount": "BCP ******452",
       "commissionRate": 10
     }
