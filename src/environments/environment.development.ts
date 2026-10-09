@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  platformProviderApiBaseUrl: 'http://localhost:3000',
+  platformProviderApiBaseUrl: 'https://fake-api-z8vx.onrender.com',
   platformProviderProfilesEndpointPath: '/profiles',
   platformProviderVerificationDocumentsEndpointPath: '/verificationDocuments',
   platformProviderRatingsEndpointPath: '/ratings',
@@ -10,5 +10,4 @@ export const environment = {
   platformProviderOwnerPayoutsEndpointPath: '/ownerPayouts',
   platformProviderPaymentTransactionsEndpointPath: '/paymentTransactions',
   platformProviderParkingListingsEndpointPath: '/parkingListings',
-
 };
