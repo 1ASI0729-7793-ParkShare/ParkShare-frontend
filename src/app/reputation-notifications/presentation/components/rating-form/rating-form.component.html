@@ -43,6 +43,12 @@
       [placeholder]="'reputation.rating.commentPlaceholder' | translate"
     ></textarea>
 
+    @if (store.error()) {
+      <p role="alert" class="form-error">
+        {{ 'reputation.rating.error' | translate }}
+      </p>
+    }
+
     <button
       class="submit-button"
       type="submit"
