@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { filter } from 'rxjs';
 
 export interface NavOption {
@@ -14,7 +15,14 @@ export interface NavOption {
 
 @Component({
   selector: 'app-layout',
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, MatIconModule],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    MatIconModule,
+    MatTooltipModule,
+  ],
   templateUrl: './layout.html',
   styleUrl: './layout.css',
 })
@@ -24,15 +32,37 @@ export class Layout {
   readonly currentRole = signal<'conductor' | 'propietario'>('conductor');
 
   readonly conductorOptions: NavOption[] = [
+    { link: '/search', label: 'Buscar cochera', icon: 'search' },
+    { link: '/reservations', label: 'Mi reserva', icon: 'schedule' },
+    { link: '/history', label: 'Historial', icon: 'history' },
     { link: '/profile', label: 'Mi perfil', icon: 'person' },
   ];
 
   readonly propietarioOptions: NavOption[] = [
+    { link: '/dashboard', label: 'Panel de control', icon: 'tune' },
+    { link: '/requests', label: 'Solicitudes', icon: 'schedule', badge: 2 },
     { link: '/parking-spaces', label: 'Mis cocheras', icon: 'directions_car' },
+    { link: '/earnings', label: 'Mis ingresos', icon: 'verified_user' },
   ];
 
   readonly activeNavOptions = computed(() =>
     this.currentRole() === 'conductor' ? this.conductorOptions : this.propietarioOptions,
+  );
+
+  readonly user = computed(() =>
+    this.currentRole() === 'conductor'
+      ? {
+          name: 'Daniela Ríos',
+          status: 'Conductora verificada',
+          initials: 'DR',
+          avatarUrl: '',
+        }
+      : {
+          name: 'Carlos Mendoza',
+          status: 'Propietario • 3 cocheras',
+          initials: 'CM',
+          avatarUrl: '',
+        },
   );
 
   constructor() {
@@ -50,11 +80,14 @@ export class Layout {
     if (role === 'conductor') {
       this.router.navigate(['/profile']);
     } else {
-      this.router.navigate(['/parking-spaces']);
+      this.router.navigate(['/requests']);
     }
   }
 
   private syncRoleWithUrl(url: string): void {
-    this.currentRole.set(url.startsWith('/parking') ? 'propietario' : 'conductor');
+    const ownerPaths = ['/dashboard', '/requests', '/parkings', '/parking-spaces', '/earnings'];
+    this.currentRole.set(
+      ownerPaths.some((ownerPath) => url.startsWith(ownerPath)) ? 'propietario' : 'conductor',
+    );
   }
 }

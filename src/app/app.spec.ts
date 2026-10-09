@@ -15,6 +15,7 @@ describe('App', () => {
       providers: [
         provideRouter([
           { path: 'profile', component: EmptyRouteComponent },
+          { path: 'requests', component: EmptyRouteComponent },
           { path: 'parking-spaces', component: EmptyRouteComponent },
         ]),
         provideTranslateService({ lang: 'es', fallbackLang: 'en' }),
@@ -29,11 +30,11 @@ describe('App', () => {
 
     expect(fixture.componentInstance).toBeTruthy();
     expect(compiled.querySelector('.brand-name')?.textContent).toContain('ParkShare');
-    expect(compiled.querySelector('.user-header')).toBeNull();
+    expect(compiled.querySelector('.user-header')?.textContent).toContain('Daniela Ríos');
     expect(compiled.textContent).toContain('Mi perfil');
   });
 
-  it('should expose only the parking-space navigation for the owner role', () => {
+  it('should expose the illustrative owner navigation and user', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const layout = fixture.debugElement.children[0].componentInstance as Layout;
@@ -44,7 +45,8 @@ describe('App', () => {
     const labels = Array.from(
       (fixture.nativeElement as HTMLElement).querySelectorAll('.nav-label'),
     ).map((element) => element.textContent?.trim());
-    expect(labels).toEqual(['Mis cocheras']);
+    expect(labels).toEqual(['Panel de control', 'Solicitudes', 'Mis cocheras', 'Mis ingresos']);
+    expect((fixture.nativeElement as HTMLElement).textContent).toContain('Carlos Mendoza');
   });
 
   it('should select the owner role when navigating directly to parking spaces', async () => {
