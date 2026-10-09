@@ -147,16 +147,27 @@
     },
     "form": {
       "details": "Space details",
+      "name": "Title",
       "address": "Address",
       "photos": "Photo links",
       "photosHint": "One link per line or separated by commas",
+      "features": "Features",
+      "featuresHint": "You can select one or more options.",
       "hourlyRate": "Hourly rate",
       "initialAvailability": "Initial availability",
       "day": "Day",
       "startTime": "Start time",
       "endTime": "End time"
     },
+    "features": {
+      "covered": "Covered",
+      "automaticGate": "Automatic gate",
+      "security24h": "24/7 security",
+      "concierge": "Concierge",
+      "securityCameras": "Security cameras"
+    },
     "validation": {
+      "nameRequired": "The title is required.",
       "addressRequired": "The address is required.",
       "ratePositive": "The rate must be greater than zero.",
       "timeRange": "The start time must be earlier than the end time."

@@ -72,6 +72,28 @@ mat-form-field {
   width: 100%;
 }
 
+.feature-field {
+  display: grid;
+  gap: 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-label {
+  color: var(--color-primary-dark);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+mat-chip-listbox {
+  display: block;
+}
+
+.feature-hint {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
 footer {
   display: flex;
   justify-content: flex-end;

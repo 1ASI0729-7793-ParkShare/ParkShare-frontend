@@ -18,6 +18,14 @@
       <section>
         <h2>{{ 'parkingSpace.form.details' | translate }}</h2>
         <mat-form-field appearance="outline">
+          <mat-label>{{ 'parkingSpace.form.name' | translate }}</mat-label>
+          <input matInput formControlName="name" maxlength="100" autocomplete="off" />
+          @if (form.controls.name.hasError('required')) {
+            <mat-error>{{ 'parkingSpace.validation.nameRequired' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
           <mat-label>{{ 'parkingSpace.form.address' | translate }}</mat-label>
           <input matInput formControlName="address" autocomplete="street-address" />
           @if (form.controls.address.hasError('required')) {
@@ -34,6 +42,22 @@
             [placeholder]="'parkingSpace.form.photosHint' | translate"
           ></textarea>
         </mat-form-field>
+
+        <div class="feature-field">
+          <span class="feature-label">{{ 'parkingSpace.form.features' | translate }}</span>
+          <mat-chip-listbox
+            formControlName="features"
+            multiple
+            [attr.aria-label]="'parkingSpace.form.features' | translate"
+          >
+            @for (feature of featureOptions; track feature) {
+              <mat-chip-option [value]="feature">
+                {{ 'parkingSpace.features.' + feature | translate }}
+              </mat-chip-option>
+            }
+          </mat-chip-listbox>
+          <p class="feature-hint">{{ 'parkingSpace.form.featuresHint' | translate }}</p>
+        </div>
 
         <mat-form-field appearance="outline">
           <mat-label>{{ 'parkingSpace.form.hourlyRate' | translate }}</mat-label>

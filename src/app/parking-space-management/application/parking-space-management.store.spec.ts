@@ -23,8 +23,10 @@ describe('ParkingSpaceManagementStore', () => {
   it('should create and retain a parking space', async () => {
     const created = await firstValueFrom(
       store.createParkingSpace({
+        name: 'Cochera de prueba',
         address: 'Av. Test 123',
         photos: ['https://example.com/photo.jpg'],
+        features: ['covered', 'automaticGate'],
         hourlyRate: 8.5,
         availability: [
           {
@@ -38,15 +40,19 @@ describe('ParkingSpaceManagementStore', () => {
 
     expect(created.id).toBe(1);
     expect(store.parkingSpaces()).toHaveLength(1);
+    expect(store.parkingSpaces()[0].name).toBe('Cochera de prueba');
     expect(store.parkingSpaces()[0].address).toBe('Av. Test 123');
+    expect(store.parkingSpaces()[0].features).toEqual(['covered', 'automaticGate']);
     expect(store.error()).toBeNull();
   });
 
   it('should update pricing and availability independently', async () => {
     const created = await firstValueFrom(
       store.createParkingSpace({
+        name: 'Cochera con horario',
         address: 'Av. Test 456',
         photos: [],
+        features: [],
         hourlyRate: 5,
         availability: [],
       }),
@@ -70,8 +76,10 @@ describe('ParkingSpaceManagementStore', () => {
   it('should pause and reactivate a publication', async () => {
     const created = await firstValueFrom(
       store.createParkingSpace({
+        name: 'Cochera publicable',
         address: 'Av. Test 789',
         photos: [],
+        features: [],
         hourlyRate: 6,
         availability: [],
       }),

@@ -147,16 +147,27 @@
     },
     "form": {
       "details": "Datos del espacio",
+      "name": "Título",
       "address": "Dirección",
       "photos": "Enlaces de fotografías",
       "photosHint": "Un enlace por línea o separados por comas",
+      "features": "Características",
+      "featuresHint": "Puedes seleccionar una o varias opciones.",
       "hourlyRate": "Tarifa por hora",
       "initialAvailability": "Disponibilidad inicial",
       "day": "Día",
       "startTime": "Hora de inicio",
       "endTime": "Hora de fin"
     },
+    "features": {
+      "covered": "Techada",
+      "automaticGate": "Portón automático",
+      "security24h": "Vigilancia 24/7",
+      "concierge": "Conserjería",
+      "securityCameras": "Cámaras de seguridad"
+    },
     "validation": {
+      "nameRequired": "El título es obligatorio.",
       "addressRequired": "La dirección es obligatoria.",
       "ratePositive": "La tarifa debe ser mayor que cero.",
       "timeRange": "La hora de inicio debe ser anterior a la hora de fin."
