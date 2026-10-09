@@ -2,13 +2,9 @@
   "parkingSpace": {
     "navigation": {
       "ownerMenu": "Navegación del propietario",
-      "dashboard": "Panel de control",
-      "requests": "Solicitudes",
       "mySpaces": "Mis cocheras",
-      "income": "Mis ingresos",
       "driver": "Conductor",
       "owner": "Propietario",
-      "ownerSummary": "Propietario · 3 cocheras",
       "location": "Lima, Perú"
     },
     "common": {

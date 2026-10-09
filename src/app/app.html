@@ -9,34 +9,12 @@
       class="side-navigation"
       [attr.aria-label]="'parkingSpace.navigation.ownerMenu' | translate"
     >
-      <span class="side-link is-disabled" aria-disabled="true">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="9"></circle>
-          <path d="m9 9 6 6m0-6-6 6"></path>
-        </svg>
-        {{ 'parkingSpace.navigation.dashboard' | translate }}
-      </span>
-      <span class="side-link is-disabled" aria-disabled="true">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="9"></circle>
-          <path d="M12 7v5l3 2"></path>
-        </svg>
-        {{ 'parkingSpace.navigation.requests' | translate }}
-        <span class="request-badge">2</span>
-      </span>
       <a class="side-link active" routerLink="/parking-spaces" aria-current="page">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M5 20h14M6 20V9l6-4 6 4v11M9 20v-5h6v5"></path>
         </svg>
         {{ 'parkingSpace.navigation.mySpaces' | translate }}
       </a>
-      <span class="side-link is-disabled" aria-disabled="true">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 3 4 7v5c0 5 3.4 8 8 9 4.6-1 8-4 8-9V7l-8-4Z"></path>
-          <path d="m9 12 2 2 4-4"></path>
-        </svg>
-        {{ 'parkingSpace.navigation.income' | translate }}
-      </span>
     </nav>
 
     <footer class="sidebar-footer">
@@ -50,17 +28,6 @@
       <div class="role-switch" aria-label="Modo de usuario">
         <span>{{ 'parkingSpace.navigation.driver' | translate }}</span>
         <strong>{{ 'parkingSpace.navigation.owner' | translate }}</strong>
-      </div>
-
-      <div class="owner-summary">
-        <div>
-          <strong>Carlos Mendoza</strong>
-          <span>
-            <i aria-hidden="true"></i>
-            {{ 'parkingSpace.navigation.ownerSummary' | translate }}
-          </span>
-        </div>
-        <span class="avatar" aria-hidden="true">CM</span>
       </div>
     </header>
 

@@ -2,13 +2,9 @@
   "parkingSpace": {
     "navigation": {
       "ownerMenu": "Owner navigation",
-      "dashboard": "Dashboard",
-      "requests": "Requests",
       "mySpaces": "My parking spaces",
-      "income": "My income",
       "driver": "Driver",
       "owner": "Owner",
-      "ownerSummary": "Owner · 3 parking spaces",
       "location": "Lima, Peru"
     },
     "common": {
