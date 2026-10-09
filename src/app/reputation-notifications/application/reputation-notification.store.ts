@@ -71,7 +71,12 @@ export class ReputationNotificationsStore {
       });
   }
 
-  submitRating(command: CreateRatingCommand, onSuccess?: () => void): void {
+
+  submitRating(
+    command: CreateRatingCommand,
+    onSuccess?: () => void,
+    onError?: () => void,
+  ): void {
     this.beginOperation();
 
     this.reputationService
@@ -83,9 +88,13 @@ export class ReputationNotificationsStore {
           this.loadReputation(command.revieweeId);
           onSuccess?.();
         },
-        error: (error) => this.handleError(error),
+        error: (error) => {
+          this.handleError(error);
+          onError?.();
+        },
       });
   }
+
 
   loadNotifications(recipientId: number): void {
     this.beginOperation();
