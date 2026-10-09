@@ -225,7 +225,79 @@
   "common": {
     "loading": "Loading...",
     "loadError": "An error occurred while loading the information."
+  },
+  "booking": {
+    "day": {
+      "yesterday": "Ayer",
+      "today": "Hoy",
+      "tomorrow": "Mañana"
+    },
+    "hours": {
+      "one": "{{count}} hora",
+      "other": "{{count}} horas"
+    },
+    "status": {
+      "requested": "Solicitada",
+      "confirmed": "Confirmada",
+      "in-use": "En uso",
+      "completed": "Finalizada",
+      "rejected": "Rechazada"
+    },
+    "errors": {
+      "generic": "Ocurrió un error. Inténtalo de nuevo."
+    },
+    "search": {
+      "title": "Buscar cochera",
+      "subtitle": "Encuentra estacionamientos privados seguros en Lima",
+      "district": "Distrito o avenida",
+      "districtPlaceholder": "Miraflores",
+      "vehicle": "Vehículo",
+      "maxRate": "Precio máx. por hora",
+      "submit": "Buscar",
+      "resultsIn": "{{count}} resultados encontrados en {{district}}",
+      "results": "{{count}} resultados encontrados",
+      "empty": "No encontramos cocheras con esos filtros.",
+      "availability": {
+        "available": "Disponible",
+        "occupied": "Ocupada"
+      },
+      "covered": "Techada",
+      "reserve": "Reservar",
+      "legendOccupied": "Ocupada / Reservada",
+      "mapLabel": "Mapa de cocheras",
+      "activeReservationHint": "Ya tienes una reserva activa. Finalízala para reservar otra cochera."
+    },
+    "reservation": {
+      "title": "Mi reserva",
+      "subtitle": "Sigue el estado de tu estacionamiento activo",
+      "id": "Reserva ID",
+      "serviceStatus": "Estado del servicio",
+      "waitingOwner": "Esperando la respuesta del propietario. Te avisaremos cuando confirme tu reserva.",
+      "confirmedHint": "Tu reserva fue confirmada. Inicia tu estacionamiento al llegar a la cochera.",
+      "elapsed": "Tiempo transcurrido",
+      "startedAt": "Iniciado {{day}} a las {{time}}",
+      "accumulatedCost": "Costo acumulado",
+      "rate": "Tarifa: S/ {{amount}} / hora",
+      "vehicle": "Vehículo:",
+      "start": "Iniciar estacionamiento",
+      "finish": "Marcar salida y pagar",
+      "paid": "Salida registrada. Total a pagar: S/ {{amount}}",
+      "empty": "No tienes una reserva activa.",
+      "findParking": "Buscar cochera"
+    },
+    "requests": {
+      "title": "Solicitudes de reserva",
+      "subtitle": "Responde a los conductores que desean usar tus cocheras",
+      "reservationCode": "Reserva {{code}}",
+      "space": "Cochera",
+      "entry": "Entrada y tiempo",
+      "rate": "Tarifa",
+      "perHour": "S/ {{amount}} / hora",
+      "youReceive": "Recibirás",
+      "accept": "Aceptar reserva",
+      "reject": "Rechazar",
+      "noActionRequired": "Acción no requerida",
+      "empty": "Aún no tienes solicitudes de reserva."
+    }
   }
-
-
 }
