@@ -1,194 +1,287 @@
 {
-  "app": {
-    "title": "ParkShare"
-  },
-  "roles": {
-    "driver": "Conductor",
-    "owner": "Propietario"
-  },
-  "nav": {
-    "driver": {
-      "search": "Buscar cochera",
-      "reservation": "Mi reserva",
-      "history": "Historial",
-      "profile": "Mi perfil"
-    },
-    "owner": {
-      "dashboard": "Panel de control",
-      "requests": "Solicitudes",
-      "parkingSpaces": "Mis cocheras",
-      "earnings": "Mis ingresos"
-    }
-  },
-  "layout": {
-    "location": "Lima, Perú",
-    "copyright": "© {{year}} ParkShare"
-  },
-  "placeholder": {
-    "comingSoon": "Vista en construcción."
-  },
-  "profile": {
-    "title": "Mi perfil",
-    "subtitle": "Gestiona tu información personal, vehículo y verificaciones",
-    "saved": "Cambios guardados",
-    "userChip": {
-      "verifiedDocuments": "{{verified}}/{{total}} documentos verificados",
-      "ownerStatus": "Propietario • 3 cocheras",
-      "driverStatus": "Conductora verificada"
-    },
-    "vehicle": {
-      "title": "Vehículo registrado",
-      "plate": "Placa",
-      "platePlaceholder": "ABC-123",
-      "model": "Modelo",
-      "modelPlaceholder": "Toyota Yaris 2021",
-      "type": "Tipo de vehículo",
-      "save": "Guardar cambios"
-    },
-    "vehicleTypes": {
-      "sedan": "Sedán",
-      "suv": "SUV",
-      "hatchback": "Hatchback",
-      "pickup": "Camioneta pickup",
-      "van": "Van"
-    },
-    "documents": {
-      "title": "Documentos de verificación",
-      "lastUpdate": "Última actualización: {{time}}",
-      "update": "Actualizar",
-      "types": {
-        "national-id": "Documento Nacional de Identidad (DNI)",
-        "driver-license": "Licencia de conducir",
-        "vehicle-registration": "Tarjeta de propiedad vehicular"
-      },
-      "status": {
-        "verified": "Verificado",
-        "in-review": "En revisión",
-        "rejected": "Rechazado"
-      }
-    },
-    "errors": {
-      "required": "Este campo es obligatorio",
-      "plateInvalid": "Formato inválido (ej. ABC-123)",
-      "generic": "Ocurrió un error. Inténtalo de nuevo."
-    }
-  },
-  "parkingSpace": {
-    "navigation": {
-      "ownerMenu": "Navegación del propietario",
-      "mySpaces": "Mis cocheras",
-      "driver": "Conductor",
-      "owner": "Propietario",
-      "location": "Lima, Perú"
-    },
-    "common": {
-      "loading": "Cargando cocheras..."
-    },
-    "actions": {
-      "create": "Publicar cochera",
-      "publishFirst": "Publicar mi primera cochera",
-      "publish": "Publicar espacio",
-      "edit": "Editar",
-      "editDetails": "Editar datos",
-      "editSchedule": "Editar horario",
-      "pausePublication": "Pausar publicación",
-      "reactivatePublication": "Reactivar publicación",
-      "availability": "Disponibilidad",
-      "pricing": "Tarifa",
-      "backToList": "Volver a mis cocheras",
-      "cancel": "Cancelar",
-      "save": "Guardar cambios",
-      "saveRate": "Guardar tarifa",
-      "saveAvailability": "Guardar disponibilidad",
-      "addPeriod": "Agregar periodo",
-      "remove": "Quitar"
-    },
-    "list": {
-      "eyebrow": "Parking Space Management",
-      "title": "Mis cocheras",
-      "description": "Publica tus espacios y mantén actualizadas sus condiciones de disponibilidad y tarifa.",
-      "emptyTitle": "Todavía no publicaste una cochera",
-      "emptyDescription": "Crea tu primera publicación para comenzar a administrar el espacio desde ParkShare."
-    },
-    "card": {
-      "hourlyRate": "Tarifa por hora",
-      "accumulatedIncome": "Ingresos acumulados",
-      "everyDay": "Lun – Dom",
-      "weekdays": "Lun – Vie",
-      "weekend": "Sáb – Dom",
-      "noSchedule": "Sin horario",
-      "photos": "fotografías",
-      "periods": "periodos disponibles"
-    },
-    "status": {
-      "published": "Publicada",
-      "paused": "Pausada"
-    },
-    "create": {
-      "eyebrow": "US06 · Publicación",
-      "title": "Publicar una cochera",
-      "description": "Registra la información esencial del espacio. Podrás ajustar estos datos después."
-    },
-    "edit": {
-      "eyebrow": "US07 · Edición",
-      "title": "Editar cochera",
-      "description": "Actualiza la dirección y las fotografías de la publicación."
-    },
-    "availability": {
-      "eyebrow": "US08 · Disponibilidad",
-      "title": "Configurar disponibilidad",
-      "description": "Define uno o más periodos en los que el espacio puede reservarse.",
-      "period": "Periodo"
-    },
-    "pricing": {
-      "eyebrow": "US09 · Tarifa",
-      "title": "Configurar tarifa",
-      "description": "Establece una tarifa por hora válida para las reservas futuras."
-    },
-    "form": {
-      "details": "Datos del espacio",
-      "name": "Título",
-      "address": "Dirección",
-      "photos": "Enlaces de fotografías",
-      "photosHint": "Un enlace por línea o separados por comas",
-      "features": "Características",
-      "featuresHint": "Puedes seleccionar una o varias opciones.",
-      "hourlyRate": "Tarifa por hora",
-      "initialAvailability": "Disponibilidad inicial",
-      "day": "Día",
-      "startTime": "Hora de inicio",
-      "endTime": "Hora de fin"
-    },
-    "features": {
-      "covered": "Techada",
-      "automaticGate": "Portón automático",
-      "security24h": "Vigilancia 24/7",
-      "concierge": "Conserjería",
-      "securityCameras": "Cámaras de seguridad"
-    },
-    "validation": {
-      "nameRequired": "El título es obligatorio.",
-      "addressRequired": "La dirección es obligatoria.",
-      "ratePositive": "La tarifa debe ser mayor que cero.",
-      "timeRange": "La hora de inicio debe ser anterior a la hora de fin."
-    },
-    "errors": {
-      "load": "No se pudieron cargar las cocheras.",
-      "notFound": "No se encontró la cochera solicitada.",
-      "create": "No se pudo publicar la cochera.",
-      "update": "No se pudo actualizar la cochera.",
-      "availability": "No se pudo actualizar la disponibilidad.",
-      "pricing": "No se pudo actualizar la tarifa.",
-      "publicationStatus": "No se pudo actualizar el estado de la publicación."
-    },
-    "days": {
-      "monday": "Lunes",
-      "tuesday": "Martes",
-      "wednesday": "Miércoles",
-      "thursday": "Jueves",
-      "friday": "Viernes",
-      "saturday": "Sábado",
-      "sunday": "Domingo"
-    }
-  }
+"app": {
+"title": "ParkShare"
+},
+"roles": {
+"driver": "Conductor",
+"owner": "Propietario"
+},
+"nav": {
+"driver": {
+"search": "Buscar cochera",
+"reservation": "Mi reserva",
+"history": "Historial",
+"profile": "Mi perfil"
+},
+"owner": {
+"dashboard": "Panel de control",
+"requests": "Solicitudes",
+"parkingSpaces": "Mis cocheras",
+"spaces": "Mis cocheras",
+"earnings": "Mis ingresos",
+"income": "Mis ingresos"
 }
+},
+"layout": {
+"location": "Lima, Perú",
+"copyright": "© {{year}} ParkShare"
+},
+"placeholder": {
+"comingSoon": "Vista en construcción."
+},
+"profile": {
+"title": "Mi perfil",
+"subtitle": "Gestiona tu información personal, vehículo y verificaciones",
+"saved": "Cambios guardados",
+"userChip": {
+"verifiedDocuments": "{{verified}}/{{total}} documentos verificados",
+"ownerStatus": "Propietario • 3 cocheras",
+"driverStatus": "Conductora verificada"
+},
+"vehicle": {
+"title": "Vehículo registrado",
+"plate": "Placa",
+"platePlaceholder": "ABC-123",
+"model": "Modelo",
+"modelPlaceholder": "Toyota Yaris 2021",
+"type": "Tipo de vehículo",
+"save": "Guardar cambios"
+},
+"vehicleTypes": {
+"sedan": "Sedán",
+"suv": "SUV",
+"hatchback": "Hatchback",
+"pickup": "Camioneta pickup",
+"van": "Van"
+},
+"documents": {
+"title": "Documentos de verificación",
+"lastUpdate": "Última actualización: {{time}}",
+"update": "Actualizar",
+"types": {
+"national-id": "Documento Nacional de Identidad (DNI)",
+"driver-license": "Licencia de conducir",
+"vehicle-registration": "Tarjeta de propiedad vehicular"
+},
+"status": {
+"verified": "Verificado",
+"in-review": "En revisión",
+"rejected": "Rechazado"
+}
+},
+"errors": {
+"required": "Este campo es obligatorio",
+"plateInvalid": "Formato inválido (ej. ABC-123)",
+"generic": "Ocurrió un error. Inténtalo de nuevo."
+}
+},
+"parkingSpace": {
+"navigation": {
+"ownerMenu": "Navegación del propietario",
+"mySpaces": "Mis cocheras",
+"driver": "Conductor",
+"owner": "Propietario",
+"location": "Lima, Perú"
+},
+"common": {
+"loading": "Cargando cocheras..."
+},
+"actions": {
+"create": "Publicar cochera",
+"publishFirst": "Publicar mi primera cochera",
+"publish": "Publicar espacio",
+"edit": "Editar",
+"editDetails": "Editar datos",
+"editSchedule": "Editar horario",
+"pausePublication": "Pausar publicación",
+"reactivatePublication": "Reactivar publicación",
+"availability": "Disponibilidad",
+"pricing": "Tarifa",
+"backToList": "Volver a mis cocheras",
+"cancel": "Cancelar",
+"save": "Guardar cambios",
+"saveRate": "Guardar tarifa",
+"saveAvailability": "Guardar disponibilidad",
+"addPeriod": "Agregar periodo",
+"remove": "Quitar"
+},
+"list": {
+"eyebrow": "Parking Space Management",
+"title": "Mis cocheras",
+"description": "Publica tus espacios y mantén actualizadas sus condiciones de disponibilidad y tarifa.",
+"emptyTitle": "Todavía no publicaste una cochera",
+"emptyDescription": "Crea tu primera publicación para comenzar a administrar el espacio desde ParkShare."
+},
+"card": {
+"hourlyRate": "Tarifa por hora",
+"accumulatedIncome": "Ingresos acumulados",
+"everyDay": "Lun – Dom",
+"weekdays": "Lun – Vie",
+"weekend": "Sáb – Dom",
+"noSchedule": "Sin horario",
+"photos": "fotografías",
+"periods": "periodos disponibles"
+},
+"status": {
+"published": "Publicada",
+"paused": "Pausada"
+},
+"create": {
+"eyebrow": "US06 · Publicación",
+"title": "Publicar una cochera",
+"description": "Registra la información esencial del espacio. Podrás ajustar estos datos después."
+},
+"edit": {
+"eyebrow": "US07 · Edición",
+"title": "Editar cochera",
+"description": "Actualiza la dirección y las fotografías de la publicación."
+},
+"availability": {
+"eyebrow": "US08 · Disponibilidad",
+"title": "Configurar disponibilidad",
+"description": "Define uno o más periodos en los que el espacio puede reservarse.",
+"period": "Periodo"
+},
+"pricing": {
+"eyebrow": "US09 · Tarifa",
+"title": "Configurar tarifa",
+"description": "Establece una tarifa por hora válida para las reservas futuras."
+},
+"form": {
+"details": "Datos del espacio",
+"name": "Título",
+"address": "Dirección",
+"photos": "Enlaces de fotografías",
+"photosHint": "Un enlace por línea o separados por comas",
+"features": "Características",
+"featuresHint": "Puedes seleccionar una o varias opciones.",
+"hourlyRate": "Tarifa por hora",
+"initialAvailability": "Disponibilidad inicial",
+"day": "Día",
+"startTime": "Hora de inicio",
+"endTime": "Hora de fin"
+},
+"features": {
+"covered": "Techada",
+"automaticGate": "Portón automático",
+"security24h": "Vigilancia 24/7",
+"concierge": "Conserjería",
+"securityCameras": "Cámaras de seguridad"
+},
+"validation": {
+"nameRequired": "El título es obligatorio.",
+"addressRequired": "La dirección es obligatoria.",
+"ratePositive": "La tarifa debe ser mayor que cero.",
+"timeRange": "La hora de inicio debe ser anterior a la hora de fin."
+},
+"errors": {
+"load": "No se pudieron cargar las cocheras.",
+"notFound": "No se encontró la cochera solicitada.",
+"create": "No se pudo publicar la cochera.",
+"update": "No se pudo actualizar la cochera.",
+"availability": "No se pudo actualizar la disponibilidad.",
+"pricing": "No se pudo actualizar la tarifa.",
+"publicationStatus": "No se pudo actualizar el estado de la publicación."
+},
+"days": {
+"monday": "Lunes",
+"tuesday": "Martes",
+"wednesday": "Miércoles",
+"thursday": "Jueves",
+"friday": "Viernes",
+"saturday": "Sábado",
+"sunday": "Domingo"
+}
+},
+"booking": {
+"driver": {
+"profileSubtitle": "Conductora verificada"
+},
+"owner": {
+"profileSubtitle": "Propietario • 3 cocheras"
+},
+"filters": {
+"district": "Distrito o avenida",
+"districtPlaceholder": "Miraflores",
+"vehicle": "Vehículo",
+"maxPrice": "Precio máx. por hora",
+"anyPrice": "Cualquiera",
+"searchBtn": "Buscar"
+},
+"search": {
+"title": "Buscar cochera",
+"subtitle": "Encuentra estacionamientos privados seguros en Lima",
+"resultsCount": "{{count}} resultados encontrados en {{district}}",
+"noResults": "No se encontraron estacionamientos con estos filtros.",
+"confirmModal": {
+"title": "Confirmar reserva",
+"message": "¿Deseas reservar en \"{{spot}}\" con tarifa de S/ {{price}} / hora?",
+"cancel": "Cancelar",
+"confirm": "Confirmar y ver reserva"
+}
+},
+"spot": {
+"covered": "Techada",
+"reserveBtn": "Reservar",
+"status": {
+"available": "Disponible",
+"occupied": "Ocupada",
+"reserved": "Reservada"
+}
+},
+"map": {
+"available": "Disponible",
+"occupied": "Ocupada / Reservada"
+},
+"status": {
+"pending": "Solicitada",
+"confirmed": "Confirmada",
+"in_use": "En uso",
+"completed": "Finalizada",
+"cancelled": "Rechazada"
+},
+"reservation": {
+"title": "Mi reserva",
+"subtitle": "Sigue el estado de tu estacionamiento activo",
+"idLabel": "RESERVA ID",
+"serviceStatus": "ESTADO DEL SERVICIO",
+"steps": {
+"requested": "Solicitada",
+"confirmed": "Confirmada",
+"inUse": "En uso",
+"completed": "Finalizada"
+},
+"elapsedTime": "TIEMPO TRANSCURRIDO",
+"accumulatedCost": "COSTO ACUMULADO",
+"rateText": "Tarifa: S/ {{rate}} / hora",
+"vehicleLabel": "Vehículo:",
+"checkoutBtn": "Marcar salida y pagar",
+"paidSuccess": "Reserva finalizada y pagada",
+"noActive": "No tienes reservas activas",
+"noActiveSubtitle": "Busca y reserva una cochera cercana en Lima para comenzar.",
+"findSpotBtn": "Buscar cochera ahora",
+"checkoutModal": {
+"title": "Confirmar salida y pago",
+"message": "Tu tiempo registrado es de {{time}}. El total a pagar es de S/ {{amount}}.",
+"paymentMethod": "Método de pago",
+"cancel": "Continuar estacionado",
+"pay": "Pagar S/ {{amount}}"
+},
+"paymentSuccessBanner": "¡Pago procesado con éxito! Gracias por usar ParkShare."
+},
+"requests": {
+"title": "Solicitudes de reserva",
+"subtitle": "Responde a los conductores que desean usar tus cocheras",
+"codePrefix": "RESERVA",
+"colSpot": "COCHERA",
+"colTime": "ENTRADA & TIEMPO",
+"colRate": "TARIFA",
+"colEarnings": "RECIBIRÁS",
+"rejectBtn": "Rechazar",
+"acceptBtn": "Aceptar reserva",
+"noActionNeeded": "Acción no requerida",
+"empty": "No tienes solicitudes pendientes en este momento."
+}
+}
+}
+

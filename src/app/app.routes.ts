@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+
 const placeholder = () =>
   import('./shared/presentation/views/placeholder/placeholder').then((m) => m.Placeholder);
 const profileRoutes = () =>
@@ -8,6 +9,16 @@ const parkingSpaceRoutes = () =>
   import('./parking-space-management/presentation/parking-space-management.routes').then(
     (m) => m.parkingSpaceManagementRoutes,
   );
+const driverSearch = () =>
+  import('./booking/presentation/views/driver-search/driver-search').then((m) => m.DriverSearch);
+const driverReservation = () =>
+  import('./booking/presentation/views/driver-reservation/driver-reservation').then(
+    (m) => m.DriverReservation,
+  );
+const ownerRequests = () =>
+  import('./booking/presentation/views/owner-requests/owner-requests').then((m) => m.OwnerRequests);
+const bookingRoutes = () =>
+  import('./booking/presentation/booking.routes').then((m) => m.bookingRoutes);
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'driver/search' },
@@ -72,5 +83,10 @@ export const routes: Routes = [
   { path: 'parking-spaces', pathMatch: 'full', redirectTo: 'owner/parking-spaces' },
   { path: 'parkings', pathMatch: 'full', redirectTo: 'owner/parking-spaces' },
   { path: 'earnings', pathMatch: 'full', redirectTo: 'owner/earnings' },
+  { path: '**', redirectTo: 'driver/search' },
+  {
+    path: 'booking',
+    loadChildren: bookingRoutes,
+  },
   { path: '**', redirectTo: 'driver/search' },
 ];

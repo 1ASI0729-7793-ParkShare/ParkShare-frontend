@@ -1,194 +1,286 @@
 {
-  "app": {
-    "title": "ParkShare"
-  },
-  "roles": {
-    "driver": "Driver",
-    "owner": "Owner"
-  },
-  "nav": {
-    "driver": {
-      "search": "Find parking",
-      "reservation": "My reservation",
-      "history": "History",
-      "profile": "My profile"
-    },
-    "owner": {
-      "dashboard": "Dashboard",
-      "requests": "Requests",
-      "parkingSpaces": "My parking spaces",
-      "earnings": "My earnings"
-    }
-  },
-  "layout": {
-    "location": "Lima, Peru",
-    "copyright": "© {{year}} ParkShare"
-  },
-  "placeholder": {
-    "comingSoon": "View under construction."
-  },
-  "profile": {
-    "title": "My profile",
-    "subtitle": "Manage your personal information, vehicle and verifications",
-    "saved": "Changes saved",
-    "userChip": {
-      "verifiedDocuments": "{{verified}}/{{total}} documents verified",
-      "ownerStatus": "Owner • 3 parking spaces",
-      "driverStatus": "Verified driver"
-    },
-    "vehicle": {
-      "title": "Registered vehicle",
-      "plate": "Plate",
-      "platePlaceholder": "ABC-123",
-      "model": "Model",
-      "modelPlaceholder": "Toyota Yaris 2021",
-      "type": "Vehicle type",
-      "save": "Save changes"
-    },
-    "vehicleTypes": {
-      "sedan": "Sedan",
-      "suv": "SUV",
-      "hatchback": "Hatchback",
-      "pickup": "Pickup truck",
-      "van": "Van"
-    },
-    "documents": {
-      "title": "Verification documents",
-      "lastUpdate": "Last update: {{time}}",
-      "update": "Update",
-      "types": {
-        "national-id": "National ID (DNI)",
-        "driver-license": "Driver's license",
-        "vehicle-registration": "Vehicle registration card"
-      },
-      "status": {
-        "verified": "Verified",
-        "in-review": "In review",
-        "rejected": "Rejected"
-      }
-    },
-    "errors": {
-      "required": "This field is required",
-      "plateInvalid": "Invalid format (e.g. ABC-123)",
-      "generic": "Something went wrong. Please try again."
-    }
-  },
-  "parkingSpace": {
-    "navigation": {
-      "ownerMenu": "Owner navigation",
-      "mySpaces": "My parking spaces",
-      "driver": "Driver",
-      "owner": "Owner",
-      "location": "Lima, Peru"
-    },
-    "common": {
-      "loading": "Loading parking spaces..."
-    },
-    "actions": {
-      "create": "Publish parking space",
-      "publishFirst": "Publish my first parking space",
-      "publish": "Publish space",
-      "edit": "Edit",
-      "editDetails": "Edit details",
-      "editSchedule": "Edit schedule",
-      "pausePublication": "Pause listing",
-      "reactivatePublication": "Reactivate listing",
-      "availability": "Availability",
-      "pricing": "Pricing",
-      "backToList": "Back to my parking spaces",
-      "cancel": "Cancel",
-      "save": "Save changes",
-      "saveRate": "Save rate",
-      "saveAvailability": "Save availability",
-      "addPeriod": "Add period",
-      "remove": "Remove"
-    },
-    "list": {
-      "eyebrow": "Parking Space Management",
-      "title": "My parking spaces",
-      "description": "Publish your spaces and keep their availability and pricing conditions up to date.",
-      "emptyTitle": "You have not published a parking space yet",
-      "emptyDescription": "Create your first listing to start managing the space with ParkShare."
-    },
-    "card": {
-      "hourlyRate": "Hourly rate",
-      "accumulatedIncome": "Accumulated income",
-      "everyDay": "Mon – Sun",
-      "weekdays": "Mon – Fri",
-      "weekend": "Sat – Sun",
-      "noSchedule": "No schedule",
-      "photos": "photos",
-      "periods": "available periods"
-    },
-    "status": {
-      "published": "Published",
-      "paused": "Paused"
-    },
-    "create": {
-      "eyebrow": "US06 · Publishing",
-      "title": "Publish a parking space",
-      "description": "Register the essential space information. You can adjust these details later."
-    },
-    "edit": {
-      "eyebrow": "US07 · Editing",
-      "title": "Edit parking space",
-      "description": "Update the listing address and photos."
-    },
-    "availability": {
-      "eyebrow": "US08 · Availability",
-      "title": "Configure availability",
-      "description": "Define one or more periods when the space can be booked.",
-      "period": "Period"
-    },
-    "pricing": {
-      "eyebrow": "US09 · Pricing",
-      "title": "Configure pricing",
-      "description": "Set a valid hourly rate for future bookings."
-    },
-    "form": {
-      "details": "Space details",
-      "name": "Title",
-      "address": "Address",
-      "photos": "Photo links",
-      "photosHint": "One link per line or separated by commas",
-      "features": "Features",
-      "featuresHint": "You can select one or more options.",
-      "hourlyRate": "Hourly rate",
-      "initialAvailability": "Initial availability",
-      "day": "Day",
-      "startTime": "Start time",
-      "endTime": "End time"
-    },
-    "features": {
-      "covered": "Covered",
-      "automaticGate": "Automatic gate",
-      "security24h": "24/7 security",
-      "concierge": "Concierge",
-      "securityCameras": "Security cameras"
-    },
-    "validation": {
-      "nameRequired": "The title is required.",
-      "addressRequired": "The address is required.",
-      "ratePositive": "The rate must be greater than zero.",
-      "timeRange": "The start time must be earlier than the end time."
-    },
-    "errors": {
-      "load": "The parking spaces could not be loaded.",
-      "notFound": "The requested parking space was not found.",
-      "create": "The parking space could not be published.",
-      "update": "The parking space could not be updated.",
-      "availability": "Availability could not be updated.",
-      "pricing": "The rate could not be updated.",
-      "publicationStatus": "The listing status could not be updated."
-    },
-    "days": {
-      "monday": "Monday",
-      "tuesday": "Tuesday",
-      "wednesday": "Wednesday",
-      "thursday": "Thursday",
-      "friday": "Friday",
-      "saturday": "Saturday",
-      "sunday": "Sunday"
-    }
-  }
+"app": {
+"title": "ParkShare"
+},
+"roles": {
+"driver": "Driver",
+"owner": "Owner"
+},
+"nav": {
+"driver": {
+"search": "Find parking",
+"reservation": "My reservation",
+"history": "History",
+"profile": "My profile"
+},
+"owner": {
+"dashboard": "Dashboard",
+"requests": "Requests",
+"parkingSpaces": "My parking spaces",
+"spaces": "My spots",
+"earnings": "My earnings",
+"income": "My earnings"
+}
+},
+"layout": {
+"location": "Lima, Peru",
+"copyright": "© {{year}} ParkShare"
+},
+"placeholder": {
+"comingSoon": "View under construction."
+},
+"profile": {
+"title": "My profile",
+"subtitle": "Manage your personal information, vehicle and verifications",
+"saved": "Changes saved",
+"userChip": {
+"verifiedDocuments": "{{verified}}/{{total}} documents verified",
+"ownerStatus": "Owner • 3 parking spaces",
+"driverStatus": "Verified driver"
+},
+"vehicle": {
+"title": "Registered vehicle",
+"plate": "Plate",
+"platePlaceholder": "ABC-123",
+"model": "Model",
+"modelPlaceholder": "Toyota Yaris 2021",
+"type": "Vehicle type",
+"save": "Save changes"
+},
+"vehicleTypes": {
+"sedan": "Sedan",
+"suv": "SUV",
+"hatchback": "Hatchback",
+"pickup": "Pickup truck",
+"van": "Van"
+},
+"documents": {
+"title": "Verification documents",
+"lastUpdate": "Last update: {{time}}",
+"update": "Update",
+"types": {
+"national-id": "National ID (DNI)",
+"driver-license": "Driver's license",
+"vehicle-registration": "Vehicle registration card"
+},
+"status": {
+"verified": "Verified",
+"in-review": "In review",
+"rejected": "Rejected"
+}
+},
+"errors": {
+"required": "This field is required",
+"plateInvalid": "Invalid format (e.g. ABC-123)",
+"generic": "Something went wrong. Please try again."
+}
+},
+"parkingSpace": {
+"navigation": {
+"ownerMenu": "Owner navigation",
+"mySpaces": "My parking spaces",
+"driver": "Driver",
+"owner": "Owner",
+"location": "Lima, Peru"
+},
+"common": {
+"loading": "Loading parking spaces..."
+},
+"actions": {
+"create": "Publish parking space",
+"publishFirst": "Publish my first parking space",
+"publish": "Publish space",
+"edit": "Edit",
+"editDetails": "Edit details",
+"editSchedule": "Edit schedule",
+"pausePublication": "Pause listing",
+"reactivatePublication": "Reactivate listing",
+"availability": "Availability",
+"pricing": "Pricing",
+"backToList": "Back to my parking spaces",
+"cancel": "Cancel",
+"save": "Save changes",
+"saveRate": "Save rate",
+"saveAvailability": "Save availability",
+"addPeriod": "Add period",
+"remove": "Remove"
+},
+"list": {
+"eyebrow": "Parking Space Management",
+"title": "My parking spaces",
+"description": "Publish your spaces and keep their availability and pricing conditions up to date.",
+"emptyTitle": "You have not published a parking space yet",
+"emptyDescription": "Create your first listing to start managing the space with ParkShare."
+},
+"card": {
+"hourlyRate": "Hourly rate",
+"accumulatedIncome": "Accumulated income",
+"everyDay": "Mon – Sun",
+"weekdays": "Mon – Fri",
+"weekend": "Sat – Sun",
+"noSchedule": "No schedule",
+"photos": "photos",
+"periods": "available periods"
+},
+"status": {
+"published": "Published",
+"paused": "Paused"
+},
+"create": {
+"eyebrow": "US06 · Publishing",
+"title": "Publish a parking space",
+"description": "Register the essential space information. You can adjust these details later."
+},
+"edit": {
+"eyebrow": "US07 · Editing",
+"title": "Edit parking space",
+"description": "Update the listing address and photos."
+},
+"availability": {
+"eyebrow": "US08 · Availability",
+"title": "Configure availability",
+"description": "Define one or more periods when the space can be booked.",
+"period": "Period"
+},
+"pricing": {
+"eyebrow": "US09 · Pricing",
+"title": "Configure pricing",
+"description": "Set a valid hourly rate for future bookings."
+},
+"form": {
+"details": "Space details",
+"name": "Title",
+"address": "Address",
+"photos": "Photo links",
+"photosHint": "One link per line or separated by commas",
+"features": "Features",
+"featuresHint": "You can select one or more options.",
+"hourlyRate": "Hourly rate",
+"initialAvailability": "Initial availability",
+"day": "Day",
+"startTime": "Start time",
+"endTime": "End time"
+},
+"features": {
+"covered": "Covered",
+"automaticGate": "Automatic gate",
+"security24h": "24/7 security",
+"concierge": "Concierge",
+"securityCameras": "Security cameras"
+},
+"validation": {
+"nameRequired": "The title is required.",
+"addressRequired": "The address is required.",
+"ratePositive": "The rate must be greater than zero.",
+"timeRange": "The start time must be earlier than the end time."
+},
+"errors": {
+"load": "The parking spaces could not be loaded.",
+"notFound": "The requested parking space was not found.",
+"create": "The parking space could not be published.",
+"update": "The parking space could not be updated.",
+"availability": "Availability could not be updated.",
+"pricing": "The rate could not be updated.",
+"publicationStatus": "The listing status could not be updated."
+},
+"days": {
+"monday": "Monday",
+"tuesday": "Tuesday",
+"wednesday": "Wednesday",
+"thursday": "Thursday",
+"friday": "Friday",
+"saturday": "Saturday",
+"sunday": "Sunday"
+}
+},
+"booking": {
+"driver": {
+"profileSubtitle": "Verified driver"
+},
+"owner": {
+"profileSubtitle": "Owner • 3 spots"
+},
+"filters": {
+"district": "District or avenue",
+"districtPlaceholder": "Miraflores",
+"vehicle": "Vehicle",
+"maxPrice": "Max price per hour",
+"anyPrice": "Any",
+"searchBtn": "Search"
+},
+"search": {
+"title": "Find parking",
+"subtitle": "Find secure private parking spots in Lima",
+"resultsCount": "{{count}} results found in {{district}}",
+"noResults": "No parking spaces found matching these filters.",
+"confirmModal": {
+"title": "Confirm reservation",
+"message": "Do you want to book \"{{spot}}\" at S/ {{price}} / hour?",
+"cancel": "Cancel",
+"confirm": "Confirm & view reservation"
+}
+},
+"spot": {
+"covered": "Covered",
+"reserveBtn": "Book",
+"status": {
+"available": "Available",
+"occupied": "Occupied",
+"reserved": "Reserved"
+}
+},
+"map": {
+"available": "Available",
+"occupied": "Occupied / Reserved"
+},
+"status": {
+"pending": "Requested",
+"confirmed": "Confirmed",
+"in_use": "In use",
+"completed": "Completed",
+"cancelled": "Rejected"
+},
+"reservation": {
+"title": "My reservation",
+"subtitle": "Track your active parking session status",
+"idLabel": "RESERVATION ID",
+"serviceStatus": "SERVICE STATUS",
+"steps": {
+"requested": "Requested",
+"confirmed": "Confirmed",
+"inUse": "In use",
+"completed": "Completed"
+},
+"elapsedTime": "ELAPSED TIME",
+"accumulatedCost": "ACCUMULATED COST",
+"rateText": "Rate: S/ {{rate}} / hour",
+"vehicleLabel": "Vehicle:",
+"checkoutBtn": "Check out & pay",
+"paidSuccess": "Reservation ended & paid",
+"noActive": "No active reservations",
+"noActiveSubtitle": "Search and book a nearby parking spot in Lima to get started.",
+"findSpotBtn": "Find parking now",
+"checkoutModal": {
+"title": "Confirm departure & payment",
+"message": "Your logged time is {{time}}. Total to pay is S/ {{amount}}.",
+"paymentMethod": "Payment method",
+"cancel": "Stay parked",
+"pay": "Pay S/ {{amount}}"
+},
+"paymentSuccessBanner": "Payment processed successfully! Thank you for using ParkShare."
+},
+"requests": {
+"title": "Booking requests",
+"subtitle": "Respond to drivers looking to use your parking spots",
+"codePrefix": "RESERVATION",
+"colSpot": "PARKING SPOT",
+"colTime": "ENTRY & DURATION",
+"colRate": "RATE",
+"colEarnings": "YOU EARN",
+"rejectBtn": "Decline",
+"acceptBtn": "Accept booking",
+"noActionNeeded": "No action needed",
+"empty": "You have no pending requests at this time."
+   }
+ }
 }
