@@ -1,0 +1,38 @@
+
+.notification-bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+.notification-bell:hover {
+  background: #f3f4f6;
+}
+
+.notification-bell:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.bell-icon {
+  font-size: 24px;
+}
+
+.notification-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 17px;
+  height: 17px;
+  padding: 2px;
+  border-radius: 12px;
+  background: #dc2626;
+  color: white;
+  font-size: 11px;
+  text-align: center;
+}
