@@ -1,0 +1,52 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class="head">
+      <div class="avatar">{{ initials() }}</div>
+      <div class="driver">
+        <span class="driver-name">{{ reservation().driverName }}</span>
+        <span class="vehicle">{{ reservation().vehicleModel }} ({{ reservation().vehiclePlate }})</span>
+      </div>
+      <div class="meta">
+        <span [class]="'status status-' + reservation().status">
+          {{ 'booking.status.' + reservation().status | translate }}
+        </span>
+        <span class="code">{{ 'booking.requests.reservationCode' | translate: {code: reservation().code} }}</span>
+      </div>
+    </div>
+
+    <div class="details">
+      <dl class="field">
+        <dt>{{ 'booking.requests.space' | translate }}</dt>
+        <dd>{{ reservation().spaceName }}</dd>
+      </dl>
+      <dl class="field">
+        <dt>{{ 'booking.requests.entry' | translate }}</dt>
+        <dd>
+          {{ entryLabel() }}
+          ({{ (reservation().plannedHours === 1 ? 'booking.hours.one' : 'booking.hours.other') | translate: {count: reservation().plannedHours} }})
+        </dd>
+      </dl>
+      <dl class="field">
+        <dt>{{ 'booking.requests.rate' | translate }}</dt>
+        <dd>{{ 'booking.requests.perHour' | translate: {amount: (reservation().hourlyRate | number: '1.2-2')} }}</dd>
+      </dl>
+      <dl class="field">
+        <dt class="earn">{{ 'booking.requests.youReceive' | translate }}</dt>
+        <dd class="amount">S/ {{ reservation().estimatedAmount | number: '1.2-2' }}</dd>
+      </dl>
+
+      <div class="actions">
+        @if (reservation().status === 'requested') {
+          <button mat-flat-button type="button" class="reject" (click)="rejected.emit(reservation())">
+            {{ 'booking.requests.reject' | translate }}
+          </button>
+          <button mat-flat-button type="button" (click)="accepted.emit(reservation())">
+            {{ 'booking.requests.accept' | translate }}
+          </button>
+        } @else {
+          <span class="no-action">{{ 'booking.requests.noActionRequired' | translate }}</span>
+        }
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
