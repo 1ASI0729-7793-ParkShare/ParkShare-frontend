@@ -33,5 +33,83 @@
       "updatedAt": "2026-10-08T23:31:51.689Z",
       "fileName": "wswswsd"
     }
+  ],
+  "ratings": [
+    {
+      "id": 1,
+      "bookingId": 101,
+      "reviewerId": 10,
+      "revieweeId": 20,
+      "score": 5,
+      "comment": "Great parking experience.",
+      "createdAt": "2026-10-01T14:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "bookingId": 102,
+      "reviewerId": 11,
+      "revieweeId": 20,
+      "score": 4,
+      "comment": "Easy to find and access.",
+      "createdAt": "2026-10-03T16:00:00.000Z"
+    }
+  ],
+  "userReputations": [],
+  "notifications": [
+    {
+      "id": 1,
+      "recipientId": 10,
+      "type": "booking",
+      "title": "Booking completed",
+      "message": "Your parking reservation has been completed.",
+      "createdAt": "2026-10-01T14:00:00.000Z",
+      "readAt": null,
+      "relatedEntityType": "booking",
+      "relatedEntityId": 101
+    },
+    {
+      "id": 2,
+      "recipientId": 10,
+      "type": "payment",
+      "title": "Payment confirmed",
+      "message": "Your payment has been confirmed.",
+      "createdAt": "2026-10-01T12:00:00.000Z",
+      "readAt": null,
+      "relatedEntityType": "payment",
+      "relatedEntityId": 501
+    },
+    {
+      "id": 3,
+      "recipientId": 20,
+      "type": "rating",
+      "title": "New rating received",
+      "message": "You received a new rating.",
+      "createdAt": "2026-10-03T16:10:00.000Z",
+      "readAt": null,
+      "relatedEntityType": "rating",
+      "relatedEntityId": 2
+    }
+  ],
+  "bookings": [
+    {
+      "id": 101,
+      "driverId": 10,
+      "ownerId": 20,
+      "status": "completed"
+    },
+    {
+      "id": 102,
+      "driverId": 11,
+      "ownerId": 20,
+      "status": "completed"
+    },
+    {
+      "id": 103,
+      "driverId": 10,
+      "ownerId": 21,
+      "status": "confirmed"
+    }
   ]
+
+
 }
