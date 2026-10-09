@@ -1,7 +1,15 @@
 {
   "parkingSpace": {
     "navigation": {
-      "mySpaces": "Mis cocheras"
+      "ownerMenu": "Navegación del propietario",
+      "dashboard": "Panel de control",
+      "requests": "Solicitudes",
+      "mySpaces": "Mis cocheras",
+      "income": "Mis ingresos",
+      "driver": "Conductor",
+      "owner": "Propietario",
+      "ownerSummary": "Propietario · 3 cocheras",
+      "location": "Lima, Perú"
     },
     "common": {
       "loading": "Cargando cocheras..."
@@ -11,6 +19,10 @@
       "publishFirst": "Publicar mi primera cochera",
       "publish": "Publicar espacio",
       "edit": "Editar",
+      "editDetails": "Editar datos",
+      "editSchedule": "Editar horario",
+      "pausePublication": "Pausar publicación",
+      "reactivatePublication": "Reactivar publicación",
       "availability": "Disponibilidad",
       "pricing": "Tarifa",
       "backToList": "Volver a mis cocheras",
@@ -30,8 +42,17 @@
     },
     "card": {
       "hourlyRate": "Tarifa por hora",
+      "accumulatedIncome": "Ingresos acumulados",
+      "everyDay": "Lun – Dom",
+      "weekdays": "Lun – Vie",
+      "weekend": "Sáb – Dom",
+      "noSchedule": "Sin horario",
       "photos": "fotografías",
       "periods": "periodos disponibles"
+    },
+    "status": {
+      "published": "Publicada",
+      "paused": "Pausada"
     },
     "create": {
       "eyebrow": "US06 · Publicación",
@@ -76,7 +97,8 @@
       "create": "No se pudo publicar la cochera.",
       "update": "No se pudo actualizar la cochera.",
       "availability": "No se pudo actualizar la disponibilidad.",
-      "pricing": "No se pudo actualizar la tarifa."
+      "pricing": "No se pudo actualizar la tarifa.",
+      "publicationStatus": "No se pudo actualizar el estado de la publicación."
     },
     "days": {
       "monday": "Lunes",

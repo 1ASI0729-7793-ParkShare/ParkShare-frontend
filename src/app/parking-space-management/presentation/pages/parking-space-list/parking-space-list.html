@@ -1,11 +1,11 @@
 <main class="page-shell">
   <header class="page-header">
     <div>
-      <p class="eyebrow">{{ 'parkingSpace.list.eyebrow' | translate }}</p>
       <h1>{{ 'parkingSpace.list.title' | translate }}</h1>
       <p class="description">{{ 'parkingSpace.list.description' | translate }}</p>
     </div>
-    <a mat-flat-button routerLink="/parking-spaces/new">
+    <a class="publish-button" routerLink="/parking-spaces/new">
+      <span aria-hidden="true">+</span>
       {{ 'parkingSpace.actions.create' | translate }}
     </a>
   </header>
@@ -31,7 +31,10 @@
   } @else {
     <section class="parking-grid">
       @for (parkingSpace of store.parkingSpaces(); track parkingSpace.id) {
-        <app-parking-space-card [parkingSpace]="parkingSpace" />
+        <app-parking-space-card
+          [parkingSpace]="parkingSpace"
+          (publicationStatusChange)="updatePublicationStatus($event)"
+        />
       }
     </section>
   }

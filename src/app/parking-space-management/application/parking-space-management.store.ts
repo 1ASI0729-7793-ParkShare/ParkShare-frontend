@@ -2,7 +2,7 @@ import { DestroyRef, Injectable, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { EMPTY, Observable, catchError, finalize, tap } from 'rxjs';
 import { AvailabilityPeriod } from '../domain/model/availability-period.entity';
-import { ParkingSpace } from '../domain/model/parking-space.entity';
+import { ParkingSpace, ParkingSpacePublicationStatus } from '../domain/model/parking-space.entity';
 import {
   CreateParkingSpaceCommand,
   ParkingSpaceRepository,
@@ -81,6 +81,17 @@ export class ParkingSpaceManagementStore {
     return this.run(
       this.repository.updatePricing(id, hourlyRate),
       'parkingSpace.errors.pricing',
+      (parkingSpace) => this.replaceParkingSpace(parkingSpace),
+    );
+  }
+
+  updatePublicationStatus(
+    id: number,
+    status: ParkingSpacePublicationStatus,
+  ): Observable<ParkingSpace> {
+    return this.run(
+      this.repository.updatePublicationStatus(id, status),
+      'parkingSpace.errors.publicationStatus',
       (parkingSpace) => this.replaceParkingSpace(parkingSpace),
     );
   }

@@ -25,4 +25,16 @@ describe('ParkingSpaceCard', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should request pausing a published parking space', () => {
+    let statusChange: { id: number; status: string } | undefined;
+    component.publicationStatusChange.subscribe((event) => {
+      statusChange = event;
+    });
+
+    const button = fixture.nativeElement.querySelector('.status-toggle') as HTMLButtonElement;
+    button.click();
+
+    expect(statusChange).toEqual({ id: 1, status: 'paused' });
+  });
 });

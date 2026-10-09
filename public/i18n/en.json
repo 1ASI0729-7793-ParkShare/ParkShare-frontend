@@ -1,7 +1,15 @@
 {
   "parkingSpace": {
     "navigation": {
-      "mySpaces": "My parking spaces"
+      "ownerMenu": "Owner navigation",
+      "dashboard": "Dashboard",
+      "requests": "Requests",
+      "mySpaces": "My parking spaces",
+      "income": "My income",
+      "driver": "Driver",
+      "owner": "Owner",
+      "ownerSummary": "Owner · 3 parking spaces",
+      "location": "Lima, Peru"
     },
     "common": {
       "loading": "Loading parking spaces..."
@@ -11,6 +19,10 @@
       "publishFirst": "Publish my first parking space",
       "publish": "Publish space",
       "edit": "Edit",
+      "editDetails": "Edit details",
+      "editSchedule": "Edit schedule",
+      "pausePublication": "Pause listing",
+      "reactivatePublication": "Reactivate listing",
       "availability": "Availability",
       "pricing": "Pricing",
       "backToList": "Back to my parking spaces",
@@ -30,8 +42,17 @@
     },
     "card": {
       "hourlyRate": "Hourly rate",
+      "accumulatedIncome": "Accumulated income",
+      "everyDay": "Mon – Sun",
+      "weekdays": "Mon – Fri",
+      "weekend": "Sat – Sun",
+      "noSchedule": "No schedule",
       "photos": "photos",
       "periods": "available periods"
+    },
+    "status": {
+      "published": "Published",
+      "paused": "Paused"
     },
     "create": {
       "eyebrow": "US06 · Publishing",
@@ -76,7 +97,8 @@
       "create": "The parking space could not be published.",
       "update": "The parking space could not be updated.",
       "availability": "Availability could not be updated.",
-      "pricing": "The rate could not be updated."
+      "pricing": "The rate could not be updated.",
+      "publicationStatus": "The listing status could not be updated."
     },
     "days": {
       "monday": "Monday",

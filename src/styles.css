@@ -77,8 +77,22 @@ h3 {
 }
 
 .mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button,
 .mat-mdc-card,
 .mat-mdc-form-field,
 .mat-mdc-select {
   font-family: var(--app-font-family);
+}
+
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button {
+  font-weight: 600;
+}
+
+.mat-mdc-card {
+  background-color: var(--color-white);
 }

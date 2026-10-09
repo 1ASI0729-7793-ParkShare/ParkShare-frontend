@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AvailabilityPeriod } from '../domain/model/availability-period.entity';
-import { ParkingSpace } from '../domain/model/parking-space.entity';
+import { ParkingSpace, ParkingSpacePublicationStatus } from '../domain/model/parking-space.entity';
 
 export interface CreateParkingSpaceCommand {
   address: string;
@@ -25,6 +25,10 @@ export abstract class ParkingSpaceRepository {
     availability: AvailabilityPeriod[],
   ): Observable<ParkingSpace>;
   abstract updatePricing(id: number, hourlyRate: number): Observable<ParkingSpace>;
+  abstract updatePublicationStatus(
+    id: number,
+    status: ParkingSpacePublicationStatus,
+  ): Observable<ParkingSpace>;
 }
 
 /**

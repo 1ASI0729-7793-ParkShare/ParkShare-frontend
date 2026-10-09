@@ -66,4 +66,21 @@ describe('ParkingSpaceManagementStore', () => {
     expect(store.parkingSpaces()[0].hourlyRate).toBe(12);
     expect(store.parkingSpaces()[0].availability[0].dayOfWeek).toBe('saturday');
   });
+
+  it('should pause and reactivate a publication', async () => {
+    const created = await firstValueFrom(
+      store.createParkingSpace({
+        address: 'Av. Test 789',
+        photos: [],
+        hourlyRate: 6,
+        availability: [],
+      }),
+    );
+
+    await firstValueFrom(store.updatePublicationStatus(created.id, 'paused'));
+    expect(store.parkingSpaces()[0].publicationStatus).toBe('paused');
+
+    await firstValueFrom(store.updatePublicationStatus(created.id, 'published'));
+    expect(store.parkingSpaces()[0].publicationStatus).toBe('published');
+  });
 });
