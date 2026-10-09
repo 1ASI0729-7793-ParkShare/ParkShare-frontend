@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideParkingSpaceTesting } from '../../../testing/parking-space-testing.providers';
 import { ParkingSpaceCreate } from './parking-space-create';
 
 describe('ParkingSpaceCreate', () => {
@@ -8,6 +9,7 @@ describe('ParkingSpaceCreate', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ParkingSpaceCreate],
+      providers: [...provideParkingSpaceTesting()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ParkingSpaceCreate);

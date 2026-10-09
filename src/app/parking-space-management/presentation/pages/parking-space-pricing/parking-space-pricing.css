@@ -1,0 +1,68 @@
+.form-page {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 5rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: var(--color-primary-intense);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+header {
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--color-primary-intense);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: var(--color-primary-dark);
+  font-size: clamp(1.75rem, 4vw, 2.125rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+header p:last-child {
+  color: var(--color-muted);
+}
+
+mat-card {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 6%);
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.feedback {
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+}
+
+.error {
+  border: 1px solid var(--color-red-alert);
+  background: rgb(221 61 61 / 8%);
+  color: var(--color-red-alert);
+}
