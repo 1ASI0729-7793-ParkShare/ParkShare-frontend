@@ -1,0 +1,30 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'booking.search.district' | translate }}</mat-label>
+        <input matInput formControlName="district" [placeholder]="'booking.search.districtPlaceholder' | translate">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'booking.search.vehicle' | translate }}</mat-label>
+        <mat-select [value]="vehicles()[0]" [disabled]="vehicles().length < 2">
+          @for (vehicle of vehicles(); track vehicle) {
+            <mat-option [value]="vehicle">{{ vehicle }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'booking.search.maxRate' | translate }}</mat-label>
+        <mat-select formControlName="maxHourlyRate">
+          @for (rate of rateOptions; track rate) {
+            <mat-option [value]="rate">S/ {{ rate }}.00</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-flat-button type="submit">{{ 'booking.search.submit' | translate }}</button>
+    </form>
+  </mat-card-content>
+</mat-card>

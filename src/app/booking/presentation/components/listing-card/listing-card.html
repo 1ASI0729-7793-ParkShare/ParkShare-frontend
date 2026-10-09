@@ -1,0 +1,28 @@
+<mat-card appearance="outlined" [class.highlighted]="highlighted()"
+          (mouseenter)="hoverChange.emit(true)" (mouseleave)="hoverChange.emit(false)">
+  <mat-card-content>
+    <div class="row">
+      <h3 class="name" [title]="listing().name">{{ listing().name }}</h3>
+      <span class="price">S/ {{ listing().hourlyRate | number: '1.2-2' }}/h</span>
+    </div>
+    <p class="address">{{ listing().address }}, {{ listing().district }}</p>
+    <div class="tags">
+      <span [class]="'tag availability-' + listing().availability">
+        {{ 'booking.search.availability.' + listing().availability | translate }}
+      </span>
+      @if (listing().covered) {
+        <span class="tag">{{ 'booking.search.covered' | translate }}</span>
+      }
+    </div>
+    <div class="row">
+      <span class="rating">
+        <mat-icon>star_border</mat-icon>
+        <strong>{{ listing().rating | number: '1.1-1' }}</strong>
+        <span class="reviews">({{ listing().reviewCount }})</span>
+      </span>
+      <button mat-flat-button type="button" [disabled]="!canReserve()" (click)="reserve.emit(listing())">
+        {{ 'booking.search.reserve' | translate }}
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

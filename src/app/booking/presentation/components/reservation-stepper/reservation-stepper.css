@@ -1,0 +1,45 @@
+.steps {
+  display: flex; align-items: center; margin: 0; padding: 0; list-style: none;
+}
+
+.step {
+  display: flex; align-items: center; gap: 8px; flex: 1 1 0; min-width: 0;
+  font: var(--mat-sys-label-large); color: var(--mat-sys-on-surface-variant);
+}
+
+.step:last-child { flex: 0 0 auto; }
+
+/* Connector to the next step. */
+.step:not(:last-child)::after {
+  content: ''; flex: 1 1 auto; height: 2px; margin: 0 12px;
+  background: var(--mat-sys-outline-variant);
+}
+
+.step.state-done:not(:last-child)::after { background: var(--mat-sys-tertiary); }
+.step.state-current:not(:last-child)::after { background: var(--mat-sys-primary); }
+
+.marker {
+  display: grid; place-items: center; flex: none; width: 22px; height: 22px; box-sizing: border-box;
+  border-radius: 50%; border: 2px solid var(--mat-sys-outline-variant);
+}
+
+.marker mat-icon {
+  width: 14px; height: 14px; font-size: 14px;
+}
+
+.state-done .marker {
+  background: var(--mat-sys-tertiary); border-color: var(--mat-sys-tertiary); color: var(--mat-sys-on-tertiary);
+}
+
+.state-current { color: var(--mat-sys-primary); }
+.state-current .marker {
+  border-color: var(--mat-sys-primary); background: var(--mat-sys-primary);
+  box-shadow: inset 0 0 0 4px var(--mat-sys-surface);
+}
+
+.state-done { color: var(--mat-sys-on-surface); }
+
+@media (max-width: 640px) {
+  .label { display: none; }
+  .state-current .label { display: inline; }
+}

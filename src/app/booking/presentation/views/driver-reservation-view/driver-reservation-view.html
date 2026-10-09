@@ -1,0 +1,83 @@
+<h1 class="title">{{ 'booking.reservation.title' | translate }}</h1>
+<p class="subtitle">{{ 'booking.reservation.subtitle' | translate }}</p>
+
+@if (store.error()) {
+  <p class="error">{{ 'booking.errors.generic' | translate }}</p>
+}
+
+@if (store.activeReservation(); as reservation) {
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class="head">
+        <div class="space-icon"><mat-icon>location_on</mat-icon></div>
+        <div class="space">
+          <span class="space-name">{{ reservation.spaceName }}</span>
+          <span class="space-address">{{ reservation.spaceAddress }}</span>
+        </div>
+        <div class="code">
+          <span class="code-label">{{ 'booking.reservation.id' | translate }}</span>
+          <span class="code-value">{{ reservation.code }}</span>
+        </div>
+      </div>
+
+      <div class="service">
+        <span class="section-label">{{ 'booking.reservation.serviceStatus' | translate }}</span>
+        <app-reservation-stepper [status]="reservation.status"/>
+      </div>
+
+      @switch (reservation.status) {
+        @case ('requested') {
+          <p class="notice">{{ 'booking.reservation.waitingOwner' | translate }}</p>
+        }
+        @case ('confirmed') {
+          <p class="notice">{{ 'booking.reservation.confirmedHint' | translate }}</p>
+        }
+        @case ('in-use') {
+          <div class="stats">
+            <div class="stat">
+              <span class="section-label">{{ 'booking.reservation.elapsed' | translate }}</span>
+              <span class="stat-value">{{ elapsed() }}</span>
+              <span class="stat-hint">{{ startedLabel() }}</span>
+            </div>
+            <div class="stat cost">
+              <span class="section-label">{{ 'booking.reservation.accumulatedCost' | translate }}</span>
+              <span class="stat-value">S/ {{ accumulatedCost() | number: '1.2-2' }}</span>
+              <span class="stat-hint">
+                {{ 'booking.reservation.rate' | translate: {amount: (reservation.hourlyRate | number: '1.2-2')} }}
+              </span>
+            </div>
+          </div>
+        }
+      }
+
+      <div class="foot">
+        <div class="vehicle">
+          <span class="vehicle-label">{{ 'booking.reservation.vehicle' | translate }}</span>
+          <span class="plate">{{ reservation.vehiclePlate }}</span>
+          <span>{{ reservation.vehicleModel }}</span>
+        </div>
+
+        @if (reservation.status === 'confirmed') {
+          <button mat-flat-button type="button" [disabled]="store.loading()" (click)="onStart(reservation)">
+            {{ 'booking.reservation.start' | translate }}
+          </button>
+        } @else if (reservation.status === 'in-use') {
+          <button mat-flat-button type="button" class="finish" [disabled]="store.loading()"
+                  (click)="onFinish(reservation)">
+            {{ 'booking.reservation.finish' | translate }}
+          </button>
+        }
+      </div>
+    </mat-card-content>
+  </mat-card>
+} @else if (store.loading()) {
+  <mat-spinner diameter="40"/>
+} @else {
+  <mat-card appearance="outlined">
+    <mat-card-content class="empty">
+      <mat-icon>local_parking</mat-icon>
+      <p>{{ 'booking.reservation.empty' | translate }}</p>
+      <a mat-flat-button routerLink="/driver/search">{{ 'booking.reservation.findParking' | translate }}</a>
+    </mat-card-content>
+  </mat-card>
+}

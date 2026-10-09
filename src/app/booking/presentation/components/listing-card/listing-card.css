@@ -1,0 +1,54 @@
+:host { display: block; }
+
+mat-card.highlighted {
+  border-color: var(--mat-sys-primary);
+}
+
+.row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+
+.name {
+  margin: 0; font: var(--mat-sys-title-small);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.price {
+  font: var(--mat-sys-title-small); color: var(--mat-sys-tertiary); white-space: nowrap;
+}
+
+.address {
+  margin: 4px 0 8px; font: var(--mat-sys-body-small); color: var(--mat-sys-on-surface-variant);
+}
+
+.tags {
+  display: flex; gap: 6px; margin-bottom: 12px;
+}
+
+.tag {
+  padding: 2px 8px; border-radius: var(--mat-sys-corner-extra-small);
+  border: 1px solid var(--mat-sys-outline-variant);
+  font: var(--mat-sys-label-small); color: var(--mat-sys-on-surface-variant);
+}
+
+.availability-available {
+  border-color: transparent;
+  background: var(--mat-sys-tertiary-container); color: var(--mat-sys-on-tertiary-container);
+}
+
+.availability-occupied {
+  border-color: transparent;
+  background: var(--mat-sys-error-container); color: var(--mat-sys-on-error-container);
+}
+
+.rating {
+  display: inline-flex; align-items: center; gap: 4px; font: var(--mat-sys-label-large);
+}
+
+.rating mat-icon {
+  width: 18px; height: 18px; font-size: 18px; color: var(--mat-sys-tertiary);
+}
+
+.reviews {
+  color: var(--mat-sys-on-surface-variant); font: var(--mat-sys-label-small);
+}

@@ -4,6 +4,10 @@ const placeholder = () =>
   import('./shared/presentation/views/placeholder/placeholder').then((m) => m.Placeholder);
 const profileRoutes = () =>
   import('./profile/presentation/profile.routes').then((m) => m.profileRoutes);
+const bookingDriverRoutes = () =>
+  import('./booking/presentation/booking.routes').then((m) => m.bookingDriverRoutes);
+const bookingOwnerRoutes = () =>
+  import('./booking/presentation/booking.routes').then((m) => m.bookingOwnerRoutes);
 const parkingSpaceRoutes = () =>
   import('./parking-space-management/presentation/parking-space-management.routes').then(
     (m) => m.parkingSpaceManagementRoutes,
@@ -15,17 +19,12 @@ const paymentsRoutes = () =>
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'driver/search' },
-    ...REPUTATION_NOTIFICATIONS_ROUTES,
+  ...REPUTATION_NOTIFICATIONS_ROUTES,
   {
     path: 'driver',
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'search' },
-      { path: 'search', loadComponent: placeholder, data: { titleKey: 'nav.driver.search' } },
-      {
-        path: 'reservation',
-        loadComponent: placeholder,
-        data: { titleKey: 'nav.driver.reservation' },
-      },
+      { path: '', loadChildren: bookingDriverRoutes },
       { path: 'history', loadComponent: placeholder, data: { titleKey: 'nav.driver.history' } },
       { path: 'profile', loadChildren: profileRoutes },
     ],
@@ -39,11 +38,7 @@ export const routes: Routes = [
         loadComponent: placeholder,
         data: { titleKey: 'nav.owner.dashboard' },
       },
-      {
-        path: 'requests',
-        loadComponent: placeholder,
-        data: { titleKey: 'nav.owner.requests' },
-      },
+      { path: '', loadChildren: bookingOwnerRoutes },
       {
         path: 'earnings',
         loadChildren: paymentsRoutes,

@@ -1,0 +1,12 @@
+<ol class="steps" aria-label="Reservation progress">
+  @for (item of steps(); track item.step) {
+    <li class="step" [class]="'step state-' + item.state" [attr.aria-current]="item.state === 'current' ? 'step' : null">
+      <span class="marker">
+        @if (item.state === 'done') {
+          <mat-icon>check</mat-icon>
+        }
+      </span>
+      <span class="label">{{ 'booking.status.' + item.step | translate }}</span>
+    </li>
+  }
+</ol>

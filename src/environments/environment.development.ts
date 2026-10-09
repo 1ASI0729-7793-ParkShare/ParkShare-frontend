@@ -8,6 +8,7 @@ export const environment = {
   platformProviderNotificationsEndpointPath: '/notifications',
   platformProviderBookingsEndpointPath: '/bookings',
   platformProviderOwnerPayoutsEndpointPath: '/ownerPayouts',
-platformProviderPaymentTransactionsEndpointPath: '/paymentTransactions',
+  platformProviderPaymentTransactionsEndpointPath: '/paymentTransactions',
+  platformProviderParkingListingsEndpointPath: '/parkingListings',
 
 };
