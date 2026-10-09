@@ -1,0 +1,44 @@
+.card-title {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+}
+
+.card-title h2 {
+  margin: 0; font: var(--mat-sys-title-medium);
+}
+
+.doc {
+  display: flex; flex-direction: column; gap: 8px; padding: 12px; margin-bottom: 12px;
+  background: var(--mat-sys-surface-container-low);
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: var(--mat-sys-corner-medium);
+}
+
+.doc-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+
+.doc-name {
+  font: var(--mat-sys-title-small);
+}
+
+.doc-time {
+  font: var(--mat-sys-label-small); color: var(--mat-sys-on-surface-variant);
+}
+
+
+.status {
+  padding: 2px 10px; border-radius: var(--mat-sys-corner-full); font: var(--mat-sys-label-small);
+}
+
+.status-verified {
+  background: var(--mat-sys-tertiary-container); color: var(--mat-sys-on-tertiary-container);
+}
+
+.status-in-review {
+  background: var(--mat-sys-secondary-container); color: var(--mat-sys-on-secondary-container);
+}
+
+.status-rejected {
+  background: var(--mat-sys-error-container); color: var(--mat-sys-on-error-container);
+}
+

@@ -1,0 +1,37 @@
+{
+  "profiles": [
+    {
+      "id": 1,
+      "fullName": "Daniela Ríos",
+      "plate": "AXQ-432",
+      "vehicleModel": "Honda CRV 2026",
+      "vehicleType": "hatchback"
+    }
+  ],
+  "verificationDocuments": [
+    {
+      "id": 1,
+      "profileId": 1,
+      "type": "national-id",
+      "status": "verified",
+      "updatedAt": "2026-10-08T23:34:46.257Z",
+      "fileName": "b4.jpg"
+    },
+    {
+      "id": 2,
+      "profileId": 1,
+      "type": "driver-license",
+      "status": "in-review",
+      "updatedAt": "2026-10-08T23:37:57.306Z",
+      "fileName": "fabric-logo.png"
+    },
+    {
+      "id": 3,
+      "profileId": 1,
+      "type": "vehicle-registration",
+      "status": "in-review",
+      "updatedAt": "2026-10-08T23:31:51.689Z",
+      "fileName": "wswswsd"
+    }
+  ]
+}

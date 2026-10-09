@@ -1,0 +1,42 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class="card-title">
+      <mat-icon>directions_car</mat-icon>
+      <h2>{{ 'profile.vehicle.title' | translate }}</h2>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'profile.vehicle.plate' | translate }}</mat-label>
+        <input matInput formControlName="plate" [placeholder]="'profile.vehicle.platePlaceholder' | translate">
+        @if (form.controls.plate.hasError('required')) {
+          <mat-error>{{ 'profile.errors.required' | translate }}</mat-error>
+        } @else if (form.controls.plate.hasError('pattern')) {
+          <mat-error>{{ 'profile.errors.plateInvalid' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'profile.vehicle.model' | translate }}</mat-label>
+        <input matInput formControlName="vehicleModel" [placeholder]="'profile.vehicle.modelPlaceholder' | translate">
+        @if (form.controls.vehicleModel.hasError('required')) {
+          <mat-error>{{ 'profile.errors.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'profile.vehicle.type' | translate }}</mat-label>
+        <mat-select formControlName="vehicleType">
+          @for (type of vehicleTypes; track type) {
+            <mat-option [value]="type">{{ 'profile.vehicleTypes.' + type | translate }}</mat-option>
+          }
+        </mat-select>
+        @if (form.controls.vehicleType.hasError('required')) {
+          <mat-error>{{ 'profile.errors.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-flat-button type="submit">{{ 'profile.vehicle.save' | translate }}</button>
+    </form>
+  </mat-card-content>
+</mat-card>

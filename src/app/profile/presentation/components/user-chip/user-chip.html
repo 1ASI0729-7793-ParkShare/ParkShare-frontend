@@ -1,0 +1,10 @@
+@if (store.profile(); as profile) {
+  <div class="user-info">
+    <span class="user-name">{{ profile.fullName }}</span>
+    <span class="user-status">
+      <span class="dot"></span>
+      {{ 'profile.userChip.verifiedDocuments' | translate: {verified: store.verifiedCount(), total: store.documentCount()} }}
+    </span>
+  </div>
+  <div class="avatar">{{ initials() }}</div>
+}

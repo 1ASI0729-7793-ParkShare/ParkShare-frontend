@@ -1,0 +1,28 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class="card-title">
+      <mat-icon>verified_user</mat-icon>
+      <h2>{{ 'profile.documents.title' | translate }}</h2>
+    </div>
+
+    @for (document of documents(); track document.id) {
+      <div class="doc">
+        <div class="doc-row">
+          <span class="doc-name">{{ 'profile.documents.types.' + document.type | translate }}</span>
+          <span [class]="'status status-' + document.status">
+            {{ 'profile.documents.status.' + document.status | translate }}
+          </span>
+        </div>
+        <div class="doc-row">
+          <span class="doc-time">
+            {{ 'profile.documents.lastUpdate' | translate: {time: relativeTime(document.updatedAt)} }}
+          </span>
+          <button mat-stroked-button type="button" (click)="picker.click()">
+            {{ 'profile.documents.update' | translate }}
+          </button>
+          <input #picker type="file" hidden (change)="onFileSelected(document, $event)">
+        </div>
+      </div>
+    }
+  </mat-card-content>
+</mat-card>

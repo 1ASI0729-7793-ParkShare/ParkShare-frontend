@@ -1,0 +1,60 @@
+{
+  "app": { "title": "ParkShare" },
+  "roles": { "driver": "Driver", "owner": "Owner" },
+  "nav": {
+    "driver": {
+      "search": "Find parking",
+      "reservation": "My reservation",
+      "history": "History",
+      "profile": "My profile"
+    },
+    "owner": { "dashboard": "My parking spaces" }
+  },
+  "layout": {
+    "location": "Lima, Peru",
+    "copyright": "© {{year}} ParkShare"
+  },
+  "placeholder": { "comingSoon": "View under construction." },
+  "profile": {
+    "title": "My profile",
+    "subtitle": "Manage your personal information, vehicle and verifications",
+    "saved": "Changes saved",
+    "userChip": { "verifiedDocuments": "{{verified}}/{{total}} documents verified" },
+    "vehicle": {
+      "title": "Registered vehicle",
+      "plate": "Plate",
+      "platePlaceholder": "ABC-123",
+      "model": "Model",
+      "modelPlaceholder": "Toyota Yaris 2021",
+      "type": "Vehicle type",
+      "save": "Save changes"
+    },
+    "vehicleTypes": {
+      "sedan": "Sedan",
+      "suv": "SUV",
+      "hatchback": "Hatchback",
+      "pickup": "Pickup truck",
+      "van": "Van"
+    },
+    "documents": {
+      "title": "Verification documents",
+      "lastUpdate": "Last update: {{time}}",
+      "update": "Update",
+      "types": {
+        "national-id": "National ID (DNI)",
+        "driver-license": "Driver's license",
+        "vehicle-registration": "Vehicle registration card"
+      },
+      "status": {
+        "verified": "Verified",
+        "in-review": "In review",
+        "rejected": "Rejected"
+      }
+    },
+    "errors": {
+      "required": "This field is required",
+      "plateInvalid": "Invalid format (e.g. ABC-123)",
+      "generic": "Something went wrong. Please try again."
+    }
+  }
+}
