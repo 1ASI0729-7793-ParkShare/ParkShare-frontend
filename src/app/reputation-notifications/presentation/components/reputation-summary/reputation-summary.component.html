@@ -1,0 +1,26 @@
+
+<section class="reputation-summary">
+  <h2>{{ 'reputation.summary.title' | translate }}</h2>
+
+  @if (reputation; as data) {
+    @if (data.totalRatings > 0) {
+      <div class="average">
+        <span class="score">
+          {{ data.averageRating | number:'1.1-1' }}
+        </span>
+        <span class="maximum">/ 5</span>
+      </div>
+
+      <p class="stars" aria-hidden="true">★★★★★</p>
+
+      <p>
+        {{ 'reputation.summary.totalRatings' |
+        translate:{ count: data.totalRatings } }}
+      </p>
+    } @else {
+      <p>{{ 'reputation.summary.noRatings' | translate }}</p>
+    }
+  } @else {
+    <p>{{ 'reputation.summary.noData' | translate }}</p>
+  }
+</section>
