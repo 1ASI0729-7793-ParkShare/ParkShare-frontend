@@ -1,0 +1,38 @@
+<div class="card" [class.selected]="isSelected()" (click)="onCardClick()">
+  <div class="card-content">
+    <div class="header-row">
+      <div class="title-address">
+        <h3 class="title" [title]="spot().title">{{ spot().title }}</h3>
+        <p class="address">{{ spot().address }}</p>
+      </div>
+      <div class="price-box">
+        <span class="price-val">S/ {{ spot().pricePerHour.toFixed(2) }}</span>
+        <span class="price-unit">/h</span>
+      </div>
+    </div>
+
+    <div class="footer-row">
+      <div class="meta-badges">
+        <span class="badge badge-status" [class.available]="spot().status === 'available'">
+          {{ 'booking.spot.status.' + spot().status | translate }}
+        </span>
+
+        @if (spot().isCovered) {
+          <span class="badge badge-feature">
+            {{ 'booking.spot.covered' | translate }}
+          </span>
+        }
+
+        <div class="rating">
+          <span class="star">★</span>
+          <span class="score">{{ spot().rating }}</span>
+          <span class="reviews">({{ spot().reviewCount }})</span>
+        </div>
+      </div>
+
+      <button type="button" class="reserve-btn" (click)="onReserve($event)">
+        {{ 'booking.spot.reserveBtn' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

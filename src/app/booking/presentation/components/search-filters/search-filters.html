@@ -1,0 +1,44 @@
+<div class="filters-card">
+  <div class="filter-field">
+    <label class="field-label">{{ 'booking.filters.district' | translate }}</label>
+    <div class="input-wrapper">
+      <input
+        type="text"
+        class="custom-input"
+        [(ngModel)]="districtValue"
+        (keyup.enter)="onSearch()"
+        [placeholder]="'booking.filters.districtPlaceholder' | translate"
+      />
+    </div>
+  </div>
+
+  <div class="filter-field">
+    <label class="field-label">{{ 'booking.filters.vehicle' | translate }}</label>
+    <div class="select-wrapper">
+      <select class="custom-select" [(ngModel)]="vehicleValue" (change)="onSearch()">
+        @for (vehicle of vehicles; track vehicle) {
+          <option [value]="vehicle">{{ vehicle }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="filter-field">
+    <label class="field-label">{{ 'booking.filters.maxPrice' | translate }}</label>
+    <div class="select-wrapper">
+      <select class="custom-select" [(ngModel)]="priceValue" (change)="onSearch()">
+        @for (opt of priceOptions; track opt.label) {
+          <option [ngValue]="opt.value">
+            {{ opt.value === null ? (opt.label | translate) : opt.label }}
+          </option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="action-field">
+    <button type="button" class="search-btn" (click)="onSearch()">
+      {{ 'booking.filters.searchBtn' | translate }}
+    </button>
+  </div>
+</div>

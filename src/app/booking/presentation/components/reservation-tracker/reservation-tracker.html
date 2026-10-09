@@ -1,0 +1,120 @@
+<div class="reservation-card">
+  <!-- Header: Location icon, title, address, ID -->
+  <div class="card-header">
+    <div class="spot-identity">
+      <div class="spot-icon-wrapper">
+        <svg class="spot-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+      </div>
+      <div class="spot-details">
+        <h2 class="spot-title">{{ reservation().parkingSpotName }}</h2>
+        <p class="spot-address">{{ reservation().address }}</p>
+      </div>
+    </div>
+
+    <div class="reservation-id-box">
+      <span class="id-label">{{ 'booking.reservation.idLabel' | translate }}</span>
+      <span class="id-value">{{ reservation().code }}</span>
+    </div>
+  </div>
+
+  <!-- Stepper: Estado del servicio -->
+  <div class="stepper-section">
+    <span class="section-label">{{ 'booking.reservation.serviceStatus' | translate }}</span>
+
+    <div class="stepper-track">
+      <!-- Step 1: Solicitada -->
+      <div class="step step-done">
+        <div class="step-indicator">
+          <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <span class="step-title">{{ 'booking.reservation.steps.requested' | translate }}</span>
+      </div>
+
+      <div class="step-line line-green"></div>
+
+      <!-- Step 2: Confirmada -->
+      <div class="step step-done">
+        <div class="step-indicator">
+          <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <span class="step-title">{{ 'booking.reservation.steps.confirmed' | translate }}</span>
+      </div>
+
+      <div class="step-line" [class.line-blue]="reservation().status === 'in_use' || reservation().status === 'completed'" [class.line-gray]="reservation().status !== 'in_use' && reservation().status !== 'completed'"></div>
+
+      <!-- Step 3: En uso -->
+      <div class="step" [class.step-active]="reservation().status === 'in_use'" [class.step-done]="reservation().status === 'completed'">
+        <div class="step-indicator">
+          @if (reservation().status === 'completed') {
+            <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          } @else {
+            <div class="active-dot"></div>
+          }
+        </div>
+        <span class="step-title">{{ 'booking.reservation.steps.inUse' | translate }}</span>
+      </div>
+
+      <div class="step-line" [class.line-green]="reservation().status === 'completed'" [class.line-gray]="reservation().status !== 'completed'"></div>
+
+      <!-- Step 4: Finalizada -->
+      <div class="step" [class.step-done]="reservation().status === 'completed'" [class.step-upcoming]="reservation().status !== 'completed'">
+        <div class="step-indicator">
+          @if (reservation().status === 'completed') {
+            <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          } @else {
+            <div class="empty-circle"></div>
+          }
+        </div>
+        <span class="step-title">{{ 'booking.reservation.steps.completed' | translate }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metric Boxes -->
+  <div class="metrics-row">
+    <!-- Box 1: Tiempo transcurrido -->
+    <div class="metric-card metric-time">
+      <span class="metric-label">{{ 'booking.reservation.elapsedTime' | translate }}</span>
+      <span class="metric-value font-mono">{{ formattedTime() }}</span>
+      <span class="metric-subtext">{{ reservation().startTime }}</span>
+    </div>
+
+    <!-- Box 2: Costo acumulado -->
+    <div class="metric-card metric-cost">
+      <span class="metric-label green-text">{{ 'booking.reservation.accumulatedCost' | translate }}</span>
+      <span class="metric-value green-text font-bold">S/ {{ liveCost().toFixed(2) }}</span>
+      <span class="metric-subtext green-subtext">
+        {{ 'booking.reservation.rateText' | translate: {rate: reservation().pricePerHour.toFixed(2)} }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Footer Actions -->
+  <div class="card-footer">
+    <div class="vehicle-info">
+      <span class="vehicle-label">{{ 'booking.reservation.vehicleLabel' | translate }}</span>
+      <span class="plate-badge">{{ reservation().vehiclePlate }}</span>
+      <span class="vehicle-model">{{ reservation().vehicleModel }}</span>
+    </div>
+
+    @if (reservation().status !== 'completed') {
+      <button type="button" class="checkout-btn" (click)="onCheckout()">
+        {{ 'booking.reservation.checkoutBtn' | translate }}
+      </button>
+    } @else {
+      <div class="paid-badge">
+        {{ 'booking.reservation.paidSuccess' | translate }}
+      </div>
+    }
+  </div>
+</div>

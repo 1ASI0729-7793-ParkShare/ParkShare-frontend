@@ -1,0 +1,83 @@
+<div class="map-viewport">
+  <!-- Stylized SVG Map Graphics simulating city grid & coastline of Miraflores -->
+  <svg class="map-svg" viewBox="0 0 500 500" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="ocean" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f0f9ff"/>
+        <stop offset="100%" stop-color="#e0f2fe"/>
+      </linearGradient>
+    </defs>
+    <!-- Background grid -->
+    <rect width="500" height="500" fill="#f8fafc"/>
+
+    <!-- Subtle urban blocks -->
+    <rect x="30" y="30" width="100" height="70" rx="8" fill="#f1f5f9"/>
+    <rect x="150" y="30" width="140" height="70" rx="8" fill="#f1f5f9"/>
+    <rect x="310" y="30" width="150" height="90" rx="8" fill="#f1f5f9"/>
+
+    <rect x="30" y="120" width="110" height="120" rx="8" fill="#f1f5f9"/>
+    <rect x="160" y="120" width="120" height="110" rx="8" fill="#f1f5f9"/>
+    <rect x="300" y="140" width="160" height="110" rx="8" fill="#f1f5f9"/>
+
+    <rect x="40" y="260" width="130" height="100" rx="8" fill="#f1f5f9"/>
+    <rect x="190" y="250" width="110" height="120" rx="8" fill="#f1f5f9"/>
+    <rect x="320" y="270" width="140" height="110" rx="8" fill="#f1f5f9"/>
+
+    <rect x="50" y="380" width="130" height="90" rx="8" fill="#f1f5f9"/>
+    <rect x="200" y="390" width="130" height="80" rx="8" fill="#f1f5f9"/>
+    <rect x="350" y="400" width="110" height="70" rx="8" fill="#f1f5f9"/>
+
+    <!-- Main Arteries / Streets -->
+    <path d="M 0 110 L 500 110" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <path d="M 0 240 L 500 240" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/>
+    <path d="M 0 370 L 500 370" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+
+    <path d="M 140 0 L 140 500" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/>
+    <path d="M 290 0 L 290 500" stroke="#ffffff" stroke-width="16" stroke-linecap="round"/>
+    <path d="M 460 0 L 460 500" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Diagonal Avenue (Diagonal / Larco) -->
+    <path d="M 50 30 L 450 470" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/>
+    <path d="M 50 30 L 450 470" stroke="#e2e8f0" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Secondary roads -->
+    <path d="M 0 110 L 500 110" stroke="#e2e8f0" stroke-width="4"/>
+    <path d="M 0 240 L 500 240" stroke="#e2e8f0" stroke-width="4"/>
+    <path d="M 0 370 L 500 370" stroke="#e2e8f0" stroke-width="4"/>
+    <path d="M 140 0 L 140 500" stroke="#e2e8f0" stroke-width="4"/>
+    <path d="M 290 0 L 290 500" stroke="#e2e8f0" stroke-width="4"/>
+
+    <!-- Green park area (Parque Kennedy style) -->
+    <ellipse cx="230" cy="180" rx="36" ry="24" fill="#dcfce7" opacity="0.8"/>
+  </svg>
+
+  <!-- Interactive Price Markers positioned in coordinates matching mockup -->
+  <div class="markers-layer">
+    @for (spot of spots(); track spot.id) {
+      <button
+        type="button"
+        class="map-pin"
+        [class.selected]="spot.id === selectedSpotId()"
+        [class.occupied]="spot.id === selectedSpotId() || spot.status === 'occupied'"
+        [style.left.%]="spot.mapX"
+        [style.top.%]="spot.mapY"
+        (click)="onSelectSpot(spot)"
+        [title]="spot.title"
+      >
+        <span class="pin-text">S/ {{ spot.pricePerHour.toFixed(2) }}</span>
+      </button>
+    }
+  </div>
+
+  <!-- Map Legend -->
+  <div class="map-legend">
+    <div class="legend-item">
+      <span class="dot dot-available"></span>
+      <span class="legend-text">{{ 'booking.map.available' | translate }}</span>
+    </div>
+    <div class="legend-item">
+      <span class="dot dot-occupied"></span>
+      <span class="legend-text">{{ 'booking.map.occupied' | translate }}</span>
+    </div>
+  </div>
+</div>
