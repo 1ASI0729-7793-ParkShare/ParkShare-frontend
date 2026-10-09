@@ -24,5 +24,8 @@ export const NAV_OPTIONS: Record<UserRole, NavOption[]> = {
     { labelKey: 'nav.driver.history', icon: 'history', route: '/driver/history' },
     { labelKey: 'nav.driver.profile', icon: 'person_outline', route: '/driver/profile' },
   ],
-  owner: [{ labelKey: 'nav.owner.dashboard', icon: 'local_parking', route: '/owner' }],
+  owner: [
+  { labelKey: 'nav.owner.dashboard', icon: 'local_parking', route: '/owner/dashboard' },
+  { labelKey: 'nav.owner.payments',  icon: 'payments',      route: '/owner/income' },
+],
 };

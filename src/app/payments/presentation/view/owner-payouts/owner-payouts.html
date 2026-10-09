@@ -1,0 +1,31 @@
+<section class="owner-payouts">
+  <header class="owner-payouts__header">
+    <h1 class="owner-payouts__title">Mis ingresos</h1>
+    <p class="owner-payouts__subtitle">
+      Revisa tu balance acumulado, solicita transferencias y monitorea el detalle de cobros.
+    </p>
+  </header>
+
+  @if (store.loading()) {
+    <p class="owner-payouts__message">Cargando tus ingresos...</p>
+  } @else if (store.payout(); as payout) {
+    @if (store.error()) {
+      <p class="owner-payouts__error">{{ store.error() }}</p>
+    }
+
+    <div class="owner-payouts__grid">
+      <app-balance-card
+        [payout]="payout"
+        [canTransfer]="store.canTransfer()"
+        [transferring]="store.transferring()"
+        (transfer)="onTransfer()"
+      />
+      <app-transaction-list [transactions]="store.transactions()" />
+    </div>
+  } @else {
+    <div class="owner-payouts__message">
+      <p>{{ store.error() ?? 'No hay información de ingresos para mostrar.' }}</p>
+      <button type="button" class="owner-payouts__retry" (click)="onRetry()">Reintentar</button>
+    </div>
+  }
+</section>

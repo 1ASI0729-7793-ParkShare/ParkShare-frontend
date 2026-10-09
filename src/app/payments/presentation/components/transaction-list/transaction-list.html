@@ -1,0 +1,41 @@
+<section class="transaction-list">
+  <h2 class="transaction-list__title">Detalle de cobros</h2>
+
+  @if (transactions().length === 0) {
+    <p class="transaction-list__empty">Aún no tienes cobros registrados.</p>
+  } @else {
+    <table class="transaction-list__table">
+      <thead>
+        <tr>
+          <th>Conductor</th>
+          <th>Cochera</th>
+          <th>Fecha</th>
+          <th>Tiempo</th>
+          <th class="transaction-list__right">Recibido</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (transaction of transactions(); track transaction.id) {
+          <tr>
+            <td>{{ transaction.driverName }}</td>
+            <td>{{ transaction.garageName }}</td>
+            <td class="transaction-list__muted">{{ transaction.date | date: 'dd/MM/yyyy' }}</td>
+            <td class="transaction-list__muted">{{ transaction.formattedDuration }}</td>
+            <td class="transaction-list__right transaction-list__amount">
+              {{ transaction.amountReceived | currency: 'PEN' : 'S/ ' : '1.2-2' }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+  <footer class="transaction-list__footer">
+    <span class="transaction-list__muted">
+      Mostrando {{ transactions().length }} transacciones recientes
+    </span>
+    <button type="button" class="transaction-list__link" (click)="onViewHistory()">
+      Ver todo el historial ›
+    </button>
+  </footer>
+</section>

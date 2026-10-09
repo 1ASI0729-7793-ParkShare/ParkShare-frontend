@@ -8,7 +8,9 @@
       "history": "Historial",
       "profile": "Mi perfil"
     },
-    "owner": { "dashboard": "Mis cocheras" }
+    "owner": { 
+      "dashboard": "Mis cocheras", 
+      "payments": "Mis ingresos" }
   },
   "layout": {
     "location": "Lima, Perú",
@@ -55,6 +57,39 @@
       "required": "Este campo es obligatorio",
       "plateInvalid": "Formato inválido (ej. ABC-123)",
       "generic": "Ocurrió un error. Inténtalo de nuevo."
+    }
+  },
+  "payments": {
+    "title": "Mis ingresos",
+    "subtitle": "Revisa tu balance acumulado, solicita transferencias y monitorea el detalle de cobros.",
+    "balance": {
+      "available": "Saldo disponible",
+      "feeNote": "Tarifa por servicio de {{rate}}% aplicada al cobrar.",
+      "transfer": "Transferir a mi banco",
+      "transferring": "Transferiendo...",
+      "completed": "Completadas",
+      "inTransit": "En tránsito",
+      "linkedAccount": "Cuenta vinculada"
+    },
+    "transactions": {
+      "title": "Detalle de cobros",
+      "driver": "Conductor",
+      "garage": "Cochera",
+      "date": "Fecha",
+      "time": "Tiempo",
+      "received": "Recibido",
+      "empty": "Aún no tienes cobros registrados.",
+      "showing": "Mostrando {{count}} transacciones recientes",
+      "viewHistory": "Ver todo el historial ›"
+    },
+    "state": {
+      "loading": "Cargando tus ingresos...",
+      "retry": "Reintentar",
+      "noData": "No hay información de ingresos para mostrar."
+    },
+    "errors": {
+      "load": "No se pudieron cargar tus ingresos. Inténtalo de nuevo.",
+      "transfer": "No se pudo realizar la transferencia. Inténtalo de nuevo."
     }
   }
 }
