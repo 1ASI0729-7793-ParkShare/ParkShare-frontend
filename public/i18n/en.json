@@ -190,5 +190,40 @@
       "saturday": "Saturday",
       "sunday": "Sunday"
     }
+  },
+  "reputation": {
+    "rating": {
+      "title": "Rate your experience",
+      "description": "Share your experience after completing a booking.",
+      "scoreLabel": "Select your rating",
+      "scoreOption": "{{score}} out of 5 stars",
+      "commentLabel": "Comment (optional)",
+      "commentPlaceholder": "Tell us about your experience...",
+      "submit": "Submit rating",
+      "success": "Your rating has been submitted.",
+      "error": "Unable to submit your rating."
+    },
+    "summary": {
+      "title": "User reputation",
+      "totalRatings": "{{count}} ratings received",
+      "noRatings": "No ratings yet.",
+      "noData": "Reputation information is unavailable."
+    },
+    "page": {
+      "title": "Reputation",
+      "reviews": "Received reviews"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "open": "Open notifications",
+    "unreadCount": "{{count}} unread notifications",
+    "empty": "You have no notifications.",
+    "markAsRead": "Mark as read",
+    "read": "Read"
+  },
+  "common": {
+    "loading": "Loading...",
+    "loadError": "An error occurred while loading the information."
   }
 }
