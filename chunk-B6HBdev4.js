@@ -1,0 +1,1 @@
+var t=()=>import(`./chunk-Bcdi4MjT.js`).then(o=>o.OwnerDashboardView);var e=[{path:``,loadComponent:t}];export{e as reportAnalyticsRoutes};

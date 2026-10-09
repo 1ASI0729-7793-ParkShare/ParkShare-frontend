@@ -1,0 +1,1 @@
+var a=t=>{let r=t.get(`startTime`)?.value,i=t.get(`endTime`)?.value;return!r||!i||r<i?null:{invalidTimeRange:!0}};export{a as t};

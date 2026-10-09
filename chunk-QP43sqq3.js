@@ -1,0 +1,1 @@
+var e=()=>import(`./chunk-BoIIr14K.js`).then(o=>o.ProfileView);var t=[{path:``,loadComponent:e}];export{t as profileRoutes};
