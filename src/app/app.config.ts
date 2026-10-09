@@ -7,6 +7,7 @@ import {
 import { provideRouter } from '@angular/router';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideTranslateService } from '@ngx-translate/core';
+import { REPUTATION_NOTIFICATIONS_PROVIDERS } from './reputation-notifications/infrastructure/reputation-notification.providers';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
