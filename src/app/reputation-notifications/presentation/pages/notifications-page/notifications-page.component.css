@@ -1,0 +1,72 @@
+
+.notifications-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.notification-list {
+  display: grid;
+  gap: 12px;
+}
+
+.notification-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: white;
+}
+
+.notification-card.unread {
+  border-left: 4px solid #2563eb;
+  background: #eff6ff;
+}
+
+.notification-content {
+  flex: 1;
+  min-width: 220px;
+}
+
+.notification-content h2 {
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+
+.notification-content p {
+  color: #374151;
+  overflow-wrap: anywhere;
+}
+
+.notification-content time,
+.read-label {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.notification-card button {
+  padding: 10px 14px;
+  background: #2563eb;
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.notification-card button:focus-visible {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 3px;
+}

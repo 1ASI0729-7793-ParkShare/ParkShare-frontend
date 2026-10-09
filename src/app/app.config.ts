@@ -4,9 +4,10 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideTranslateService } from '@ngx-translate/core';
+import { REPUTATION_NOTIFICATIONS_PROVIDERS } from './reputation-notifications/infrastructure/reputation-notification.providers';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -20,5 +21,7 @@ export const appConfig: ApplicationConfig = {
       lang: 'es',
       fallbackLang: 'en',
     }),
+    REPUTATION_NOTIFICATIONS_PROVIDERS,
+    provideRouter(routes, withComponentInputBinding()),
   ],
 };

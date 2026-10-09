@@ -1,0 +1,14 @@
+
+<a
+  class="notification-bell"
+  routerLink="/notifications"
+  [attr.aria-label]="'notifications.open' | translate"
+>
+  <span class="bell-icon" aria-hidden="true">🔔</span>
+
+  @if (store.unreadCount() > 0) {
+    <span class="notification-count">
+      {{ store.unreadCount() > 99 ? '99+' : store.unreadCount() }}
+    </span>
+  }
+</a>
