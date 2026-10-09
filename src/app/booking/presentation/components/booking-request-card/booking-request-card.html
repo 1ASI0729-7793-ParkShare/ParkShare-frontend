@@ -1,0 +1,58 @@
+<div class="request-card">
+  <!-- Top row: Driver Identity, Status & Reservation code -->
+  <div class="card-header">
+    <div class="driver-profile">
+      <div class="driver-avatar">{{ booking().driverInitials }}</div>
+      <div class="driver-info">
+        <h3 class="driver-name">{{ booking().driverName }}</h3>
+        <p class="driver-vehicle">{{ booking().vehicleModel }}</p>
+      </div>
+    </div>
+
+    <div class="status-box">
+      <span class="status-pill status-{{ booking().status }}">
+        {{ 'booking.status.' + booking().status | translate }}
+      </span>
+      <span class="reservation-code">{{ 'booking.requests.codePrefix' | translate }} {{ booking().code }}</span>
+    </div>
+  </div>
+
+  <!-- Bottom row: Details columns & Action buttons -->
+  <div class="card-body">
+    <div class="details-grid">
+      <div class="detail-col">
+        <span class="col-label">{{ 'booking.requests.colSpot' | translate }}</span>
+        <span class="col-value bold">{{ booking().parkingSpotName }}</span>
+      </div>
+
+      <div class="detail-col">
+        <span class="col-label">{{ 'booking.requests.colTime' | translate }}</span>
+        <span class="col-value">{{ booking().scheduledTime }}</span>
+      </div>
+
+      <div class="detail-col">
+        <span class="col-label">{{ 'booking.requests.colRate' | translate }}</span>
+        <span class="col-value">S/ {{ booking().pricePerHour.toFixed(2) }} / hora</span>
+      </div>
+
+      <div class="detail-col">
+        <span class="col-label">{{ 'booking.requests.colEarnings' | translate }}</span>
+        <span class="col-value earnings-val">S/ {{ booking().totalAmount.toFixed(2) }}</span>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions-wrapper">
+      @if (booking().status === 'pending') {
+        <button type="button" class="btn btn-reject" (click)="onReject()">
+          {{ 'booking.requests.rejectBtn' | translate }}
+        </button>
+        <button type="button" class="btn btn-accept" (click)="onAccept()">
+          {{ 'booking.requests.acceptBtn' | translate }}
+        </button>
+      } @else {
+        <span class="no-action-text">{{ 'booking.requests.noActionNeeded' | translate }}</span>
+      }
+    </div>
+  </div>
+</div>

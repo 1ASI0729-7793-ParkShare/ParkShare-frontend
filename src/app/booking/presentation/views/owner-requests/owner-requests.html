@@ -1,0 +1,22 @@
+<div class="requests-view">
+  <!-- Title & Subtitle -->
+  <header class="view-header">
+    <h1 class="view-title">{{ 'booking.requests.title' | translate }}</h1>
+    <p class="view-subtitle">{{ 'booking.requests.subtitle' | translate }}</p>
+  </header>
+
+  <!-- Requests List -->
+  <div class="requests-list">
+    @for (req of store.ownerRequests(); track req.id) {
+      <app-booking-request-card
+        [booking]="req"
+        (accept)="onAccept($event)"
+        (reject)="onReject($event)"
+      />
+    } @empty {
+      <div class="empty-requests-card">
+        <p>{{ 'booking.requests.empty' | translate }}</p>
+      </div>
+    }
+  </div>
+</div>

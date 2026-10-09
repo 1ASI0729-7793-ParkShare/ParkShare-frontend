@@ -1,0 +1,154 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.search-view {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+}
+
+.view-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.view-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.view-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.filter-container {
+  width: 100%;
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+}
+
+.results-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.map-column {
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+}
+
+.no-results-card {
+  background: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* Confirmation Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.45);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 440px;
+  width: 90%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.modal-title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.modal-text {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.modal-btn {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.modal-cancel {
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+}
+
+.modal-cancel:hover {
+  background: #e2e8f0;
+}
+
+.modal-confirm {
+  background: #1e3a8a;
+  color: #ffffff;
+  border: none;
+}
+
+.modal-confirm:hover {
+  background: #172554;
+}
+
+@media (max-width: 960px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  .map-column {
+    min-height: 360px;
+    height: 360px;
+  }
+}

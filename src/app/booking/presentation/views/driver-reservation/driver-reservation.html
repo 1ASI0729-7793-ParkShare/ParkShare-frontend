@@ -1,0 +1,68 @@
+<div class="reservation-view">
+  <!-- Title & Subtitle -->
+  <header class="view-header">
+    <h1 class="view-title">{{ 'booking.reservation.title' | translate }}</h1>
+    <p class="view-subtitle">{{ 'booking.reservation.subtitle' | translate }}</p>
+  </header>
+
+  <!-- Main Card -->
+  @if (store.activeReservation(); as active) {
+    <div class="tracker-container">
+      <app-reservation-tracker
+        [reservation]="active"
+        [liveSeconds]="store.liveElapsedSeconds()"
+        [liveCost]="store.liveAccumulatedCost()"
+        (checkout)="onCheckout($event)"
+      />
+    </div>
+  } @else {
+    <div class="empty-state-card">
+      <div class="empty-icon-box">
+        <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10" stroke-width="2"/>
+          <polyline points="12 6 12 12 16 14" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3 class="empty-title">{{ 'booking.reservation.noActive' | translate }}</h3>
+      <p class="empty-text">{{ 'booking.reservation.noActiveSubtitle' | translate }}</p>
+      <a routerLink="/driver/search" class="search-nav-btn">
+        {{ 'booking.reservation.findSpotBtn' | translate }}
+      </a>
+    </div>
+  }
+
+  <!-- Checkout & Payment Confirmation Modal -->
+  @if (showCheckoutModal) {
+    <div class="modal-backdrop">
+      <div class="modal-card">
+        <h3 class="modal-title">{{ 'booking.reservation.checkoutModal.title' | translate }}</h3>
+        <p class="modal-text">
+          {{ 'booking.reservation.checkoutModal.message' | translate: {
+            time: '01:14:00',
+            amount: store.liveAccumulatedCost().toFixed(2)
+          } }}
+        </p>
+        <div class="payment-method-row">
+          <span class="pm-label">{{ 'booking.reservation.checkoutModal.paymentMethod' | translate }}:</span>
+          <span class="pm-val">Visa •••• 4242</span>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="modal-btn modal-cancel" (click)="closeModal()">
+            {{ 'booking.reservation.checkoutModal.cancel' | translate }}
+          </button>
+          <button type="button" class="modal-btn modal-pay" (click)="confirmPayment()">
+            {{ 'booking.reservation.checkoutModal.pay' | translate: {amount: store.liveAccumulatedCost().toFixed(2)} }}
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Success Notification Alert -->
+  @if (paidSuccess) {
+    <div class="success-banner">
+      <span class="success-icon">✓</span>
+      <span>{{ 'booking.reservation.paymentSuccessBanner' | translate }}</span>
+    </div>
+  }
+</div>

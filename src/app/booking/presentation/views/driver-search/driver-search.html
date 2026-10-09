@@ -1,0 +1,67 @@
+<div class="search-view">
+  <!-- Title & Subtitle -->
+  <header class="view-header">
+    <h1 class="view-title">{{ 'booking.search.title' | translate }}</h1>
+    <p class="view-subtitle">{{ 'booking.search.subtitle' | translate }}</p>
+  </header>
+
+  <!-- Filter Bar -->
+  <div class="filter-container">
+    <app-search-filters/>
+  </div>
+
+  <!-- Results Count -->
+  <div class="results-header">
+    <span class="results-count">
+      {{ 'booking.search.resultsCount' | translate: {count: store.filteredParkingSpots().length, district: store.searchDistrict()} }}
+    </span>
+  </div>
+
+  <!-- Two-Column Grid: Cards list & Interactive Map -->
+  <div class="content-grid">
+    <!-- Left Column: Parking Cards -->
+    <div class="cards-list">
+      @for (spot of store.filteredParkingSpots(); track spot.id) {
+        <app-parking-card
+          [spot]="spot"
+          [isSelected]="spot.id === store.selectedSpotId()"
+          (select)="onSelectSpot($event)"
+          (reserve)="onReserveSpot($event)"
+        />
+      } @empty {
+        <div class="no-results-card">
+          <p>{{ 'booking.search.noResults' | translate }}</p>
+        </div>
+      }
+    </div>
+
+    <!-- Right Column: Interactive Map -->
+    <div class="map-column">
+      <app-parking-map
+        [spots]="store.filteredParkingSpots()"
+        [selectedSpotId]="store.selectedSpotId()"
+        (spotSelected)="onSelectSpot($event)"
+      />
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  @if (confirmingSpot; as spot) {
+    <div class="modal-backdrop">
+      <div class="modal-card">
+        <h3 class="modal-title">{{ 'booking.search.confirmModal.title' | translate }}</h3>
+        <p class="modal-text">
+          {{ 'booking.search.confirmModal.message' | translate: {spot: spot.title, price: spot.pricePerHour.toFixed(2)} }}
+        </p>
+        <div class="modal-actions">
+          <button type="button" class="modal-btn modal-cancel" (click)="cancelReservation()">
+            {{ 'booking.search.confirmModal.cancel' | translate }}
+          </button>
+          <button type="button" class="modal-btn modal-confirm" (click)="confirmReservation()">
+            {{ 'booking.search.confirmModal.confirm' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
