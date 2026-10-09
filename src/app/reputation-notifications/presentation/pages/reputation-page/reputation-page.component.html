@@ -1,0 +1,37 @@
+
+<main class="reputation-page">
+  <h1>{{ 'reputation.page.title' | translate }}</h1>
+
+  <app-reputation-summary
+    [reputation]="store.reputation()"
+  />
+
+  <section class="reviews">
+    <h2>{{ 'reputation.page.reviews' | translate }}</h2>
+
+    @if (store.loading()) {
+      <p>{{ 'common.loading' | translate }}</p>
+    } @else if (store.error()) {
+      <p role="alert">{{ 'common.loadError' | translate }}</p>
+    } @else if (store.ratings().length === 0) {
+      <p>{{ 'reputation.summary.noRatings' | translate }}</p>
+    } @else {
+      @for (rating of store.ratings(); track rating.id) {
+        <article class="review">
+          <div class="review-header">
+            <strong>
+              {{ rating.score }} / 5 ★
+            </strong>
+            <time [attr.datetime]="rating.createdAt">
+              {{ rating.createdAt | date:'mediumDate' }}
+            </time>
+          </div>
+
+          @if (rating.comment) {
+            <p>{{ rating.comment }}</p>
+          }
+        </article>
+      }
+    }
+  </section>
+</main>

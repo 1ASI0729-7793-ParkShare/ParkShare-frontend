@@ -1,0 +1,49 @@
+
+<main class="notifications-page">
+  <header class="page-header">
+    <h1>{{ 'notifications.title' | translate }}</h1>
+    <p>
+      {{ 'notifications.unreadCount' |
+      translate:{ count: store.unreadCount() } }}
+    </p>
+  </header>
+
+  @if (store.loading()) {
+    <p>{{ 'common.loading' | translate }}</p>
+  } @else if (store.error()) {
+    <p role="alert">{{ 'common.loadError' | translate }}</p>
+  } @else if (store.notifications().length === 0) {
+    <p>{{ 'notifications.empty' | translate }}</p>
+  } @else {
+    <div class="notification-list">
+      @for (notification of store.notifications(); track notification.id) {
+        <article
+          class="notification-card"
+          [class.unread]="!notification.isRead"
+        >
+          <div class="notification-content">
+            <h2>{{ notification.title }}</h2>
+            <p>{{ notification.message }}</p>
+
+            <time [attr.datetime]="notification.createdAt">
+              {{ notification.createdAt | date:'medium' }}
+            </time>
+          </div>
+
+          @if (!notification.isRead) {
+            <button
+              type="button"
+              (click)="markAsRead(notification.id)"
+            >
+              {{ 'notifications.markAsRead' | translate }}
+            </button>
+          } @else {
+            <span class="read-label">
+              {{ 'notifications.read' | translate }}
+            </span>
+          }
+        </article>
+      }
+    </div>
+  }
+</main>

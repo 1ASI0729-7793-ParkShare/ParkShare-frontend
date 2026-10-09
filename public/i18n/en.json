@@ -1,6 +1,11 @@
 {
-  "app": { "title": "ParkShare" },
-  "roles": { "driver": "Driver", "owner": "Owner" },
+  "app": {
+    "title": "ParkShare"
+  },
+  "roles": {
+    "driver": "Driver",
+    "owner": "Owner"
+  },
   "nav": {
     "driver": {
       "search": "Find parking",
@@ -8,8 +13,11 @@
       "history": "History",
       "profile": "My profile"
     },
-    "owner": { 
-      "dashboard": "My parking spaces" ,
+    "owner": {
+      "dashboard": "Dashboard",
+      "requests": "Requests",
+      "parkingSpaces": "My parking spaces",
+      "earnings": "My earnings",
       "payments": "My income"
     }
   },
@@ -17,12 +25,18 @@
     "location": "Lima, Peru",
     "copyright": "© {{year}} ParkShare"
   },
-  "placeholder": { "comingSoon": "View under construction." },
+  "placeholder": {
+    "comingSoon": "View under construction."
+  },
   "profile": {
     "title": "My profile",
     "subtitle": "Manage your personal information, vehicle and verifications",
     "saved": "Changes saved",
-    "userChip": { "verifiedDocuments": "{{verified}}/{{total}} documents verified" },
+    "userChip": {
+      "verifiedDocuments": "{{verified}}/{{total}} documents verified",
+      "ownerStatus": "Owner • 3 parking spaces",
+      "driverStatus": "Verified driver"
+    },
     "vehicle": {
       "title": "Registered vehicle",
       "plate": "Plate",
@@ -58,39 +72,6 @@
       "required": "This field is required",
       "plateInvalid": "Invalid format (e.g. ABC-123)",
       "generic": "Something went wrong. Please try again."
-    }
-  },
-  "payments": {
-    "title": "My income",
-    "subtitle": "Review your accumulated balance, request transfers and track payment details.",
-    "balance": {
-      "available": "Available balance",
-      "feeNote": "Service fee of {{rate}}% applied on collection.",
-      "transfer": "Transfer to my bank",
-      "transferring": "Transferring...",
-      "completed": "Completed",
-      "inTransit": "In transit",
-      "linkedAccount": "Linked account"
-    },
-    "transactions": {
-      "title": "Payment details",
-      "driver": "Driver",
-      "garage": "Garage",
-      "date": "Date",
-      "time": "Time",
-      "received": "Received",
-      "empty": "You have no payments yet.",
-      "showing": "Showing {{count}} recent transactions",
-      "viewHistory": "View full history ›"
-    },
-    "state": {
-      "loading": "Loading your income...",
-      "retry": "Retry",
-      "noData": "No income information to show."
-    },
-    "errors": {
-      "load": "Your income could not be loaded. Please try again.",
-      "transfer": "The transfer could not be completed. Please try again."
     }
   }
 }

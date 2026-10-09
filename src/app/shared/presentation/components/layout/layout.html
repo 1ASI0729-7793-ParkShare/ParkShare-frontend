@@ -7,8 +7,13 @@
 
     <mat-nav-list class="nav">
       @for (option of navOptions(); track option.route) {
-        <a mat-list-item [routerLink]="option.route" routerLinkActive #rla="routerLinkActive"
-           [activated]="rla.isActive">
+        <a
+          mat-list-item
+          [routerLink]="option.route"
+          routerLinkActive
+          #rla="routerLinkActive"
+          [activated]="rla.isActive"
+        >
           <mat-icon matListItemIcon>{{ option.icon }}</mat-icon>
           <span matListItemTitle>{{ option.labelKey | translate }}</span>
         </a>
@@ -17,14 +22,19 @@
 
     <footer class="sidebar-footer">
       <span class="location">{{ 'layout.location' | translate }}</span>
-      <span>{{ 'layout.copyright' | translate: {year: year} }}</span>
+      <span>{{ 'layout.copyright' | translate: { year: year } }}</span>
     </footer>
   </aside>
 
   <div class="main">
     <header class="topbar">
-      <mat-button-toggle-group class="role-switch" [value]="currentRole()" hideSingleSelectionIndicator=""
-                               appearance="standard" aria-label="Role">
+      <mat-button-toggle-group
+        class="role-switch"
+        [value]="currentRole()"
+        hideSingleSelectionIndicator=""
+        appearance="standard"
+        aria-label="Role"
+      >
         @for (item of roles; track item.role) {
           <mat-button-toggle [value]="item.role" (click)="selectRole(item)">
             {{ item.labelKey | translate }}
@@ -33,12 +43,12 @@
       </mat-button-toggle-group>
 
       <span class="spacer"></span>
-      <app-language-switcher/>
-      <ng-content select="[topbar-end]"/>
+      <app-language-switcher />
+      <ng-content select="[topbar-end]" />
     </header>
 
     <main class="content">
-      <router-outlet/>
+      <router-outlet />
     </main>
   </div>
 </div>
