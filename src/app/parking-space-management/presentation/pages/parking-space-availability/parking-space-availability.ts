@@ -98,7 +98,7 @@ export class ParkingSpaceAvailability {
     this.store
       .updateAvailability(this.parkingSpaceId, availability)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.router.navigate(['/parking-spaces']));
+      .subscribe(() => this.router.navigate(['/owner/parking-spaces']));
   }
 
   private createPeriod(period?: AvailabilityPeriod) {

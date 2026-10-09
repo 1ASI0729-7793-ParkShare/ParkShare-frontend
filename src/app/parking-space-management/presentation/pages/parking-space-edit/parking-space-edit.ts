@@ -73,6 +73,6 @@ export class ParkingSpaceEdit {
           .filter(Boolean),
       })
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.router.navigate(['/parking-spaces']));
+      .subscribe(() => this.router.navigate(['/owner/parking-spaces']));
   }
 }

@@ -1,5 +1,5 @@
 <main class="form-page">
-  <a class="back-link" routerLink="/parking-spaces">
+  <a class="back-link" routerLink="/owner/parking-spaces">
     {{ 'parkingSpace.actions.backToList' | translate }}
   </a>
 
@@ -74,7 +74,7 @@
       </section>
 
       <footer>
-        <a mat-button routerLink="/parking-spaces">
+        <a mat-button routerLink="/owner/parking-spaces">
           {{ 'parkingSpace.actions.cancel' | translate }}
         </a>
         <button mat-flat-button type="submit" [disabled]="store.loading()">

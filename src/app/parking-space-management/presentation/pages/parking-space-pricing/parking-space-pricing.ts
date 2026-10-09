@@ -61,6 +61,6 @@ export class ParkingSpacePricing {
     this.store
       .updatePricing(this.parkingSpaceId, this.form.getRawValue().hourlyRate)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.router.navigate(['/parking-spaces']));
+      .subscribe(() => this.router.navigate(['/owner/parking-spaces']));
   }
 }

@@ -53,6 +53,22 @@ export const routes: Routes = [
   { path: 'history', pathMatch: 'full', redirectTo: 'driver/history' },
   { path: 'dashboard', pathMatch: 'full', redirectTo: 'owner/dashboard' },
   { path: 'requests', pathMatch: 'full', redirectTo: 'owner/requests' },
+  { path: 'parking-spaces/new', pathMatch: 'full', redirectTo: 'owner/parking-spaces/new' },
+  {
+    path: 'parking-spaces/:id/edit',
+    pathMatch: 'full',
+    redirectTo: 'owner/parking-spaces/:id/edit',
+  },
+  {
+    path: 'parking-spaces/:id/availability',
+    pathMatch: 'full',
+    redirectTo: 'owner/parking-spaces/:id/availability',
+  },
+  {
+    path: 'parking-spaces/:id/pricing',
+    pathMatch: 'full',
+    redirectTo: 'owner/parking-spaces/:id/pricing',
+  },
   { path: 'parking-spaces', pathMatch: 'full', redirectTo: 'owner/parking-spaces' },
   { path: 'parkings', pathMatch: 'full', redirectTo: 'owner/parking-spaces' },
   { path: 'earnings', pathMatch: 'full', redirectTo: 'owner/earnings' },

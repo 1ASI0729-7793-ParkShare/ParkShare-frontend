@@ -1,5 +1,5 @@
+import { Location } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ProfileStore } from '../../../application/profile.store';
 
@@ -11,10 +11,10 @@ import { ProfileStore } from '../../../application/profile.store';
 })
 export class UserChip {
   protected readonly store = inject(ProfileStore);
-  private readonly router = inject(Router);
+  private readonly location = inject(Location);
 
   protected isOwner(): boolean {
-    return this.router.url.startsWith('/owner');
+    return this.location.path().startsWith('/owner');
   }
 
   protected displayName(): string {
