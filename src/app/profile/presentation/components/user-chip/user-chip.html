@@ -1,10 +1,17 @@
-@if (store.profile(); as profile) {
-  <div class="user-info">
-    <span class="user-name">{{ profile.fullName }}</span>
-    <span class="user-status">
-      <span class="dot"></span>
-      {{ 'profile.userChip.verifiedDocuments' | translate: {verified: store.verifiedCount(), total: store.documentCount()} }}
-    </span>
-  </div>
-  <div class="avatar">{{ initials() }}</div>
-}
+<div class="user-info">
+  <span class="user-name">{{ displayName() }}</span>
+  <span class="user-status">
+    <span class="dot"></span>
+    @if (isOwner()) {
+      {{ 'profile.userChip.ownerStatus' | translate }}
+    } @else if (store.profile()) {
+      {{
+        'profile.userChip.verifiedDocuments'
+          | translate: { verified: store.verifiedCount(), total: store.documentCount() }
+      }}
+    } @else {
+      {{ 'profile.userChip.driverStatus' | translate }}
+    }
+  </span>
+</div>
+<div class="avatar">{{ initials() }}</div>

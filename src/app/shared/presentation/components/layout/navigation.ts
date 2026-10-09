@@ -14,7 +14,7 @@ export interface RoleOption {
 
 export const ROLES: RoleOption[] = [
   { role: 'driver', labelKey: 'roles.driver', route: '/driver' },
-  { role: 'owner', labelKey: 'roles.owner', route: '/owner' },
+  { role: 'owner', labelKey: 'roles.owner', route: '/owner/dashboard' },
 ];
 
 export const NAV_OPTIONS: Record<UserRole, NavOption[]> = {
@@ -24,5 +24,14 @@ export const NAV_OPTIONS: Record<UserRole, NavOption[]> = {
     { labelKey: 'nav.driver.history', icon: 'history', route: '/driver/history' },
     { labelKey: 'nav.driver.profile', icon: 'person_outline', route: '/driver/profile' },
   ],
-  owner: [{ labelKey: 'nav.owner.dashboard', icon: 'local_parking', route: '/owner' }],
+  owner: [
+    { labelKey: 'nav.owner.dashboard', icon: 'tune', route: '/owner/dashboard' },
+    { labelKey: 'nav.owner.requests', icon: 'schedule', route: '/owner/requests' },
+    {
+      labelKey: 'nav.owner.parkingSpaces',
+      icon: 'directions_car',
+      route: '/owner/parking-spaces',
+    },
+    { labelKey: 'nav.owner.earnings', icon: 'verified_user', route: '/owner/earnings' },
+  ],
 };

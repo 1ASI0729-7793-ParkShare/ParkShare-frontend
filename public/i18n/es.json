@@ -1,6 +1,11 @@
 {
-  "app": { "title": "ParkShare" },
-  "roles": { "driver": "Conductor", "owner": "Propietario" },
+  "app": {
+    "title": "ParkShare"
+  },
+  "roles": {
+    "driver": "Conductor",
+    "owner": "Propietario"
+  },
   "nav": {
     "driver": {
       "search": "Buscar cochera",
@@ -8,18 +13,29 @@
       "history": "Historial",
       "profile": "Mi perfil"
     },
-    "owner": { "dashboard": "Mis cocheras" }
+    "owner": {
+      "dashboard": "Panel de control",
+      "requests": "Solicitudes",
+      "parkingSpaces": "Mis cocheras",
+      "earnings": "Mis ingresos"
+    }
   },
   "layout": {
     "location": "Lima, Perú",
     "copyright": "© {{year}} ParkShare"
   },
-  "placeholder": { "comingSoon": "Vista en construcción." },
+  "placeholder": {
+    "comingSoon": "Vista en construcción."
+  },
   "profile": {
     "title": "Mi perfil",
     "subtitle": "Gestiona tu información personal, vehículo y verificaciones",
     "saved": "Cambios guardados",
-    "userChip": { "verifiedDocuments": "{{verified}}/{{total}} documentos verificados" },
+    "userChip": {
+      "verifiedDocuments": "{{verified}}/{{total}} documentos verificados",
+      "ownerStatus": "Propietario • 3 cocheras",
+      "driverStatus": "Conductora verificada"
+    },
     "vehicle": {
       "title": "Vehículo registrado",
       "plate": "Placa",
@@ -55,6 +71,113 @@
       "required": "Este campo es obligatorio",
       "plateInvalid": "Formato inválido (ej. ABC-123)",
       "generic": "Ocurrió un error. Inténtalo de nuevo."
+    }
+  },
+  "parkingSpace": {
+    "navigation": {
+      "ownerMenu": "Navegación del propietario",
+      "mySpaces": "Mis cocheras",
+      "driver": "Conductor",
+      "owner": "Propietario",
+      "location": "Lima, Perú"
+    },
+    "common": {
+      "loading": "Cargando cocheras..."
+    },
+    "actions": {
+      "create": "Publicar cochera",
+      "publishFirst": "Publicar mi primera cochera",
+      "publish": "Publicar espacio",
+      "edit": "Editar",
+      "editDetails": "Editar datos",
+      "editSchedule": "Editar horario",
+      "pausePublication": "Pausar publicación",
+      "reactivatePublication": "Reactivar publicación",
+      "availability": "Disponibilidad",
+      "pricing": "Tarifa",
+      "backToList": "Volver a mis cocheras",
+      "cancel": "Cancelar",
+      "save": "Guardar cambios",
+      "saveRate": "Guardar tarifa",
+      "saveAvailability": "Guardar disponibilidad",
+      "addPeriod": "Agregar periodo",
+      "remove": "Quitar"
+    },
+    "list": {
+      "eyebrow": "Parking Space Management",
+      "title": "Mis cocheras",
+      "description": "Publica tus espacios y mantén actualizadas sus condiciones de disponibilidad y tarifa.",
+      "emptyTitle": "Todavía no publicaste una cochera",
+      "emptyDescription": "Crea tu primera publicación para comenzar a administrar el espacio desde ParkShare."
+    },
+    "card": {
+      "hourlyRate": "Tarifa por hora",
+      "accumulatedIncome": "Ingresos acumulados",
+      "everyDay": "Lun – Dom",
+      "weekdays": "Lun – Vie",
+      "weekend": "Sáb – Dom",
+      "noSchedule": "Sin horario",
+      "photos": "fotografías",
+      "periods": "periodos disponibles"
+    },
+    "status": {
+      "published": "Publicada",
+      "paused": "Pausada"
+    },
+    "create": {
+      "eyebrow": "US06 · Publicación",
+      "title": "Publicar una cochera",
+      "description": "Registra la información esencial del espacio. Podrás ajustar estos datos después."
+    },
+    "edit": {
+      "eyebrow": "US07 · Edición",
+      "title": "Editar cochera",
+      "description": "Actualiza la dirección y las fotografías de la publicación."
+    },
+    "availability": {
+      "eyebrow": "US08 · Disponibilidad",
+      "title": "Configurar disponibilidad",
+      "description": "Define uno o más periodos en los que el espacio puede reservarse.",
+      "period": "Periodo"
+    },
+    "pricing": {
+      "eyebrow": "US09 · Tarifa",
+      "title": "Configurar tarifa",
+      "description": "Establece una tarifa por hora válida para las reservas futuras."
+    },
+    "form": {
+      "details": "Datos del espacio",
+      "address": "Dirección",
+      "photos": "Enlaces de fotografías",
+      "photosHint": "Un enlace por línea o separados por comas",
+      "hourlyRate": "Tarifa por hora",
+      "initialAvailability": "Disponibilidad inicial",
+      "day": "Día",
+      "startTime": "Hora de inicio",
+      "endTime": "Hora de fin"
+    },
+    "validation": {
+      "addressRequired": "La dirección es obligatoria.",
+      "ratePositive": "La tarifa debe ser mayor que cero.",
+      "timeRange": "La hora de inicio debe ser anterior a la hora de fin."
+    },
+    "errors": {
+      "load": "No se pudieron cargar las cocheras.",
+      "notFound": "No se encontró la cochera solicitada.",
+      "create": "No se pudo publicar la cochera.",
+      "update": "No se pudo actualizar la cochera.",
+      "availability": "No se pudo actualizar la disponibilidad.",
+      "pricing": "No se pudo actualizar la tarifa.",
+      "publicationStatus": "No se pudo actualizar el estado de la publicación."
+    },
+    "days": {
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado",
+      "sunday": "Domingo"
     }
   }
 }
