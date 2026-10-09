@@ -1,0 +1,40 @@
+<h1 class="title">{{ 'booking.search.title' | translate }}</h1>
+<p class="subtitle">{{ 'booking.search.subtitle' | translate }}</p>
+
+<app-search-filters [criteria]="store.criteria()" [vehicles]="vehicles()" (searchSubmitted)="onSearch($event)"/>
+
+@if (store.error()) {
+  <p class="error">{{ 'booking.errors.generic' | translate }}</p>
+}
+
+<section class="results">
+  <div class="list">
+    <p class="count">
+      @if (store.criteria().district) {
+        {{ 'booking.search.resultsIn' | translate: {count: store.searchResults().length, district: store.criteria().district} }}
+      } @else {
+        {{ 'booking.search.results' | translate: {count: store.searchResults().length} }}
+      }
+    </p>
+
+    @for (listing of store.searchResults(); track listing.id) {
+      <app-listing-card [listing]="listing"
+                        [canReserve]="store.canReserve(listing)"
+                        [highlighted]="highlightedId() === listing.id"
+                        (reserve)="onReserve($event)"
+                        (hoverChange)="onHover(listing, $event)"/>
+    } @empty {
+      @if (store.loading()) {
+        <mat-spinner diameter="40"/>
+      } @else {
+        <p class="empty">{{ 'booking.search.empty' | translate }}</p>
+      }
+    }
+
+    @if (store.activeReservation()) {
+      <p class="hint">{{ 'booking.search.activeReservationHint' | translate }}</p>
+    }
+  </div>
+
+  <app-listing-map [listings]="store.searchResults()" [highlightedId]="highlightedId()"/>
+</section>

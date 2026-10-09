@@ -1,0 +1,57 @@
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-logo">P</span>
+      <span class="brand-name">{{ 'app.title' | translate }}</span>
+    </div>
+
+    <mat-nav-list class="nav">
+      @for (option of navOptions(); track option.route) {
+        <a
+          mat-list-item
+          [routerLink]="option.route"
+          routerLinkActive
+          #rla="routerLinkActive"
+          [activated]="rla.isActive"
+        >
+          <mat-icon matListItemIcon>{{ option.icon }}</mat-icon>
+          @if (badgeFor(option); as count) {
+            <span matListItemMeta class="badge">{{ count }}</span>
+          }
+          <span matListItemTitle>{{ option.labelKey | translate }}</span>
+        </a>
+      }
+    </mat-nav-list>
+
+    <footer class="sidebar-footer">
+      <span class="location">{{ 'layout.location' | translate }}</span>
+      <span>{{ 'layout.copyright' | translate: { year: year } }}</span>
+    </footer>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <mat-button-toggle-group
+        class="role-switch"
+        [value]="currentRole()"
+        hideSingleSelectionIndicator=""
+        appearance="standard"
+        aria-label="Role"
+      >
+        @for (item of roles; track item.role) {
+          <mat-button-toggle [value]="item.role" (click)="selectRole(item)">
+            {{ item.labelKey | translate }}
+          </mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+
+      <span class="spacer"></span>
+      <app-language-switcher />
+      <ng-content select="[topbar-end]" />
+    </header>
+
+    <main class="content">
+      <router-outlet />
+    </main>
+  </div>
+</div>

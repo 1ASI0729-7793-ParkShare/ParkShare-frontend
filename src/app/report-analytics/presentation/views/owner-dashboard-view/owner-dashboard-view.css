@@ -1,0 +1,9 @@
+.title { margin: 0; font: var(--mat-sys-headline-medium); }
+.subtitle { margin: 4px 0 24px; color: var(--mat-sys-on-surface-variant); }
+.error { color: var(--mat-sys-error); }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.panels { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: start; }
+
+@media (max-width: 1000px) {
+  .panels { grid-template-columns: 1fr; }
+}

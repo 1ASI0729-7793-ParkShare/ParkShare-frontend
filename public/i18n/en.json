@@ -1,0 +1,196 @@
+{
+  "app": {
+    "title": "ParkShare"
+  },
+  "roles": {
+    "driver": "Driver",
+    "owner": "Owner"
+  },
+  "nav": {
+    "driver": {
+      "search": "Find parking",
+      "reservation": "My reservation",
+      "history": "History",
+      "profile": "My profile"
+    },
+    "owner": {
+      "dashboard": "Dashboard",
+      "requests": "Requests",
+      "parkingSpaces": "My parking spaces",
+      "earnings": "My earnings",
+      "payments": "My income"
+    }
+  },
+  "layout": {
+    "location": "Lima, Peru",
+    "copyright": "© {{year}} ParkShare"
+  },
+  "placeholder": {
+    "comingSoon": "View under construction."
+  },
+  "profile": {
+    "title": "My profile",
+    "subtitle": "Manage your personal information, vehicle and verifications",
+    "saved": "Changes saved",
+    "userChip": {
+      "verifiedDocuments": "{{verified}}/{{total}} documents verified",
+      "ownerStatus": "Owner • 3 parking spaces",
+      "driverStatus": "Verified driver"
+    },
+    "vehicle": {
+      "title": "Registered vehicle",
+      "plate": "Plate",
+      "platePlaceholder": "ABC-123",
+      "model": "Model",
+      "modelPlaceholder": "Toyota Yaris 2021",
+      "type": "Vehicle type",
+      "save": "Save changes"
+    },
+    "vehicleTypes": {
+      "sedan": "Sedan",
+      "suv": "SUV",
+      "hatchback": "Hatchback",
+      "pickup": "Pickup truck",
+      "van": "Van"
+    },
+    "documents": {
+      "title": "Verification documents",
+      "lastUpdate": "Last update: {{time}}",
+      "update": "Update",
+      "types": {
+        "national-id": "National ID (DNI)",
+        "driver-license": "Driver's license",
+        "vehicle-registration": "Vehicle registration card"
+      },
+      "status": {
+        "verified": "Verified",
+        "in-review": "In review",
+        "rejected": "Rejected"
+      }
+    },
+    "errors": {
+      "required": "This field is required",
+      "plateInvalid": "Invalid format (e.g. ABC-123)",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "booking": {
+    "day": {
+      "yesterday": "Yesterday",
+      "today": "Today",
+      "tomorrow": "Tomorrow"
+    },
+    "hours": {
+      "one": "{{count}} hour",
+      "other": "{{count}} hours"
+    },
+    "status": {
+      "requested": "Requested",
+      "confirmed": "Confirmed",
+      "in-use": "In use",
+      "completed": "Completed",
+      "rejected": "Rejected"
+    },
+    "errors": {
+      "generic": "Something went wrong. Please try again."
+    },
+    "search": {
+      "title": "Find parking",
+      "subtitle": "Find safe private parking spaces in Lima",
+      "district": "District or avenue",
+      "districtPlaceholder": "Miraflores",
+      "vehicle": "Vehicle",
+      "maxRate": "Max. price per hour",
+      "submit": "Search",
+      "resultsIn": "{{count}} results found in {{district}}",
+      "results": "{{count}} results found",
+      "empty": "We couldn't find parking spaces with those filters.",
+      "availability": {
+        "available": "Available",
+        "occupied": "Occupied"
+      },
+      "covered": "Covered",
+      "reserve": "Book",
+      "legendOccupied": "Occupied / Reserved",
+      "mapLabel": "Parking spaces map",
+      "activeReservationHint": "You already have an active reservation. Finish it to book another space."
+    },
+    "reservation": {
+      "title": "My reservation",
+      "subtitle": "Track the status of your active parking",
+      "id": "Reservation ID",
+      "serviceStatus": "Service status",
+      "waitingOwner": "Waiting for the owner's answer. We'll let you know once they confirm your reservation.",
+      "confirmedHint": "Your reservation was confirmed. Start your parking when you arrive at the space.",
+      "elapsed": "Elapsed time",
+      "startedAt": "Started {{day}} at {{time}}",
+      "accumulatedCost": "Accumulated cost",
+      "rate": "Rate: S/ {{amount}} / hour",
+      "vehicle": "Vehicle:",
+      "start": "Start parking",
+      "finish": "Mark exit and pay",
+      "paid": "Exit registered. Total to pay: S/ {{amount}}",
+      "empty": "You have no active reservation.",
+      "findParking": "Find parking"
+    },
+    "requests": {
+      "title": "Reservation requests",
+      "subtitle": "Respond to drivers who want to use your parking spaces",
+      "reservationCode": "Reservation {{code}}",
+      "space": "Parking space",
+      "entry": "Entry & time",
+      "rate": "Rate",
+      "perHour": "S/ {{amount}} / hour",
+      "youReceive": "You'll receive",
+      "accept": "Accept reservation",
+      "reject": "Reject",
+      "noActionRequired": "No action required",
+      "empty": "You have no reservation requests yet."
+    }
+  },
+
+  "reportAnalytics": {
+    "title": "Owner dashboard",
+    "subtitle": "Summary of your earnings, active reservations and parking spaces in Lima",
+    "kpi": {
+      "income": {
+        "label": "Income this month",
+        "up": "↑ {{percent}}% vs. last month",
+        "down": "↓ {{percent}}% vs. last month",
+        "noPrevious": "No data from last month"
+      },
+      "pending": { "label": "Pending requests", "hint": "Reply within {{minutes}} min" },
+      "ongoing": {
+        "label": "Reservations in progress",
+        "hint": "{{count}} parking spaces published"
+      },
+      "occupancy": {
+        "label": "Current occupancy",
+        "rating": "Rating {{rating}} ★",
+        "noRating": "No ratings yet"
+      }
+    },
+    "weekly": {
+      "title": "Income this week",
+      "subtitle": "Estimated daily performance",
+      "total": "Weekly total"
+    },
+    "weekDays": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    },
+    "activity": { "title": "Recent activity", "empty": "No recent activity." },
+    "status": {
+      "requested": "Requested",
+      "confirmed": "Confirmed",
+      "in-use": "In use",
+      "completed": "Completed",
+      "rejected": "Rejected"
+    }
+  }
+}

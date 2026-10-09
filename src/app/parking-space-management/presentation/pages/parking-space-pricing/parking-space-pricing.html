@@ -1,0 +1,38 @@
+<main class="form-page">
+  <a class="back-link" routerLink="/owner/parking-spaces">
+    {{ 'parkingSpace.actions.backToList' | translate }}
+  </a>
+
+  <header>
+    <p class="eyebrow">{{ 'parkingSpace.pricing.eyebrow' | translate }}</p>
+    <h1>{{ 'parkingSpace.pricing.title' | translate }}</h1>
+    <p>{{ 'parkingSpace.pricing.description' | translate }}</p>
+  </header>
+
+  @if (store.error(); as errorKey) {
+    <div class="feedback error" role="alert">{{ errorKey | translate }}</div>
+  }
+
+  @if (store.selectedParkingSpace()) {
+    <mat-card>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'parkingSpace.form.hourlyRate' | translate }}</mat-label>
+          <input matInput type="number" min="0.01" step="0.01" formControlName="hourlyRate" />
+          @if (form.controls.hourlyRate.invalid) {
+            <mat-error>{{ 'parkingSpace.validation.ratePositive' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <footer>
+          <a mat-button routerLink="/owner/parking-spaces">
+            {{ 'parkingSpace.actions.cancel' | translate }}
+          </a>
+          <button mat-flat-button type="submit" [disabled]="store.loading()">
+            {{ 'parkingSpace.actions.saveRate' | translate }}
+          </button>
+        </footer>
+      </form>
+    </mat-card>
+  }
+</main>

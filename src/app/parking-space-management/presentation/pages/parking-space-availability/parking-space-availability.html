@@ -1,0 +1,83 @@
+<main class="form-page">
+  <a class="back-link" routerLink="/owner/parking-spaces">
+    {{ 'parkingSpace.actions.backToList' | translate }}
+  </a>
+
+  <header>
+    <p class="eyebrow">{{ 'parkingSpace.availability.eyebrow' | translate }}</p>
+    <h1>{{ 'parkingSpace.availability.title' | translate }}</h1>
+    <p>{{ 'parkingSpace.availability.description' | translate }}</p>
+  </header>
+
+  @if (store.error(); as errorKey) {
+    <div class="feedback error" role="alert">{{ errorKey | translate }}</div>
+  }
+
+  @if (store.selectedParkingSpace()) {
+    <mat-card>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div formArrayName="periods" class="period-list">
+          @for (period of periods.controls; track period; let index = $index) {
+            <section [formGroupName]="index" class="period">
+              <div class="period-heading">
+                <h2>
+                  {{ 'parkingSpace.availability.period' | translate }}
+                  {{ index + 1 }}
+                </h2>
+                <button
+                  mat-button
+                  type="button"
+                  color="warn"
+                  [disabled]="periods.length === 1"
+                  (click)="removePeriod(index)"
+                >
+                  {{ 'parkingSpace.actions.remove' | translate }}
+                </button>
+              </div>
+
+              <div class="schedule-grid">
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ 'parkingSpace.form.day' | translate }}</mat-label>
+                  <mat-select formControlName="dayOfWeek">
+                    @for (day of days; track day) {
+                      <mat-option [value]="day">
+                        {{ 'parkingSpace.days.' + day | translate }}
+                      </mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ 'parkingSpace.form.startTime' | translate }}</mat-label>
+                  <input matInput type="time" formControlName="startTime" />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ 'parkingSpace.form.endTime' | translate }}</mat-label>
+                  <input matInput type="time" formControlName="endTime" />
+                </mat-form-field>
+              </div>
+
+              @if (period.hasError('invalidTimeRange') && period.touched) {
+                <p class="field-error">{{ 'parkingSpace.validation.timeRange' | translate }}</p>
+              }
+            </section>
+          }
+        </div>
+
+        <button mat-stroked-button type="button" (click)="addPeriod()">
+          {{ 'parkingSpace.actions.addPeriod' | translate }}
+        </button>
+
+        <footer>
+          <a mat-button routerLink="/owner/parking-spaces">
+            {{ 'parkingSpace.actions.cancel' | translate }}
+          </a>
+          <button mat-flat-button type="submit" [disabled]="store.loading()">
+            {{ 'parkingSpace.actions.saveAvailability' | translate }}
+          </button>
+        </footer>
+      </form>
+    </mat-card>
+  }
+</main>

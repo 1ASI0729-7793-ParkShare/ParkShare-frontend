@@ -1,0 +1,35 @@
+
+.reputation-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.reputation-page h1 {
+  margin-bottom: 24px;
+}
+
+.reviews {
+  margin-top: 32px;
+}
+
+.review {
+  padding: 20px;
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: #374151;
+}
+
+.review p {
+  margin-bottom: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,22 @@
+<section class="card">
+  <header class="head">
+    <div>
+      <h2 class="title">{{ 'reportAnalytics.weekly.title' | translate }}</h2>
+      <p class="subtitle">{{ 'reportAnalytics.weekly.subtitle' | translate }}</p>
+    </div>
+    <span class="total">
+      {{ 'reportAnalytics.weekly.total' | translate }}:
+      <strong>{{ total() | currency: currency.code : currency.symbol }}</strong>
+    </span>
+  </header>
+
+  <div class="bars">
+    @for (item of days(); track item.day) {
+      <div class="bar-col">
+        <span class="amount">{{ item.amount | number: '1.0-2' }}</span>
+        <div class="bar" [class.peak]="isPeak(item.amount)" [style.height.%]="heightOf(item.amount)"></div>
+        <span class="day">{{ 'reportAnalytics.weekDays.' + item.day | translate }}</span>
+      </div>
+    }
+  </div>
+</section>

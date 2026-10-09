@@ -1,0 +1,16 @@
+.title {
+  margin: 0; font: var(--mat-sys-headline-medium);
+}
+
+.subtitle {
+  margin: 4px 0 24px; color: var(--mat-sys-on-surface-variant);
+}
+
+.error {
+  color: var(--mat-sys-error);
+}
+
+.grid {
+  display: grid; gap: 24px; align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+}

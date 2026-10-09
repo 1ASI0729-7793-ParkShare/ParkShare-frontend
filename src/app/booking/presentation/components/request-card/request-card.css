@@ -1,0 +1,46 @@
+.head {
+  display: flex; align-items: center; gap: 12px; padding-bottom: 16px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+
+.avatar {
+  display: grid; place-items: center; flex: none; width: 48px; height: 48px; border-radius: 50%;
+  background: var(--mat-sys-primary-container); color: var(--mat-sys-on-primary-container);
+  font: var(--mat-sys-title-small);
+}
+
+.driver { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; }
+.driver-name { font: var(--mat-sys-title-medium); }
+.vehicle { font: var(--mat-sys-body-small); color: var(--mat-sys-on-surface-variant); }
+
+.meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.code { font: var(--mat-sys-label-small); color: var(--mat-sys-on-surface-variant); text-transform: uppercase; }
+
+.status {
+  padding: 2px 10px; border-radius: var(--mat-sys-corner-full); font: var(--mat-sys-label-small);
+}
+.status-requested { background: var(--mat-sys-secondary-container); color: var(--mat-sys-on-secondary-container); }
+.status-confirmed { background: var(--mat-sys-primary-container); color: var(--mat-sys-on-primary-container); }
+.status-in-use { background: var(--mat-sys-tertiary-container); color: var(--mat-sys-on-tertiary-container); }
+.status-completed { background: var(--mat-sys-surface-container-high); color: var(--mat-sys-on-surface-variant); }
+.status-rejected { background: var(--mat-sys-error-container); color: var(--mat-sys-on-error-container); }
+
+.details {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; padding-top: 16px;
+}
+
+.field { margin: 0; }
+.field dt {
+  font: var(--mat-sys-label-small); color: var(--mat-sys-on-surface-variant); text-transform: uppercase;
+}
+.field dd { margin: 2px 0 0; font: var(--mat-sys-title-small); }
+.earn { color: var(--mat-sys-tertiary) !important; }
+.amount { color: var(--mat-sys-tertiary); font: var(--mat-sys-title-medium) !important; }
+
+.actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.no-action { font: var(--mat-sys-body-medium); color: var(--mat-sys-outline); }
+
+.reject {
+  --mat-button-filled-container-color: var(--mat-sys-error-container);
+  --mat-button-filled-label-text-color: var(--mat-sys-on-error-container);
+}

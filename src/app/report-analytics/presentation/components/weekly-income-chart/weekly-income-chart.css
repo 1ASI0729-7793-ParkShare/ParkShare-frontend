@@ -1,0 +1,16 @@
+.card {
+  padding: 20px; background: var(--mat-sys-surface);
+  border: 1px solid var(--mat-sys-outline-variant); border-radius: var(--mat-sys-corner-medium);
+}
+.head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.title { margin: 0; font: var(--mat-sys-title-medium); }
+.subtitle { margin: 2px 0 0; font: var(--mat-sys-body-small); color: var(--mat-sys-on-surface-variant); }
+.total {
+  padding: 6px 12px; font: var(--mat-sys-label-large); border-radius: 999px;
+  background: var(--mat-sys-primary-container); color: var(--mat-sys-on-primary-container);
+}
+.bars { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; align-items: end; height: 220px; margin-top: 24px; }
+.bar-col { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; height: 100%; }
+.bar { width: 100%; max-width: 40px; min-height: 4px; border-radius: 6px 6px 0 0; background: var(--mat-sys-primary-container); transition: height 0.3s; }
+.bar.peak { background: var(--mat-sys-primary); }
+.amount, .day { font: var(--mat-sys-label-small); color: var(--mat-sys-on-surface-variant); }

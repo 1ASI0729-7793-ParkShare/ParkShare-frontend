@@ -1,0 +1,120 @@
+.page-shell {
+  width: 100%;
+  padding: 2.25rem 2rem 4rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(1.75rem, 4vw, 2.125rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.description {
+  max-width: 630px;
+  margin: 0.25rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.publish-button {
+  display: inline-flex;
+  flex-shrink: 0;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.25rem;
+  border-radius: 11px;
+  background-color: #55b985 !important;
+  color: var(--color-white) !important;
+  font-family: var(--app-font-family);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.page-header .publish-button {
+  margin-left: auto;
+}
+
+.publish-button span {
+  margin-right: 0.35rem;
+  font-size: 1.1rem;
+}
+
+.parking-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 560px);
+  gap: 1.5rem;
+}
+
+.loading,
+.empty-state {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  padding: 4.5rem 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  background: var(--color-white);
+  text-align: center;
+}
+
+.empty-state h2,
+.empty-state p {
+  margin: 0;
+}
+
+.empty-state p {
+  max-width: 460px;
+  color: var(--color-muted);
+}
+
+.empty-mark {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  border-radius: 18px;
+  background: rgb(16 185 129 / 15%);
+  color: var(--color-dark-green);
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.feedback {
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+}
+
+.error {
+  border: 1px solid var(--color-red-alert);
+  background: rgb(221 61 61 / 8%);
+  color: var(--color-red-alert);
+}
+
+@media (max-width: 650px) {
+  .page-shell {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .page-header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .page-header .publish-button {
+    margin-left: 0;
+  }
+}

@@ -1,3 +1,77 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+const reportAnalyticsRoutes = () =>
+  import('./report-analytics/presentation/report-analytics.routes').then(
+    (m) => m.reportAnalyticsRoutes,
+  );
+
+const placeholder = () =>
+  import('./shared/presentation/views/placeholder/placeholder').then((m) => m.Placeholder);
+const profileRoutes = () =>
+  import('./profile/presentation/profile.routes').then((m) => m.profileRoutes);
+const bookingDriverRoutes = () =>
+  import('./booking/presentation/booking.routes').then((m) => m.bookingDriverRoutes);
+const bookingOwnerRoutes = () =>
+  import('./booking/presentation/booking.routes').then((m) => m.bookingOwnerRoutes);
+const parkingSpaceRoutes = () =>
+  import('./parking-space-management/presentation/parking-space-management.routes').then(
+    (m) => m.parkingSpaceManagementRoutes,
+  );
+import { REPUTATION_NOTIFICATIONS_ROUTES }
+  from './reputation-notifications/presentation/reputation-notifications.routes';
+const paymentsRoutes = () =>
+  import('./payments/presentation/payments.routes').then((m) => m.paymentsRoutes);
+
+export const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'driver/search' },
+  ...REPUTATION_NOTIFICATIONS_ROUTES,
+  {
+    path: 'driver',
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'search' },
+      { path: '', loadChildren: bookingDriverRoutes },
+      { path: 'history', loadComponent: placeholder, data: { titleKey: 'nav.driver.history' } },
+      { path: 'profile', loadChildren: profileRoutes },
+    ],
+  },
+  {
+    path: 'owner',
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+      { path: 'dashboard', loadChildren: reportAnalyticsRoutes },
+      { path: '', loadChildren: bookingOwnerRoutes },
+      {
+        path: 'earnings',
+        loadChildren: paymentsRoutes,
+        data: { titleKey: 'nav.owner.earnings' },
+      },
+      { path: '', loadChildren: parkingSpaceRoutes },
+    ],
+  },
+  { path: 'profile', pathMatch: 'full', redirectTo: 'driver/profile' },
+  { path: 'search', pathMatch: 'full', redirectTo: 'driver/search' },
+  { path: 'reservations', pathMatch: 'full', redirectTo: 'driver/reservation' },
+  { path: 'history', pathMatch: 'full', redirectTo: 'driver/history' },
+  { path: 'dashboard', loadChildren: reportAnalyticsRoutes },
+  { path: 'requests', pathMatch: 'full', redirectTo: 'owner/requests' },
+  { path: 'parking-spaces/new', pathMatch: 'full', redirectTo: 'owner/parking-spaces/new' },
+  {
+    path: 'parking-spaces/:id/edit',
+    pathMatch: 'full',
+    redirectTo: 'owner/parking-spaces/:id/edit',
+  },
+  {
+    path: 'parking-spaces/:id/availability',
+    pathMatch: 'full',
+    redirectTo: 'owner/parking-spaces/:id/availability',
+  },
+  {
+    path: 'parking-spaces/:id/pricing',
+    pathMatch: 'full',
+    redirectTo: 'owner/parking-spaces/:id/pricing',
+  },
+  { path: 'parking-spaces', pathMatch: 'full', redirectTo: 'owner/parking-spaces' },
+  { path: 'parkings', pathMatch: 'full', redirectTo: 'owner/parking-spaces' },
+  { path: 'earnings', pathMatch: 'full', redirectTo: 'owner/earnings' },
+  { path: '**', redirectTo: 'driver/search' },
+];

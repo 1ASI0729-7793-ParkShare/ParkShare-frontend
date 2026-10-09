@@ -1,0 +1,43 @@
+<main class="form-page">
+  <a class="back-link" routerLink="/owner/parking-spaces">
+    {{ 'parkingSpace.actions.backToList' | translate }}
+  </a>
+
+  <header>
+    <p class="eyebrow">{{ 'parkingSpace.edit.eyebrow' | translate }}</p>
+    <h1>{{ 'parkingSpace.edit.title' | translate }}</h1>
+    <p>{{ 'parkingSpace.edit.description' | translate }}</p>
+  </header>
+
+  @if (store.error(); as errorKey) {
+    <div class="feedback error" role="alert">{{ errorKey | translate }}</div>
+  }
+
+  @if (store.selectedParkingSpace()) {
+    <mat-card>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'parkingSpace.form.address' | translate }}</mat-label>
+          <input matInput formControlName="address" autocomplete="street-address" />
+          @if (form.controls.address.hasError('required')) {
+            <mat-error>{{ 'parkingSpace.validation.addressRequired' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'parkingSpace.form.photos' | translate }}</mat-label>
+          <textarea matInput formControlName="photoUrls" rows="4"></textarea>
+        </mat-form-field>
+
+        <footer>
+          <a mat-button routerLink="/owner/parking-spaces">
+            {{ 'parkingSpace.actions.cancel' | translate }}
+          </a>
+          <button mat-flat-button type="submit" [disabled]="store.loading()">
+            {{ 'parkingSpace.actions.save' | translate }}
+          </button>
+        </footer>
+      </form>
+    </mat-card>
+  }
+</main>

@@ -1,0 +1,425 @@
+{
+  "profiles": [
+    {
+      "id": 1,
+      "fullName": "Daniela Ríos",
+      "plate": "AXQ-432",
+      "vehicleModel": "Honda CRV 2026",
+      "vehicleType": "hatchback"
+    }
+  ],
+  "verificationDocuments": [
+    {
+      "id": 1,
+      "profileId": 1,
+      "type": "national-id",
+      "status": "verified",
+      "updatedAt": "2026-10-08T23:34:46.257Z",
+      "fileName": "b4.jpg"
+    },
+    {
+      "id": 2,
+      "profileId": 1,
+      "type": "driver-license",
+      "status": "in-review",
+      "updatedAt": "2026-10-08T23:37:57.306Z",
+      "fileName": "fabric-logo.png"
+    },
+    {
+      "id": 3,
+      "profileId": 1,
+      "type": "vehicle-registration",
+      "status": "in-review",
+      "updatedAt": "2026-10-08T23:31:51.689Z",
+      "fileName": "wswswsd"
+    }
+  ],
+  "ownerPayouts": [
+    {
+      "id": 1,
+      "ownerId": "2",
+      "availableBalance": 960,
+      "completedAmount": 2400,
+      "inTransitAmount": 0,
+      "linkedAccount": "BCP ******452",
+      "commissionRate": 10
+    }
+  ],
+  "paymentTransactions": [
+    {
+      "id": 1,
+      "ownerId": "2",
+      "reservationId": "20419",
+      "driverName": "Daniela R.",
+      "garageName": "Cochera Miraflores",
+      "date": "2024-10-30T10:00:00.000Z",
+      "durationMinutes": 240,
+      "amountReceived": 20
+    },
+    {
+      "id": 2,
+      "ownerId": "2",
+      "reservationId": "20281",
+      "driverName": "Alberto M.",
+      "garageName": "San Isidro Segura",
+      "date": "2024-10-29T15:30:00.000Z",
+      "durationMinutes": 150,
+      "amountReceived": 16.25
+    },
+    {
+      "id": 3,
+      "ownerId": "2",
+      "reservationId": "20112",
+      "driverName": "Carlos G.",
+      "garageName": "Cochera Miraflores",
+      "date": "2024-10-28T09:15:00.000Z",
+      "durationMinutes": 75,
+      "amountReceived": 6.25
+    },
+    {
+      "id": 4,
+      "ownerId": "2",
+      "reservationId": "19990",
+      "driverName": "Sofía L.",
+      "garageName": "Surco Familiar",
+      "date": "2024-10-26T18:00:00.000Z",
+      "durationMinutes": 180,
+      "amountReceived": 12
+    }
+  ],
+  "ratings": [
+    {
+      "id": 1,
+      "bookingId": 101,
+      "reviewerId": 10,
+      "revieweeId": 20,
+      "score": 5,
+      "comment": "Great parking experience.",
+      "createdAt": "2026-10-01T14:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "bookingId": 102,
+      "reviewerId": 11,
+      "revieweeId": 20,
+      "score": 4,
+      "comment": "Easy to find and access.",
+      "createdAt": "2026-10-03T16:00:00.000Z"
+    }
+  ],
+  "userReputations": [],
+  "notifications": [
+    {
+      "id": 1,
+      "recipientId": 10,
+      "type": "booking",
+      "title": "Booking completed",
+      "message": "Your parking reservation has been completed.",
+      "createdAt": "2026-10-01T14:00:00.000Z",
+      "readAt": null,
+      "relatedEntityType": "booking",
+      "relatedEntityId": 101
+    },
+    {
+      "id": 2,
+      "recipientId": 10,
+      "type": "payment",
+      "title": "Payment confirmed",
+      "message": "Your payment has been confirmed.",
+      "createdAt": "2026-10-01T12:00:00.000Z",
+      "readAt": null,
+      "relatedEntityType": "payment",
+      "relatedEntityId": 501
+    },
+    {
+      "id": 3,
+      "recipientId": 20,
+      "type": "rating",
+      "title": "New rating received",
+      "message": "You received a new rating.",
+      "createdAt": "2026-10-03T16:10:00.000Z",
+      "readAt": null,
+      "relatedEntityType": "rating",
+      "relatedEntityId": 2
+    }
+  ],
+
+  "parkingListings": [
+    {
+      "id": 1,
+      "ownerId": 1,
+      "name": "Estacionamiento techado Larco",
+      "address": "Av. Larco 841",
+      "district": "Miraflores",
+      "hourlyRate": 6,
+      "covered": true,
+      "rating": 4.8,
+      "reviewCount": 42,
+      "availability": "available",
+      "latitude": -12.1219,
+      "longitude": -77.0297
+    },
+    {
+      "id": 2,
+      "ownerId": 1,
+      "name": "Cochera Residencial Benavides",
+      "address": "Av. Alfredo Benavides 1220",
+      "district": "Miraflores",
+      "hourlyRate": 5.5,
+      "covered": true,
+      "rating": 4.6,
+      "reviewCount": 18,
+      "availability": "available",
+      "latitude": -12.1288,
+      "longitude": -77.0206
+    },
+    {
+      "id": 3,
+      "ownerId": 1,
+      "name": "Estacionamiento Seguro Diagonal",
+      "address": "Calle Diagonal 340",
+      "district": "Miraflores",
+      "hourlyRate": 7,
+      "covered": true,
+      "rating": 4.9,
+      "reviewCount": 55,
+      "availability": "available",
+      "latitude": -12.1231,
+      "longitude": -77.0312
+    },
+    {
+      "id": 4,
+      "ownerId": 2,
+      "name": "Cochera Privada Cantuarias",
+      "address": "Calle Cantuarias 160",
+      "district": "Miraflores",
+      "hourlyRate": 5,
+      "covered": true,
+      "rating": 4.2,
+      "reviewCount": 9,
+      "availability": "available",
+      "latitude": -12.1256,
+      "longitude": -77.0273
+    }
+  ],
+  "bookings": [
+    {
+      "id": 101,
+      "driverId": 10,
+      "ownerId": 20,
+      "status": "completed"
+    },
+    {
+      "id": 102,
+      "driverId": 11,
+      "ownerId": 20,
+      "status": "completed"
+    },
+    {
+      "id": 103,
+      "driverId": 10,
+      "ownerId": 21,
+      "status": "confirmed"
+    },
+
+    {
+      "id": 2041,
+      "parkingListingId": 2,
+      "ownerId": 1,
+      "driverId": 2,
+      "driverName": "Mateo Silva",
+      "vehiclePlate": "F4W-210",
+      "vehicleModel": "Hyundai Accent",
+      "spaceName": "Residencial Benavides",
+      "spaceAddress": "Av. Alfredo Benavides 1220, Miraflores",
+      "hourlyRate": 5.5,
+      "plannedEntry": "2026-10-08T21:00:00.000Z",
+      "plannedHours": 2,
+      "status": "confirmed",
+      "startedAt": null,
+      "endedAt": null,
+      "totalCost": null
+    },
+    {
+      "id": 1980,
+      "parkingListingId": 3,
+      "ownerId": 1,
+      "driverId": 3,
+      "driverName": "Rosa Luna",
+      "vehiclePlate": "W3P-882",
+      "vehicleModel": "Kia Rio",
+      "spaceName": "Seguro Diagonal",
+      "spaceAddress": "Calle Diagonal 340, Miraflores",
+      "hourlyRate": 7,
+      "plannedEntry": "2026-10-07T18:15:00.000Z",
+      "plannedHours": 4,
+      "status": "in-use",
+      "startedAt": "2026-10-07T18:15:00.000Z",
+      "endedAt": null,
+      "totalCost": null
+    },
+
+    {
+      "id": 2020,
+      "parkingListingId": 1,
+      "ownerId": 1,
+      "driverId": 9,
+      "driverName": "Marta Díaz",
+      "vehiclePlate": "G3N-410",
+      "vehicleModel": "Toyota Rush",
+      "spaceName": "Techado Larco",
+      "spaceAddress": "Av. Larco 841, Miraflores",
+      "hourlyRate": 6,
+      "plannedEntry": "2026-09-12T15:00:00.000Z",
+      "plannedHours": 6,
+      "status": "completed",
+      "startedAt": "2026-09-12T15:00:00.000Z",
+      "endedAt": "2026-09-12T21:00:00.000Z",
+      "totalCost": 36
+    },
+    {
+      "id": 2021,
+      "parkingListingId": 3,
+      "ownerId": 1,
+      "driverId": 12,
+      "driverName": "Raúl Campos",
+      "vehiclePlate": "H8Q-125",
+      "vehicleModel": "Kia Sportage",
+      "spaceName": "Seguro Diagonal",
+      "spaceAddress": "Calle Diagonal 340, Miraflores",
+      "hourlyRate": 7,
+      "plannedEntry": "2026-09-20T14:00:00.000Z",
+      "plannedHours": 4,
+      "status": "completed",
+      "startedAt": "2026-09-20T14:00:00.000Z",
+      "endedAt": "2026-09-20T18:00:00.000Z",
+      "totalCost": 28
+    },
+    {
+      "id": 2034,
+      "parkingListingId": 2,
+      "ownerId": 1,
+      "driverId": 8,
+      "driverName": "Jorge Salas",
+      "vehiclePlate": "F1R-290",
+      "vehicleModel": "Suzuki Swift",
+      "spaceName": "Residencial Benavides",
+      "spaceAddress": "Av. Alfredo Benavides 1220, Miraflores",
+      "hourlyRate": 5.5,
+      "plannedEntry": "2026-10-02T15:00:00.000Z",
+      "plannedHours": 3,
+      "status": "completed",
+      "startedAt": "2026-10-02T15:00:00.000Z",
+      "endedAt": "2026-10-02T18:00:00.000Z",
+      "totalCost": 16.5
+    },
+    {
+      "id": 2030,
+      "parkingListingId": 1,
+      "ownerId": 1,
+      "driverId": 4,
+      "driverName": "Carlos Vega",
+      "vehiclePlate": "B7K-118",
+      "vehicleModel": "Toyota Yaris",
+      "spaceName": "Techado Larco",
+      "spaceAddress": "Av. Larco 841, Miraflores",
+      "hourlyRate": 6,
+      "plannedEntry": "2026-10-05T15:00:00.000Z",
+      "plannedHours": 3,
+      "status": "completed",
+      "startedAt": "2026-10-05T15:00:00.000Z",
+      "endedAt": "2026-10-05T18:00:00.000Z",
+      "totalCost": 18
+    },
+    {
+      "id": 2031,
+      "parkingListingId": 2,
+      "ownerId": 1,
+      "driverId": 5,
+      "driverName": "Ana Torres",
+      "vehiclePlate": "C2M-554",
+      "vehicleModel": "Nissan Versa",
+      "spaceName": "Residencial Benavides",
+      "spaceAddress": "Av. Alfredo Benavides 1220, Miraflores",
+      "hourlyRate": 5.5,
+      "plannedEntry": "2026-10-06T14:00:00.000Z",
+      "plannedHours": 4,
+      "status": "completed",
+      "startedAt": "2026-10-06T14:00:00.000Z",
+      "endedAt": "2026-10-06T18:00:00.000Z",
+      "totalCost": 22
+    },
+    {
+      "id": 2032,
+      "parkingListingId": 3,
+      "ownerId": 1,
+      "driverId": 6,
+      "driverName": "Pedro Quispe",
+      "vehiclePlate": "D9L-302",
+      "vehicleModel": "Kia Picanto",
+      "spaceName": "Seguro Diagonal",
+      "spaceAddress": "Calle Diagonal 340, Miraflores",
+      "hourlyRate": 7,
+      "plannedEntry": "2026-10-07T13:00:00.000Z",
+      "plannedHours": 2,
+      "status": "completed",
+      "startedAt": "2026-10-07T13:00:00.000Z",
+      "endedAt": "2026-10-07T15:00:00.000Z",
+      "totalCost": 14
+    },
+    {
+      "id": 2033,
+      "parkingListingId": 1,
+      "ownerId": 1,
+      "driverId": 7,
+      "driverName": "Lucía Paredes",
+      "vehiclePlate": "E5T-776",
+      "vehicleModel": "Mazda 2",
+      "spaceName": "Techado Larco",
+      "spaceAddress": "Av. Larco 841, Miraflores",
+      "hourlyRate": 6,
+      "plannedEntry": "2026-10-08T12:00:00.000Z",
+      "plannedHours": 5,
+      "status": "completed",
+      "startedAt": "2026-10-08T12:00:00.000Z",
+      "endedAt": "2026-10-08T17:00:00.000Z",
+      "totalCost": 30
+    },
+    {
+      "id": 2042,
+      "parkingListingId": 1,
+      "ownerId": 1,
+      "driverId": 7,
+      "driverName": "Lucía Paredes",
+      "vehiclePlate": "E5T-776",
+      "vehicleModel": "Mazda 2",
+      "spaceName": "Techado Larco",
+      "spaceAddress": "Av. Larco 841, Miraflores",
+      "hourlyRate": 6,
+      "plannedEntry": "2026-10-09T20:00:00.000Z",
+      "plannedHours": 3,
+      "status": "requested",
+      "startedAt": null,
+      "endedAt": null,
+      "totalCost": null
+    },
+    {
+      "id": 2043,
+      "parkingListingId": 2,
+      "ownerId": 1,
+      "driverId": 13,
+      "driverName": "Diego Ramos",
+      "vehiclePlate": "J6V-681",
+      "vehicleModel": "Chevrolet Sail",
+      "spaceName": "Residencial Benavides",
+      "spaceAddress": "Av. Alfredo Benavides 1220, Miraflores",
+      "hourlyRate": 5.5,
+      "plannedEntry": "2026-10-10T14:00:00.000Z",
+      "plannedHours": 2,
+      "status": "requested",
+      "startedAt": null,
+      "endedAt": null,
+      "totalCost": null
+    }
+  ]
+}

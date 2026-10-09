@@ -1,0 +1,15 @@
+<div class="map" role="img" [attr.aria-label]="'booking.search.mapLabel' | translate">
+  @for (pin of pins(); track pin.listing.id) {
+    <span class="pin"
+          [class.occupied]="!pin.listing.isAvailable"
+          [class.highlighted]="pin.listing.id === highlightedId()"
+          [style.left.%]="pin.left" [style.top.%]="pin.top">
+      S/ {{ pin.listing.hourlyRate | number: '1.2-2' }}
+    </span>
+  }
+
+  <div class="legend">
+    <span class="legend-item"><span class="dot available"></span>{{ 'booking.search.availability.available' | translate }}</span>
+    <span class="legend-item"><span class="dot occupied"></span>{{ 'booking.search.legendOccupied' | translate }}</span>
+  </div>
+</div>

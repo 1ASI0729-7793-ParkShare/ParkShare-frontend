@@ -1,0 +1,17 @@
+<div class="user-info">
+  <span class="user-name">{{ displayName() }}</span>
+  <span class="user-status">
+    <span class="dot"></span>
+    @if (isOwner()) {
+      {{ 'profile.userChip.ownerStatus' | translate }}
+    } @else if (store.profile()) {
+      {{
+        'profile.userChip.verifiedDocuments'
+          | translate: { verified: store.verifiedCount(), total: store.documentCount() }
+      }}
+    } @else {
+      {{ 'profile.userChip.driverStatus' | translate }}
+    }
+  </span>
+</div>
+<div class="avatar">{{ initials() }}</div>

@@ -1,1 +1,14 @@
-export const environment = {};
+export const environment = {
+  production: true,
+  platformProviderApiBaseUrl: 'http://localhost:3000',
+  platformProviderProfilesEndpointPath: '/profiles',
+  platformProviderVerificationDocumentsEndpointPath: '/verificationDocuments',
+  platformProviderRatingsEndpointPath: '/ratings',
+  platformProviderUserReputationsEndpointPath: '/userReputations',
+  platformProviderNotificationsEndpointPath: '/notifications',
+  platformProviderBookingsEndpointPath: '/bookings',
+  platformProviderOwnerPayoutsEndpointPath: '/ownerPayouts',
+  platformProviderPaymentTransactionsEndpointPath: '/paymentTransactions',
+  platformProviderParkingListingsEndpointPath: '/parkingListings',
+
+};

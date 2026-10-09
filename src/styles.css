@@ -1,1 +1,96 @@
-/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/azure-blue.css';
+
+:root {
+  --app-font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  --color-primary-dark: #1e3a8a;
+  --color-primary-intense: #1e40af;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-dark-gray: #1f2937;
+  --color-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-light-bg: #f8fafc;
+  --color-lime-green: #10b981;
+  --color-dark-green: #047857;
+  --color-mint-green: #34d399;
+  --color-red-alert: #dd3d3d;
+  --mat-sys-brand-font: var(--app-font-family);
+  --mat-sys-plain-font: var(--app-font-family);
+  --mat-sys-primary: var(--color-primary-intense);
+  --mat-sys-on-primary: var(--color-white);
+  --mat-sys-primary-container: #dbeafe;
+  --mat-sys-on-primary-container: var(--color-primary-dark);
+
+  color-scheme: light;
+  font-family: var(--app-font-family);
+  font-size: 16px;
+  background: var(--color-light-bg);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  color: var(--color-dark-gray);
+  font-family: var(--app-font-family);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background: var(--color-light-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: var(--app-font-family);
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.125rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button,
+.mat-mdc-card,
+.mat-mdc-form-field,
+.mat-mdc-select {
+  font-family: var(--app-font-family);
+}
+
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button {
+  font-weight: 600;
+}
+
+.mat-mdc-card {
+  background-color: var(--color-white);
+}

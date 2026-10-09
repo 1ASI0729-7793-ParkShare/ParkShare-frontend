@@ -1,0 +1,9 @@
+<article class="kpi">
+  <span class="label">{{ label() }}</span>
+  <strong class="value">{{ value() }}</strong>
+  @if (hint()) {
+    <span class="hint" [class.positive]="tone() === 'positive'" [class.negative]="tone() === 'negative'">
+      {{ hint() }}
+    </span>
+  }
+</article>

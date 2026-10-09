@@ -1,0 +1,64 @@
+<mat-card class="parking-card">
+  <div class="card-heading">
+    <div>
+      <h2>{{ parkingSpace().name }}</h2>
+      @if (parkingSpace().name !== parkingSpace().address) {
+        <p>{{ parkingSpace().address }}</p>
+      }
+      <a class="details-link" [routerLink]="[parkingSpace().id, 'edit']">
+        {{ 'parkingSpace.actions.editDetails' | translate }}
+      </a>
+    </div>
+    <span class="status-badge" [class.paused]="parkingSpace().publicationStatus === 'paused'">
+      {{ 'parkingSpace.status.' + parkingSpace().publicationStatus | translate }}
+    </span>
+  </div>
+
+  <div class="tag-list" aria-label="Características y horario">
+    @for (feature of parkingSpace().features; track feature) {
+      <span class="tag">{{ 'parkingSpace.features.' + feature | translate }}</span>
+    }
+    @if (firstPeriod(); as period) {
+      <span class="tag schedule-tag">
+        {{ scheduleDayKey() | translate }}: {{ period.startTime }} – {{ period.endTime }}
+      </span>
+    }
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="metrics">
+    <div>
+      <span class="metric-label">{{ 'parkingSpace.card.hourlyRate' | translate }}</span>
+      <div class="rate-value">
+        <strong>S/ {{ parkingSpace().hourlyRate | number: '1.2-2' }}</strong>
+        <a [routerLink]="[parkingSpace().id, 'pricing']">
+          {{ 'parkingSpace.actions.edit' | translate }}
+        </a>
+      </div>
+    </div>
+    <div class="income">
+      <span class="metric-label">{{ 'parkingSpace.card.accumulatedIncome' | translate }}</span>
+      <strong>S/ {{ parkingSpace().accumulatedIncome | number: '1.2-2' }}</strong>
+    </div>
+  </div>
+
+  <mat-card-actions>
+    <a class="card-action" [routerLink]="[parkingSpace().id, 'availability']">
+      {{ 'parkingSpace.actions.editSchedule' | translate }}
+    </a>
+    <button
+      type="button"
+      class="card-action status-toggle"
+      [class.reactivate]="parkingSpace().publicationStatus === 'paused'"
+      (click)="togglePublicationStatus()"
+    >
+      {{
+        (parkingSpace().publicationStatus === 'published'
+          ? 'parkingSpace.actions.pausePublication'
+          : 'parkingSpace.actions.reactivatePublication'
+        ) | translate
+      }}
+    </button>
+  </mat-card-actions>
+</mat-card>
