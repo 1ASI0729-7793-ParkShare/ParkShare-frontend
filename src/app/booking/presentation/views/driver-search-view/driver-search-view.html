@@ -36,5 +36,6 @@
     }
   </div>
 
-  <app-listing-map [listings]="store.searchResults()" [highlightedId]="highlightedId()"/>
+  <app-listing-map [listings]="store.searchResults()" [highlightedId]="highlightedId()"
+                   (listingSelected)="highlightedId.set($event.id)"/>
 </section>

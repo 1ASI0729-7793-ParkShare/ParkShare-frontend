@@ -1,0 +1,26 @@
+<h1 class="title">{{ 'incidents.driver.title' | translate }}</h1>
+<p class="subtitle">{{ 'incidents.driver.subtitle' | translate }}</p>
+
+@if (store.error()) {
+  <p class="error">{{ 'incidents.errors.generic' | translate }}</p>
+}
+
+<section class="layout">
+  <app-incident-form [listings]="store.listings()"
+                     [defaultListingId]="store.defaultListingId()"
+                     [submitting]="store.loading()"
+                     (draftSubmitted)="onSubmit($event)"/>
+
+  <div class="history">
+    <h2>{{ 'incidents.driver.myReports' | translate }}</h2>
+    @for (incident of store.myIncidents(); track incident.id) {
+      <app-incident-card [incident]="incident"/>
+    } @empty {
+      @if (store.loading()) {
+        <mat-spinner diameter="40"/>
+      } @else {
+        <p class="empty">{{ 'incidents.driver.empty' | translate }}</p>
+      }
+    }
+  </div>
+</section>
