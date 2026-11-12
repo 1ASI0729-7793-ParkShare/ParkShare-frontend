@@ -72,6 +72,8 @@ describe('App', () => {
       '/owner/requests',
       '/owner/parking-spaces',
       '/owner/earnings',
+      '/owner/incidents',
+      '/owner/emergency',
     ]);
     expect(userChip.displayName()).toBe('Carlos Mendoza');
   });

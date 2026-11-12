@@ -11,14 +11,17 @@
       "search": "Find parking",
       "reservation": "My reservation",
       "history": "History",
-      "profile": "My profile"
+      "profile": "My profile",
+      "incidents": "Report an incident"
     },
     "owner": {
       "dashboard": "Dashboard",
       "requests": "Requests",
       "parkingSpaces": "My parking spaces",
       "earnings": "My earnings",
-      "payments": "My income"
+      "payments": "My income",
+      "incidents": "Incidents",
+      "emergency": "SOS emergency"
     }
   },
   "layout": {
@@ -148,7 +151,6 @@
       "empty": "You have no reservation requests yet."
     }
   },
-
   "reportAnalytics": {
     "title": "Owner dashboard",
     "subtitle": "Summary of your earnings, active reservations and parking spaces in Lima",
@@ -159,7 +161,10 @@
         "down": "↓ {{percent}}% vs. last month",
         "noPrevious": "No data from last month"
       },
-      "pending": { "label": "Pending requests", "hint": "Reply within {{minutes}} min" },
+      "pending": {
+        "label": "Pending requests",
+        "hint": "Reply within {{minutes}} min"
+      },
       "ongoing": {
         "label": "Reservations in progress",
         "hint": "{{count}} parking spaces published"
@@ -184,13 +189,110 @@
       "sat": "Sat",
       "sun": "Sun"
     },
-    "activity": { "title": "Recent activity", "empty": "No recent activity." },
+    "activity": {
+      "title": "Recent activity",
+      "empty": "No recent activity."
+    },
     "status": {
       "requested": "Requested",
       "confirmed": "Confirmed",
       "in-use": "In use",
       "completed": "Completed",
       "rejected": "Rejected"
+    }
+  },
+  "incidents": {
+    "types": {
+      "collision": "Collision",
+      "theft": "Theft",
+      "overcharge": "Overcharge",
+      "poor-condition": "Poor condition of the space",
+      "vandalism": "Vandalism",
+      "access-problem": "Access problem",
+      "other": "Other"
+    },
+    "status": {
+      "open": "Open",
+      "in-review": "In review",
+      "resolved": "Resolved"
+    },
+    "form": {
+      "title": "New incident",
+      "space": "Parking space",
+      "types": "Incident type",
+      "typesHint": "You can pick several options",
+      "description": "Description",
+      "descriptionPlaceholder": "Tell us what happened, when and where",
+      "photos": "Photos ({{count}}/{{max}})",
+      "addPhotos": "Attach photos",
+      "removePhoto": "Remove photo",
+      "photoAlt": "Attached photo {{n}}",
+      "submit": "Send report"
+    },
+    "errors": {
+      "required": "This field is required",
+      "typesRequired": "Select at least one type",
+      "descriptionShort": "Write at least {{min}} characters",
+      "tooManyPhotos": "You can attach up to {{max}} photos",
+      "generic": "Something went wrong. Please try again."
+    },
+    "driver": {
+      "title": "Report an incident",
+      "subtitle": "Let us know about a theft, collision, overcharge or any other problem at a parking space",
+      "myReports": "My reports",
+      "empty": "You have not sent any reports yet.",
+      "sent": "Report sent. The owner has been notified."
+    },
+    "owner": {
+      "title": "Reported incidents",
+      "subtitle": "Reports from drivers about your parking spaces",
+      "empty": "There are no incidents on your parking spaces."
+    },
+    "card": {
+      "reportedBy": "Reported by {{name}}",
+      "openPhoto": "Enlarge photo",
+      "close": "Close",
+      "startReview": "Mark in review",
+      "resolve": "Mark as resolved"
+    }
+  },
+  "emergency": {
+    "title": "SOS emergency",
+    "subtitle": "Use this button only for a fire, theft, accident or other emergency at your parking space",
+    "button": "EMERGENCY BUTTON",
+    "buttonHint": "Tap to report an emergency",
+    "panelTitle": "What is happening?",
+    "kindLabel": "Emergency type",
+    "kinds": {
+      "fire": "Fire",
+      "theft": "Theft",
+      "accident": "Accident",
+      "other": "Other reason"
+    },
+    "space": "Affected parking space",
+    "notes": "Details (optional)",
+    "notesPlaceholder": "Briefly describe the situation",
+    "cancel": "Cancel",
+    "confirm": "Send SOS alert",
+    "locating": "Getting location…",
+    "sent": "Alert {{code}} sent",
+    "sentHint": "If there is immediate danger, also call the emergency services.",
+    "callNow": "Call now:",
+    "numbers": {
+      "fire": "Fire dept.",
+      "police": "Police",
+      "medical": "SAMU"
+    },
+    "history": "Alert history",
+    "status": {
+      "active": "Active",
+      "resolved": "Resolved"
+    },
+    "resolve": "Mark resolved",
+    "viewMap": "View on map",
+    "empty": "You have not sent any alerts.",
+    "errors": {
+      "generic": "The action could not be completed. If this is an emergency, call 116, 105 or 106."
     }
   }
 }

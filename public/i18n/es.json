@@ -11,13 +11,16 @@
       "search": "Buscar cochera",
       "reservation": "Mi reserva",
       "history": "Historial",
-      "profile": "Mi perfil"
+      "profile": "Mi perfil",
+      "incidents": "Reportar incidencia"
     },
     "owner": {
       "dashboard": "Panel de control",
       "requests": "Solicitudes",
       "parkingSpaces": "Mis cocheras",
-      "earnings": "Mis ingresos"
+      "earnings": "Mis ingresos",
+      "incidents": "Incidencias",
+      "emergency": "Emergencia SOS"
     }
   },
   "layout": {
@@ -300,7 +303,6 @@
       "empty": "Aún no tienes solicitudes de reserva."
     }
   },
-
   "reportAnalytics": {
     "title": "Panel del propietario",
     "subtitle": "Resumen de tus ganancias, reservas activas y cocheras en Lima",
@@ -311,8 +313,14 @@
         "down": "↓ {{percent}}% vs. mes anterior",
         "noPrevious": "Sin datos del mes anterior"
       },
-      "pending": { "label": "Solicitudes pendientes", "hint": "Responde antes de {{minutes}} min" },
-      "ongoing": { "label": "Reservas en curso", "hint": "{{count}} cocheras publicadas" },
+      "pending": {
+        "label": "Solicitudes pendientes",
+        "hint": "Responde antes de {{minutes}} min"
+      },
+      "ongoing": {
+        "label": "Reservas en curso",
+        "hint": "{{count}} cocheras publicadas"
+      },
       "occupancy": {
         "label": "Ocupación actual",
         "rating": "Calificación {{rating}} ★",
@@ -333,13 +341,110 @@
       "sat": "Sáb",
       "sun": "Dom"
     },
-    "activity": { "title": "Actividad reciente", "empty": "Sin actividad reciente." },
+    "activity": {
+      "title": "Actividad reciente",
+      "empty": "Sin actividad reciente."
+    },
     "status": {
       "requested": "Solicitada",
       "confirmed": "Confirmada",
       "in-use": "En uso",
       "completed": "Finalizada",
       "rejected": "Rechazada"
+    }
+  },
+  "incidents": {
+    "types": {
+      "collision": "Choque",
+      "theft": "Robo",
+      "overcharge": "Cobro excesivo",
+      "poor-condition": "Mal estado de la cochera",
+      "vandalism": "Vandalismo",
+      "access-problem": "Problema de acceso",
+      "other": "Otro"
+    },
+    "status": {
+      "open": "Abierta",
+      "in-review": "En revisión",
+      "resolved": "Resuelta"
+    },
+    "form": {
+      "title": "Nueva incidencia",
+      "space": "Cochera",
+      "types": "Tipo de incidencia",
+      "typesHint": "Puedes elegir varias opciones",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Cuéntanos qué pasó, cuándo y dónde",
+      "photos": "Fotos ({{count}}/{{max}})",
+      "addPhotos": "Adjuntar fotos",
+      "removePhoto": "Quitar foto",
+      "photoAlt": "Foto adjunta {{n}}",
+      "submit": "Enviar reporte"
+    },
+    "errors": {
+      "required": "Este campo es obligatorio",
+      "typesRequired": "Selecciona al menos un tipo",
+      "descriptionShort": "Escribe al menos {{min}} caracteres",
+      "tooManyPhotos": "Solo puedes adjuntar hasta {{max}} fotos",
+      "generic": "Algo salió mal. Inténtalo de nuevo."
+    },
+    "driver": {
+      "title": "Reportar incidencia",
+      "subtitle": "Avísanos si hubo un robo, choque, cobro excesivo u otro problema en una cochera",
+      "myReports": "Mis reportes",
+      "empty": "Aún no has enviado reportes.",
+      "sent": "Reporte enviado. El propietario fue notificado."
+    },
+    "owner": {
+      "title": "Incidencias reportadas",
+      "subtitle": "Reportes de conductores sobre tus cocheras",
+      "empty": "No hay incidencias en tus cocheras."
+    },
+    "card": {
+      "reportedBy": "Reportado por {{name}}",
+      "openPhoto": "Ampliar foto",
+      "close": "Cerrar",
+      "startReview": "Marcar en revisión",
+      "resolve": "Marcar como resuelta"
+    }
+  },
+  "emergency": {
+    "title": "Emergencia SOS",
+    "subtitle": "Usa este botón solo ante un incendio, robo, accidente u otra emergencia en tu cochera",
+    "button": "BOTÓN DE EMERGENCIA",
+    "buttonHint": "Toca para reportar una emergencia",
+    "panelTitle": "¿Qué está pasando?",
+    "kindLabel": "Tipo de emergencia",
+    "kinds": {
+      "fire": "Incendio",
+      "theft": "Robo",
+      "accident": "Accidente",
+      "other": "Otro motivo"
+    },
+    "space": "Cochera afectada",
+    "notes": "Detalles (opcional)",
+    "notesPlaceholder": "Describe brevemente la situación",
+    "cancel": "Cancelar",
+    "confirm": "Enviar alerta SOS",
+    "locating": "Obteniendo ubicación…",
+    "sent": "Alerta {{code}} enviada",
+    "sentHint": "Si hay peligro inmediato, llama también a los servicios de emergencia.",
+    "callNow": "Llamar ahora:",
+    "numbers": {
+      "fire": "Bomberos",
+      "police": "Policía",
+      "medical": "SAMU"
+    },
+    "history": "Historial de alertas",
+    "status": {
+      "active": "Activa",
+      "resolved": "Resuelta"
+    },
+    "resolve": "Marcar resuelta",
+    "viewMap": "Ver en el mapa",
+    "empty": "No has enviado alertas.",
+    "errors": {
+      "generic": "No se pudo completar la acción. Si es una emergencia, llama al 116, 105 o 106."
     }
   }
 }
