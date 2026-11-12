@@ -46,6 +46,11 @@ export class BookingStore {
   private readonly errorSignal = signal<string | null>(null);
 
   readonly criteria = this.criteriaSignal.asReadonly();
+  /** Every parking space, regardless of the active search filters. */
+  readonly listings = this.listingsSignal.asReadonly();
+  readonly ownerListings = computed(() =>
+    this.listingsSignal().filter((listing) => listing.ownerId === CURRENT_OWNER_ID),
+  );
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
 

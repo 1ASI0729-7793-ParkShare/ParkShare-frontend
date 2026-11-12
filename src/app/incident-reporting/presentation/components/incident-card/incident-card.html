@@ -1,0 +1,63 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class="head">
+      <div class="space">
+        <span class="space-name">{{ incident().spaceName }}</span>
+        <span class="space-address">{{ incident().spaceAddress }}</span>
+      </div>
+      <div class="meta">
+        <span class="status" [class]="'status ' + incident().status">
+          {{ 'incidents.status.' + incident().status | translate }}
+        </span>
+        <span class="code">{{ incident().code }} · {{ createdLabel() }}</span>
+      </div>
+    </div>
+
+    <div class="types">
+      @for (type of incident().types; track type) {
+        <span class="type-chip">
+          <mat-icon>{{ icons[type] }}</mat-icon>{{ 'incidents.types.' + type | translate }}
+        </span>
+      }
+    </div>
+
+    @if (ownerView()) {
+      <p class="reporter">{{ 'incidents.card.reportedBy' | translate: {name: incident().reporterName} }}</p>
+    }
+    <p class="description">{{ incident().description }}</p>
+
+    @if (incident().photos.length) {
+      <div class="photos">
+        @for (photo of incident().photos; track $index) {
+          <button type="button" class="photo" (click)="openedPhoto.set(photo)"
+                  [attr.aria-label]="'incidents.card.openPhoto' | translate">
+            <img [src]="photo" [alt]="'incidents.form.photoAlt' | translate: {n: $index + 1}">
+          </button>
+        }
+      </div>
+    }
+
+    @if (ownerView() && !incident().isResolved) {
+      <div class="actions">
+        @if (incident().status === 'open') {
+          <button mat-stroked-button type="button" [disabled]="busy()" (click)="reviewRequested.emit(incident())">
+            {{ 'incidents.card.startReview' | translate }}
+          </button>
+        }
+        <button mat-flat-button type="button" [disabled]="busy()" (click)="resolveRequested.emit(incident())">
+          {{ 'incidents.card.resolve' | translate }}
+        </button>
+      </div>
+    }
+  </mat-card-content>
+</mat-card>
+
+@if (openedPhoto(); as photo) {
+  <div class="lightbox" role="dialog" aria-modal="true" (click)="openedPhoto.set(null)"
+       (keydown.escape)="openedPhoto.set(null)" tabindex="-1">
+    <img [src]="photo" [alt]="'incidents.card.openPhoto' | translate">
+    <button mat-flat-button type="button" (click)="openedPhoto.set(null)">
+      {{ 'incidents.card.close' | translate }}
+    </button>
+  </div>
+}

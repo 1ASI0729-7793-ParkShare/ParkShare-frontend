@@ -1,0 +1,82 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class="card-title">
+      <mat-icon>report_problem</mat-icon>
+      <h2>{{ 'incidents.form.title' | translate }}</h2>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'incidents.form.space' | translate }}</mat-label>
+        <mat-select formControlName="listingId">
+          @for (listing of listings(); track listing.id) {
+            <mat-option [value]="listing.id">{{ listing.name }} · {{ listing.district }}</mat-option>
+          }
+        </mat-select>
+        @if (form.controls.listingId.hasError('required')) {
+          <mat-error>{{ 'incidents.errors.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'incidents.form.types' | translate }}</mat-label>
+        <mat-select formControlName="types" multiple>
+          @for (type of types; track type) {
+            <mat-option [value]="type">
+              <mat-icon class="option-icon">{{ icons[type] }}</mat-icon>
+              {{ 'incidents.types.' + type | translate }}
+            </mat-option>
+          }
+        </mat-select>
+        <mat-hint>{{ 'incidents.form.typesHint' | translate }}</mat-hint>
+        @if (form.controls.types.hasError('required')) {
+          <mat-error>{{ 'incidents.errors.typesRequired' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'incidents.form.description' | translate }}</mat-label>
+        <textarea matInput rows="4" formControlName="description" [maxlength]="maxLength"
+                  [placeholder]="'incidents.form.descriptionPlaceholder' | translate"></textarea>
+        <mat-hint align="end">{{ form.controls.description.value.length }} / {{ maxLength }}</mat-hint>
+        @if (form.controls.description.hasError('required')) {
+          <mat-error>{{ 'incidents.errors.required' | translate }}</mat-error>
+        } @else if (form.controls.description.hasError('minlength')) {
+          <mat-error>{{ 'incidents.errors.descriptionShort' | translate: {min: minLength} }}</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="photos">
+        <span class="section-label">
+          {{ 'incidents.form.photos' | translate: {count: photos().length, max: maxPhotos} }}
+        </span>
+        <div class="thumbs">
+          @for (photo of photos(); track $index) {
+            <div class="thumb">
+              <img [src]="photo" [alt]="'incidents.form.photoAlt' | translate: {n: $index + 1}">
+              <button mat-icon-button type="button" class="remove"
+                      [attr.aria-label]="'incidents.form.removePhoto' | translate"
+                      (click)="removePhoto($index)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          }
+          @if (canAddPhotos()) {
+            <label class="add-photo">
+              <mat-icon>add_a_photo</mat-icon>
+              <span>{{ 'incidents.form.addPhotos' | translate }}</span>
+              <input type="file" accept="image/*" multiple hidden (change)="onPhotosSelected($event)">
+            </label>
+          }
+        </div>
+        @if (photoError()) {
+          <p class="photo-error">{{ 'incidents.errors.tooManyPhotos' | translate: {max: maxPhotos} }}</p>
+        }
+      </div>
+
+      <button mat-flat-button type="submit" [disabled]="submitting()">
+        {{ 'incidents.form.submit' | translate }}
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

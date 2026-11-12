@@ -1,0 +1,10 @@
+.title { margin: 0; font: var(--mat-sys-headline-medium); }
+.subtitle { margin: 4px 0 24px; color: var(--mat-sys-on-surface-variant); }
+.error { color: var(--mat-sys-error); }
+
+.layout { display: grid; grid-template-columns: minmax(320px, 5fr) minmax(0, 6fr); gap: 24px; align-items: start; }
+.history { display: flex; flex-direction: column; gap: 12px; }
+.history h2 { margin: 0 0 4px; font: var(--mat-sys-title-large); }
+.empty { color: var(--mat-sys-on-surface-variant); }
+
+@media (max-width: 960px) { .layout { grid-template-columns: 1fr; } }

@@ -26,7 +26,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/custom-theme.scss", "src/styles.css"]
+            "styles": ["node_modules/leaflet/dist/leaflet.css", "src/custom-theme.scss", "src/styles.css"]
           },
           "configurations": {
             "production": {
