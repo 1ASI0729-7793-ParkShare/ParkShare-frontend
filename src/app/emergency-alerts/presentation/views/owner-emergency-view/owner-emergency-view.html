@@ -1,0 +1,107 @@
+<h1 class="title">{{ 'emergency.title' | translate }}</h1>
+<p class="subtitle">{{ 'emergency.subtitle' | translate }}</p>
+
+@if (store.error()) {
+  <p class="error" role="alert">{{ 'emergency.errors.generic' | translate }}</p>
+}
+
+<mat-card appearance="outlined" class="sos-card">
+  <mat-card-content>
+    @if (!panelOpen()) {
+      <button type="button" class="sos-button" (click)="open()">
+        <mat-icon>emergency</mat-icon>
+        <span class="sos-label">{{ 'emergency.button' | translate }}</span>
+        <span class="sos-hint">{{ 'emergency.buttonHint' | translate }}</span>
+      </button>
+    } @else {
+      <div class="panel" role="group" [attr.aria-label]="'emergency.panelTitle' | translate">
+        <h2>{{ 'emergency.panelTitle' | translate }}</h2>
+
+        <div class="kinds" role="radiogroup" [attr.aria-label]="'emergency.kindLabel' | translate">
+          @for (k of kinds; track k) {
+            <button type="button" role="radio" class="kind" [class.selected]="kind() === k"
+                    [attr.aria-checked]="kind() === k" (click)="kind.set(k)">
+              <mat-icon>{{ icons[k] }}</mat-icon>
+              {{ 'emergency.kinds.' + k | translate }}
+            </button>
+          }
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'emergency.space' | translate }}</mat-label>
+          <mat-select [ngModel]="listingId()" (ngModelChange)="listingId.set($event)">
+            @for (listing of store.ownerListings(); track listing.id) {
+              <mat-option [value]="listing.id">{{ listing.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'emergency.notes' | translate }}</mat-label>
+          <textarea matInput rows="3" [maxlength]="maxNotes" [(ngModel)]="notes"
+                    [placeholder]="'emergency.notesPlaceholder' | translate"></textarea>
+        </mat-form-field>
+
+        <div class="panel-actions">
+          <button mat-stroked-button type="button" (click)="cancel()">
+            {{ 'emergency.cancel' | translate }}
+          </button>
+          <button mat-flat-button type="button" class="confirm" [disabled]="!canSend()" (click)="send()">
+            @if (locating()) { {{ 'emergency.locating' | translate }} } @else { {{ 'emergency.confirm' | translate }} }
+          </button>
+        </div>
+      </div>
+    }
+
+    @if (lastSent(); as sent) {
+      <div class="sent" role="status">
+        <mat-icon>check_circle</mat-icon>
+        <div>
+          <strong>{{ 'emergency.sent' | translate: {code: sent.code} }}</strong>
+          <p>{{ 'emergency.sentHint' | translate }}</p>
+        </div>
+      </div>
+    }
+
+    <div class="numbers">
+      <span class="numbers-label">{{ 'emergency.callNow' | translate }}</span>
+      @for (n of numbers; track n.key) {
+        <a mat-stroked-button [href]="'tel:' + n.number">
+          <mat-icon>call</mat-icon>{{ 'emergency.numbers.' + n.key | translate }} {{ n.number }}
+        </a>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<h2 class="history-title">{{ 'emergency.history' | translate }}</h2>
+<div class="history">
+  @for (alert of store.ownerAlerts(); track alert.id) {
+    <mat-card appearance="outlined" [class.active]="alert.isActive">
+      <mat-card-content class="alert">
+        <mat-icon class="alert-icon">{{ icons[alert.kind] }}</mat-icon>
+        <div class="alert-body">
+          <span class="alert-kind">{{ 'emergency.kinds.' + alert.kind | translate }}
+            <span class="alert-status" [class.active]="alert.isActive">
+              {{ 'emergency.status.' + alert.status | translate }}
+            </span>
+          </span>
+          <span class="alert-meta">{{ alert.code }} · {{ dateLabel(alert.createdAt) }}
+            @if (alert.spaceName) { · {{ alert.spaceName }} }
+          </span>
+          @if (alert.notes) { <span class="alert-notes">{{ alert.notes }}</span> }
+          @if (alert.mapUrl; as url) {
+            <a [href]="url" target="_blank" rel="noopener">{{ 'emergency.viewMap' | translate }}</a>
+          }
+        </div>
+        @if (alert.isActive) {
+          <button mat-stroked-button type="button" [disabled]="store.loading()" (click)="store.resolve(alert)">
+            {{ 'emergency.resolve' | translate }}
+          </button>
+        }
+      </mat-card-content>
+    </mat-card>
+  } @empty {
+    <p class="empty">{{ 'emergency.empty' | translate }}</p>
+  }
+</div>
