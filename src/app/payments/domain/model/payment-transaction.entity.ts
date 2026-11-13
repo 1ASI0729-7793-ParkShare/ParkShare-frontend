@@ -1,7 +1,7 @@
 
 export class PaymentTransaction {
   private _id: string;
-  private _reservationId: string;
+  private _reservationId: number;
   private _driverName: string;
   private _garageName: string;
   private _date: Date;
@@ -10,7 +10,7 @@ export class PaymentTransaction {
 
   constructor(props: {
     id: string;
-    reservationId: string;
+    reservationId: number;
     driverName: string;
     garageName: string;
     date: Date;
@@ -31,7 +31,7 @@ export class PaymentTransaction {
   }
 
   /** Referencia a la reserva (Booking). */
-  get reservationId(): string {
+  get reservationId(): number {
     return this._reservationId;
   }
 

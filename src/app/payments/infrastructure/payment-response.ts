@@ -6,7 +6,7 @@
 /** Respuesta del resumen de saldo del propietario. */
 export interface OwnerPayoutResponse {
   id: number;
-  ownerId: string;
+  ownerId: number;
   availableBalance: number;
   completedAmount: number;
   inTransitAmount: number;
@@ -17,7 +17,7 @@ export interface OwnerPayoutResponse {
 /** Respuesta de un cobro individual. La fecha llega como texto ISO. */
 export interface PaymentTransactionResponse {
   id: number | string;
-  reservationId: string;
+  reservationId: number;
   driverName: string;
   garageName: string;
   date: string;

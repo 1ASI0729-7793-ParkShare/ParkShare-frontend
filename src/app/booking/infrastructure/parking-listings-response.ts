@@ -14,6 +14,11 @@ export interface ParkingListingResource extends BaseResource {
   availability: ListingAvailability;
   latitude: number;
   longitude: number;
+  /** Owner-managed fields of the same document (parking-space-management context). */
+  photos?: string[];
+  features?: string[];
+  publicationStatus?: 'published' | 'paused';
+  availabilityPeriods?: { dayOfWeek: string; startTime: string; endTime: string }[];
 }
 
 export interface ParkingListingsResponse extends BaseResponse {

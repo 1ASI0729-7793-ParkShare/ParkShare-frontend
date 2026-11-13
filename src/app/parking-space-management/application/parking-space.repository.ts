@@ -1,4 +1,5 @@
 import { InjectionToken } from '@angular/core';
+import { CURRENT_OWNER_ID } from '../../shared/domain/model/current-user';
 import { Observable } from 'rxjs';
 import { AvailabilityPeriod } from '../domain/model/availability-period.entity';
 import {
@@ -37,10 +38,7 @@ export abstract class ParkingSpaceRepository {
   ): Observable<ParkingSpace>;
 }
 
-/**
- * Temporary integration seam. Identity & Access can provide the authenticated
- * owner's identifier when both bounded contexts are integrated.
- */
+/** Integration seam: Identity & Access will provide the authenticated owner's id. */
 export const PARKING_SPACE_OWNER_ID = new InjectionToken<number>('PARKING_SPACE_OWNER_ID', {
-  factory: () => 0,
+  factory: () => CURRENT_OWNER_ID,
 });

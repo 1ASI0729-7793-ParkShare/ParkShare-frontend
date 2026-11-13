@@ -21,9 +21,9 @@ export class PaymentApi extends PaymentRepository {
   private readonly payoutsUrl = `${environment.platformProviderApiBaseUrl}${environment.platformProviderOwnerPayoutsEndpointPath}`;
   private readonly transactionsUrl = `${environment.platformProviderApiBaseUrl}${environment.platformProviderPaymentTransactionsEndpointPath}`;
 
-  getOwnerPayout(ownerId: string): Observable<OwnerPayout> {
+  getOwnerPayout(ownerId: number): Observable<OwnerPayout> {
     return this.http
-      .get<OwnerPayoutResponse[]>(this.payoutsUrl, { params: { ownerId } })
+      .get<OwnerPayoutResponse[]>(this.payoutsUrl, { params: { ownerId: String(ownerId) } })
       .pipe(
         map((responses) => {
           if (responses.length === 0) {
@@ -34,9 +34,9 @@ export class PaymentApi extends PaymentRepository {
       );
   }
 
-  getOwnerTransactions(ownerId: string): Observable<PaymentTransaction[]> {
+  getOwnerTransactions(ownerId: number): Observable<PaymentTransaction[]> {
     return this.http
-      .get<PaymentTransactionResponse[]>(this.transactionsUrl, { params: { ownerId } })
+      .get<PaymentTransactionResponse[]>(this.transactionsUrl, { params: { ownerId: String(ownerId) } })
       .pipe(map((responses) => this.assembler.toTransactionsFromResponses(responses)));
   }
 
@@ -44,9 +44,9 @@ export class PaymentApi extends PaymentRepository {
    * json-server no tiene lógica de negocio, así que la transferencia se simula:
    * el saldo disponible pasa a 0 y ese monto se suma a "En tránsito".
    */
-  requestPayoutTransfer(ownerId: string): Observable<OwnerPayout> {
+  requestPayoutTransfer(ownerId: number): Observable<OwnerPayout> {
     return this.http
-      .get<OwnerPayoutResponse[]>(this.payoutsUrl, { params: { ownerId } })
+      .get<OwnerPayoutResponse[]>(this.payoutsUrl, { params: { ownerId: String(ownerId) } })
       .pipe(
         map((responses) => responses[0]),
         switchMap((current) =>

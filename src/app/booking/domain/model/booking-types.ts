@@ -13,8 +13,7 @@ export const SERVICE_STEPS: readonly ReservationStatus[] = [
 
 export type ListingAvailability = 'available' | 'occupied';
 
-/** Owner whose requests are shown until authentication is available. */
-export const CURRENT_OWNER_ID = 1;
+export { CURRENT_OWNER_ID } from '../../../shared/domain/model/current-user';
 
 /** Duration requested when a driver books from the search results. */
 export const DEFAULT_RESERVATION_HOURS = 1;

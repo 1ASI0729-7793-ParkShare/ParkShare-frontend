@@ -1,3 +1,4 @@
+import { CURRENT_OWNER_ID } from '../../../../shared/domain/model/current-user';
 import { Component, inject, OnInit } from '@angular/core';
 import { PaymentsStore } from '../../../application/payments.store';
 import { BalanceCard } from '../../components/balance-card/balance-card';
@@ -14,8 +15,7 @@ import { CommonModule } from '@angular/common';
 export class OwnerPayouts implements OnInit {
   protected readonly store = inject(PaymentsStore);
 
-  // Por ahora coincide con el ownerId de los datos de db.json.
-  private readonly ownerId = '2';
+  private readonly ownerId = CURRENT_OWNER_ID;
 
   ngOnInit(): void {
     this.store.loadOwnerIncome(this.ownerId);
