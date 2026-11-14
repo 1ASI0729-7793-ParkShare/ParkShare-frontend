@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {
   DEFAULT_DISTRICT,
 } from '../../booking/domain/model/booking-types';
 import { ParkingListingResource } from '../../booking/infrastructure/parking-listings-response';
+import { FileUploadService } from '../../shared/infrastructure/file-upload.service';
 import {
   CreateParkingSpaceCommand,
   PARKING_SPACE_OWNER_ID,
@@ -31,6 +32,7 @@ const DEFAULT_COORDINATES = { latitude: -12.1219, longitude: -77.0297 };
 export class HttpParkingSpaceRepository extends ParkingSpaceRepository {
   private readonly http = inject(HttpClient);
   private readonly ownerId = inject(PARKING_SPACE_OWNER_ID);
+  private readonly uploads = inject(FileUploadService);
   private readonly url = `${environment.platformProviderApiBaseUrl}${environment.platformProviderParkingListingsEndpointPath}`;
 
   override getAll(): Observable<ParkingSpace[]> {
@@ -46,7 +48,17 @@ export class HttpParkingSpaceRepository extends ParkingSpaceRepository {
   }
 
   override create(command: CreateParkingSpaceCommand): Observable<ParkingSpace> {
-    const body: Omit<ParkingListingResource, 'id'> = {
+    return this.uploads.resolvePhotos(command.photos).pipe(
+      switchMap((photos) => this.http.post<ParkingListingResource>(this.url, this.toNewListing(command, photos))),
+      map((resource) => this.toEntity(resource)),
+    );
+  }
+
+  private toNewListing(
+    command: CreateParkingSpaceCommand,
+    photos: string[],
+  ): Omit<ParkingListingResource, 'id'> {
+    return {
       ownerId: this.ownerId,
       name: command.name,
       address: command.address,
@@ -57,16 +69,17 @@ export class HttpParkingSpaceRepository extends ParkingSpaceRepository {
       reviewCount: 0,
       availability: 'available',
       ...DEFAULT_COORDINATES,
-      photos: [...command.photos],
+      photos,
       features: [...command.features],
       publicationStatus: 'published',
       availabilityPeriods: command.availability.map((period) => ({ ...period })),
     };
-    return this.http.post<ParkingListingResource>(this.url, body).pipe(map((r) => this.toEntity(r)));
   }
 
   override update(id: number, command: UpdateParkingSpaceCommand): Observable<ParkingSpace> {
-    return this.patch(id, { address: command.address, photos: [...command.photos] });
+    return this.uploads
+      .resolvePhotos(command.photos)
+      .pipe(switchMap((photos) => this.patch(id, { address: command.address, photos })));
   }
 
   override updateAvailability(
