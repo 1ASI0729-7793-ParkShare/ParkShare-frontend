@@ -1,0 +1,71 @@
+<h1 class="title">{{ 'booking.history.title' | translate }}</h1>
+<p class="subtitle">{{ 'booking.history.subtitle' | translate }}</p>
+
+@if (store.error()) {
+  <p class="error">{{ 'booking.errors.generic' | translate }}</p>
+}
+
+<div class="summary">
+  <div class="summary-item">
+    <span class="label">{{ 'booking.history.completed' | translate }}</span>
+    <span class="value">{{ completedCount() }}</span>
+  </div>
+  <div class="summary-item">
+    <span class="label">{{ 'booking.history.hours' | translate }}</span>
+    <span class="value">{{ totalHours() | number: '1.1-1' }} h</span>
+  </div>
+  <div class="summary-item">
+    <span class="label">{{ 'booking.history.spent' | translate }}</span>
+    <span class="value">S/ {{ totalSpent() | number: '1.2-2' }}</span>
+  </div>
+</div>
+
+<mat-button-toggle-group
+  class="filters"
+  [value]="filter()"
+  (change)="setFilter($event.value)"
+  [hideSingleSelectionIndicator]="true"
+  [attr.aria-label]="'booking.history.filter' | translate">
+  <mat-button-toggle value="all">{{ 'booking.history.all' | translate }}</mat-button-toggle>
+  <mat-button-toggle value="completed">{{ 'booking.status.completed' | translate }}</mat-button-toggle>
+  <mat-button-toggle value="rejected">{{ 'booking.status.rejected' | translate }}</mat-button-toggle>
+</mat-button-toggle-group>
+
+@if (visible().length === 0) {
+  <mat-card appearance="outlined">
+    <mat-card-content class="empty">
+      <mat-icon>history</mat-icon>
+      <p>{{ 'booking.history.empty' | translate }}</p>
+      <a mat-flat-button routerLink="/driver/search">{{ 'booking.history.search' | translate }}</a>
+    </mat-card-content>
+  </mat-card>
+} @else {
+  <div class="list">
+    @for (reservation of visible(); track reservation.id) {
+      <mat-card appearance="outlined">
+        <mat-card-content class="item">
+          <div class="item-icon" [class.rejected]="reservation.status === 'rejected'">
+            <mat-icon>{{ reservation.status === 'rejected' ? 'block' : 'check_circle' }}</mat-icon>
+          </div>
+          <div class="item-main">
+            <span class="item-name">{{ reservation.spaceName }}</span>
+            <span class="item-address">{{ reservation.spaceAddress }}</span>
+            <span class="item-meta">
+              {{ reservation.code }} · {{ whenLabel(reservation) }} ·
+              {{ reservation.vehiclePlate }}
+            </span>
+          </div>
+          <div class="item-side">
+            <span class="status" [class.rejected]="reservation.status === 'rejected'">
+              {{ 'booking.status.' + reservation.status | translate }}
+            </span>
+            @if (reservation.status === 'completed') {
+              <span class="cost">S/ {{ (reservation.totalCost ?? 0) | number: '1.2-2' }}</span>
+              <span class="hours">{{ durationHours(reservation) | number: '1.1-1' }} h</span>
+            }
+          </div>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+}

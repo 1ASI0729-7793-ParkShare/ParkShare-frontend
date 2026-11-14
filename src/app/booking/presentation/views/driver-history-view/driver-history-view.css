@@ -1,0 +1,51 @@
+.title { margin: 0; font: var(--mat-sys-headline-medium); }
+.subtitle { margin: 4px 0 24px; color: var(--mat-sys-on-surface-variant); }
+.error { color: var(--mat-sys-error); }
+
+.summary {
+  display: grid; gap: 16px; margin-bottom: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+.summary-item {
+  display: flex; flex-direction: column; gap: 4px; padding: 16px;
+  border-radius: var(--mat-sys-corner-medium); background: var(--mat-sys-surface-container-low);
+}
+.label {
+  font: var(--mat-sys-label-small); color: var(--mat-sys-on-surface-variant);
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.value { font: var(--mat-sys-headline-small); color: var(--mat-sys-primary); }
+
+.filters { margin-bottom: 16px; }
+
+.list { display: flex; flex-direction: column; gap: 12px; }
+
+.item { display: flex; align-items: center; gap: 16px; }
+.item-icon {
+  display: grid; place-items: center; flex: none; width: 44px; height: 44px;
+  border-radius: var(--mat-sys-corner-medium);
+  background: var(--mat-sys-primary-container); color: var(--mat-sys-on-primary-container);
+}
+.item-icon.rejected {
+  background: var(--mat-sys-error-container); color: var(--mat-sys-on-error-container);
+}
+.item-main { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; }
+.item-name { font: var(--mat-sys-title-medium); }
+.item-address, .item-meta { font: var(--mat-sys-body-medium); color: var(--mat-sys-on-surface-variant); }
+.item-meta { font: var(--mat-sys-body-small); }
+.item-side { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.status { font: var(--mat-sys-label-large); color: var(--mat-sys-primary); }
+.status.rejected { color: var(--mat-sys-error); }
+.cost { font: var(--mat-sys-title-medium); }
+.hours { font: var(--mat-sys-body-small); color: var(--mat-sys-on-surface-variant); }
+
+.empty {
+  display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 32px 16px;
+  color: var(--mat-sys-on-surface-variant); text-align: center;
+}
+.empty mat-icon { width: 40px; height: 40px; font-size: 40px; }
+
+@media (max-width: 600px) {
+  .item { flex-wrap: wrap; }
+  .item-side { flex-direction: row; align-items: center; gap: 12px; margin-left: 60px; }
+}
