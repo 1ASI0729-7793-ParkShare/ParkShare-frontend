@@ -4,6 +4,7 @@ import { retry } from 'rxjs';
 import { Profile } from '../domain/model/profile.entity';
 import { VerificationDocument } from '../domain/model/verification-document.entity';
 import { IN_REVIEW_STATUS, VERIFIED_STATUS } from '../domain/model/profile-types';
+import { CURRENT_DRIVER_ID } from '../../shared/domain/model/current-user';
 import { ProfileService } from '../infrastructure/profile.service';
 
 /** Holds profile application state and coordinates profile use cases. */
@@ -87,7 +88,7 @@ export class ProfileStore {
       .pipe(takeUntilDestroyed())
       .subscribe({
         next: (profiles) => {
-          this.profileSignal.set(profiles[0] ?? null);
+          this.profileSignal.set(profiles.find((p) => p.id === CURRENT_DRIVER_ID) ?? profiles[0] ?? null);
           this.loadingSignal.set(false);
         },
         error: (err) => {
