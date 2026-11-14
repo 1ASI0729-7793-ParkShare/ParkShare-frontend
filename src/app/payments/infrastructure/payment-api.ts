@@ -40,20 +40,14 @@ export class PaymentApi extends PaymentRepository {
       .pipe(map((responses) => this.assembler.toTransactionsFromResponses(responses)));
   }
 
-  /**
-   * json-server no tiene lógica de negocio, así que la transferencia se simula:
-   * el saldo disponible pasa a 0 y ese monto se suma a "En tránsito".
-   */
+  /** El backend mueve el saldo disponible a "En tránsito" y devuelve el resumen actualizado. */
   requestPayoutTransfer(ownerId: number): Observable<OwnerPayout> {
     return this.http
       .get<OwnerPayoutResponse[]>(this.payoutsUrl, { params: { ownerId: String(ownerId) } })
       .pipe(
         map((responses) => responses[0]),
         switchMap((current) =>
-          this.http.patch<OwnerPayoutResponse>(`${this.payoutsUrl}/${current.id}`, {
-            availableBalance: 0,
-            inTransitAmount: current.inTransitAmount + current.availableBalance,
-          }),
+          this.http.post<OwnerPayoutResponse>(`${this.payoutsUrl}/${current.id}/transfer`, {}),
         ),
         map((updated) => this.assembler.toOwnerPayoutFromResponse(updated)),
       );
