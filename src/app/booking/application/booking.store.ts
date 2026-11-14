@@ -77,6 +77,14 @@ export class BookingStore {
     );
   });
 
+  /** The driver's finished or rejected reservations, most recent first. */
+  readonly driverHistory = computed(() => {
+    const driverId = this.profileStore.profile()?.id;
+    return this.reservationsSignal()
+      .filter((r) => r.driverId === driverId && !r.isActive)
+      .sort((a, b) => b.id - a.id);
+  });
+
   readonly ownerReservations = computed(() =>
     this.reservationsSignal()
       .filter((r) => r.ownerId === CURRENT_OWNER_ID)
