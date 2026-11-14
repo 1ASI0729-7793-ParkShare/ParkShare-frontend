@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  platformProviderApiBaseUrl: 'http://localhost:8080/api/v1',
+  platformProviderApiBaseUrl: 'https://parkshare-platform.onrender.com/api/v1',
   platformProviderProfilesEndpointPath: '/profiles',
   platformProviderVerificationDocumentsEndpointPath: '/verification-documents',
   platformProviderRatingsEndpointPath: '/ratings',
