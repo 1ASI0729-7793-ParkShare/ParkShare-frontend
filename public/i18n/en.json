@@ -149,6 +149,17 @@
       "reject": "Reject",
       "noActionRequired": "No action required",
       "empty": "You have no reservation requests yet."
+    },
+    "history": {
+      "title": "History",
+      "subtitle": "Your past reservations and what you paid for each",
+      "completed": "Completed stays",
+      "hours": "Hours parked",
+      "spent": "Total spent",
+      "filter": "Filter history",
+      "all": "All",
+      "empty": "You have no past reservations yet.",
+      "search": "Find parking"
     }
   },
   "reportAnalytics": {

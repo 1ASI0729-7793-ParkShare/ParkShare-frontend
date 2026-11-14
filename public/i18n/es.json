@@ -301,6 +301,17 @@
       "reject": "Rechazar",
       "noActionRequired": "Acción no requerida",
       "empty": "Aún no tienes solicitudes de reserva."
+    },
+    "history": {
+      "title": "Historial",
+      "subtitle": "Tus reservas anteriores y lo que pagaste en cada una",
+      "completed": "Estadías finalizadas",
+      "hours": "Horas estacionadas",
+      "spent": "Total gastado",
+      "filter": "Filtrar historial",
+      "all": "Todas",
+      "empty": "Aún no tienes reservas finalizadas.",
+      "search": "Buscar cochera"
     }
   },
   "reportAnalytics": {
