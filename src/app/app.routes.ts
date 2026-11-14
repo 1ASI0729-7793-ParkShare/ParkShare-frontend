@@ -5,8 +5,6 @@ const reportAnalyticsRoutes = () =>
     (m) => m.reportAnalyticsRoutes,
   );
 
-const placeholder = () =>
-  import('./shared/presentation/views/placeholder/placeholder').then((m) => m.Placeholder);
 const profileRoutes = () =>
   import('./profile/presentation/profile.routes').then((m) => m.profileRoutes);
 const bookingDriverRoutes = () =>
@@ -43,7 +41,6 @@ export const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'search' },
       { path: '', loadChildren: bookingDriverRoutes },
       { path: '', loadChildren: incidentDriverRoutes },
-      { path: 'history', loadComponent: placeholder, data: { titleKey: 'nav.driver.history' } },
       { path: 'profile', loadChildren: profileRoutes },
     ],
   },

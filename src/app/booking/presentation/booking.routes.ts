@@ -6,6 +6,8 @@ const driverReservationView = () =>
   import('./views/driver-reservation-view/driver-reservation-view').then(
     (m) => m.DriverReservationView,
   );
+const driverHistoryView = () =>
+  import('./views/driver-history-view/driver-history-view').then((m) => m.DriverHistoryView);
 const ownerRequestsView = () =>
   import('./views/owner-requests-view/owner-requests-view').then((m) => m.OwnerRequestsView);
 
@@ -13,6 +15,7 @@ const ownerRequestsView = () =>
 export const bookingDriverRoutes: Routes = [
   { path: 'search', loadComponent: driverSearchView },
   { path: 'reservation', loadComponent: driverReservationView },
+  { path: 'history', loadComponent: driverHistoryView },
 ];
 
 /** Booking routes mounted under /owner. */
