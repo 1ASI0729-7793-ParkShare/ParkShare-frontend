@@ -32,7 +32,7 @@ export class PaymentsStore {
   });
 
   /** Carga el saldo y el detalle de cobros del propietario. */
-  loadOwnerIncome(ownerId: string): void {
+  loadOwnerIncome(ownerId: number): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
 
@@ -53,7 +53,7 @@ export class PaymentsStore {
   }
 
   /** Solicita transferir el saldo disponible a la cuenta bancaria vinculada. */
-  transferToBank(ownerId: string): void {
+  transferToBank(ownerId: number): void {
     if (!this.canTransfer()) return;
 
     this.transferringSignal.set(true);

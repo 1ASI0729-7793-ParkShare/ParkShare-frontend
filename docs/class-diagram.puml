@@ -1,0 +1,846 @@
+' ParkShare frontend - UML class diagrams (PlantUML)
+' Angular 22 + Domain-Driven Design. One diagram per bounded context.
+' Render with the PlantUML plugin of your IDE or https://www.plantuml.com/plantuml
+
+@startuml overview
+title ParkShare Frontend - Architecture overview
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+hide empty members
+
+package "shared" {
+  interface BaseEntity
+  abstract class BaseApi
+  abstract class BaseApiEndpoint<TEntity, TResource, TResponse>
+  interface BaseAssembler<TEntity, TResource, TResponse>
+  class FileUploadService
+}
+package "profile" {
+  class ProfileStore
+}
+package "booking" {
+  class BookingStore
+}
+package "parking-space-management" {
+  class ParkingSpaceManagementStore
+}
+package "payments" {
+  class PaymentsStore
+}
+package "reputation-notifications" {
+  class ReputationNotificationsStore
+}
+package "incident-reporting" {
+  class IncidentReportingStore
+}
+package "emergency-alerts" {
+  class EmergencyAlertsStore
+}
+package "report-analytics" {
+  class ReportAnalyticsStore
+}
+class "Spring Boot REST API\n(/api/v1)" as Backend <<external>>
+
+BookingStore --> ProfileStore : driver profile
+IncidentReportingStore --> ProfileStore : reporter
+IncidentReportingStore --> BookingStore : listings
+EmergencyAlertsStore --> BookingStore : owner listings
+ReputationNotificationsStore ..> BookingStore : eligibility (port)
+IncidentReportingStore ..> FileUploadService : photos
+ParkingSpaceManagementStore ..> FileUploadService : photos
+BaseApiEndpoint ..> Backend : HTTP
+BaseApi ..> Backend : HTTP
+FileUploadService ..> Backend : POST /files
+ReportAnalyticsStore ..> Backend : GET /owner-dashboard
+note bottom of BaseApi
+  Each bounded context has the layers:
+  domain, application, infrastructure, presentation
+end note
+@enduml
+
+@startuml shared-kernel
+title Shared kernel
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+hide empty members
+
+interface BaseEntity {
+  +id: number
+}
+interface BaseResource {
+  +id: number
+}
+interface BaseResponse
+interface BaseAssembler<TEntity, TResource, TResponse> {
+  +toEntitiesFromResponse(response): TEntity[]
+  +toEntityFromResource(resource): TEntity
+  +toResourceFromEntity(entity): TResource
+}
+abstract class BaseApi {
+  #http: HttpClient
+  #baseUrl: string
+}
+abstract class BaseApiEndpoint<TEntity, TResource, TResponse> {
+  -http: HttpClient
+  -endpointUrl: string
+  -assembler: BaseAssembler
+  +getAll(): Observable<TEntity[]>
+  +getById(id): Observable<TEntity>
+  +create(entity): Observable<TEntity>
+  +update(entity, id): Observable<TEntity>
+  +delete(id): Observable<void>
+}
+class FileUploadService <<Service>> {
+  +upload(file: Blob, fileName): Observable<string>
+  +resolvePhotos(photos: string[]): Observable<string[]>
+}
+class Layout
+class LanguageSwitcher
+class Placeholder
+
+BaseApiEndpoint o--> BaseAssembler
+BaseAssembler ..> BaseEntity
+BaseAssembler ..> BaseResource
+BaseAssembler ..> BaseResponse
+BaseApiEndpoint ..> BaseResource
+FileUploadService ..> BaseApi : uses HttpClient
+Layout *-- LanguageSwitcher
+@enduml
+
+@startuml profile
+title Bounded context: Profile
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+hide empty members
+
+package "domain" {
+  class Profile {
+    -id: number
+    -fullName: string
+    -plate: string
+    -vehicleModel: string
+    -vehicleType: VehicleType
+  }
+  class VerificationDocument {
+    -id: number
+    -profileId: number
+    -type: DocumentType
+    -status: DocumentStatus
+    -updatedAt: string
+    -fileName: string | null
+  }
+}
+package "application" {
+  class ProfileStore <<Service>> {
+    +profile: Signal<Profile | null>
+    +documents: Signal<VerificationDocument[]>
+    +documentCount: Signal<number>
+    +verifiedCount: Signal<number>
+    +loading: Signal<boolean>
+    +error: Signal<string | null>
+    +updateProfile(profile, onSuccess)
+    +uploadDocument(document, fileName)
+  }
+}
+package "infrastructure" {
+  class ProfileService <<Service>> {
+    +getProfiles(): Observable<Profile[]>
+    +updateProfile(profile): Observable<Profile>
+    +getVerificationDocuments(): Observable<VerificationDocument[]>
+    +updateVerificationDocument(document): Observable<VerificationDocument>
+  }
+  class ProfilesApiEndpoint
+  class VerificationDocumentsApiEndpoint
+  class ProfileAssembler
+  class VerificationDocumentAssembler
+  class ProfileResource
+  class VerificationDocumentResource
+}
+package "presentation" {
+  class ProfileView
+  class VehicleForm
+  class DocumentList
+  class UserChip
+}
+abstract class BaseApi
+abstract class BaseApiEndpoint
+interface BaseAssembler
+interface BaseEntity
+
+Profile ..|> BaseEntity
+VerificationDocument ..|> BaseEntity
+Profile "1" o-- "0..*" VerificationDocument : profileId
+ProfileService --|> BaseApi
+ProfilesApiEndpoint --|> BaseApiEndpoint
+VerificationDocumentsApiEndpoint --|> BaseApiEndpoint
+ProfileAssembler ..|> BaseAssembler
+VerificationDocumentAssembler ..|> BaseAssembler
+ProfileAssembler ..> Profile
+ProfileAssembler ..> ProfileResource
+VerificationDocumentAssembler ..> VerificationDocument
+VerificationDocumentAssembler ..> VerificationDocumentResource
+ProfilesApiEndpoint --> ProfileAssembler
+VerificationDocumentsApiEndpoint --> VerificationDocumentAssembler
+ProfileService --> ProfilesApiEndpoint
+ProfileService --> VerificationDocumentsApiEndpoint
+ProfileStore --> ProfileService
+ProfileView --> ProfileStore
+ProfileView *-- VehicleForm
+ProfileView *-- DocumentList
+UserChip --> ProfileStore
+@enduml
+
+@startuml booking
+title Bounded context: Booking
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+hide empty members
+
+package "domain" {
+  class ParkingListing {
+    -id: number
+    -ownerId: number
+    -name: string
+    -address: string
+    -district: string
+    -hourlyRate: number
+    -covered: boolean
+    -rating: number
+    -reviewCount: number
+    -availability: ListingAvailability
+    -latitude: number
+    -longitude: number
+    +isAvailable: boolean
+  }
+  class Reservation {
+    -id: number
+    -parkingListingId: number
+    -ownerId: number
+    -driverId: number
+    -driverName: string
+    -vehiclePlate: string
+    -vehicleModel: string
+    -spaceName: string
+    -spaceAddress: string
+    -hourlyRate: number
+    -plannedEntry: string
+    -plannedHours: number
+    -status: ReservationStatus
+    -startedAt: string | null
+    -endedAt: string | null
+    -totalCost: number | null
+    +code: string
+    +isActive: boolean
+    +estimatedAmount: number
+    +accept(): Reservation
+    +reject(): Reservation
+    +start(now): Reservation
+    +finish(now): Reservation
+    +elapsedMsAt(now): number
+    +costAt(now): number
+  }
+  class SearchCriteria <<interface>> {
+    +district: string
+    +maxHourlyRate: number
+  }
+  enum ReservationStatus {
+    requested
+    confirmed
+    in-use
+    completed
+    rejected
+  }
+}
+package "application" {
+  class BookingStore <<Service>> {
+    +listings: Signal<ParkingListing[]>
+    +searchResults: Signal<ParkingListing[]>
+    +ownerListings: Signal<ParkingListing[]>
+    +activeReservation: Signal<Reservation | null>
+    +driverHistory: Signal<Reservation[]>
+    +ownerReservations: Signal<Reservation[]>
+    +pendingRequestCount: Signal<number>
+    +search(criteria)
+    +canReserve(listing): boolean
+    +reserve(listing, onSuccess)
+    +acceptRequest(reservation)
+    +rejectRequest(reservation)
+    +startParking(reservation)
+    +finishParking(reservation)
+  }
+}
+package "infrastructure" {
+  class BookingService <<Service>> {
+    +getParkingListings()
+    +getReservations()
+    +createReservation(reservation)
+    +updateReservation(reservation)
+  }
+  class ParkingListingsApiEndpoint
+  class ReservationsApiEndpoint
+  class ParkingListingAssembler
+  class ReservationAssembler
+}
+package "presentation" {
+  class DriverSearchView
+  class DriverReservationView
+  class DriverHistoryView
+  class OwnerRequestsView
+  class SearchFilters
+  class ListingCard
+  class ListingMap
+  class RequestCard
+  class ReservationStepper
+}
+abstract class BaseApi
+abstract class BaseApiEndpoint
+interface BaseAssembler
+interface BaseEntity
+class ProfileStore
+
+ParkingListing ..|> BaseEntity
+Reservation ..|> BaseEntity
+Reservation --> ReservationStatus
+Reservation "0..*" --> "1" ParkingListing : parkingListingId
+BookingService --|> BaseApi
+ParkingListingsApiEndpoint --|> BaseApiEndpoint
+ReservationsApiEndpoint --|> BaseApiEndpoint
+ParkingListingAssembler ..|> BaseAssembler
+ReservationAssembler ..|> BaseAssembler
+ParkingListingsApiEndpoint --> ParkingListingAssembler
+ReservationsApiEndpoint --> ReservationAssembler
+BookingService --> ParkingListingsApiEndpoint
+BookingService --> ReservationsApiEndpoint
+BookingStore --> BookingService
+BookingStore --> ProfileStore
+BookingStore ..> SearchCriteria
+DriverSearchView --> BookingStore
+DriverReservationView --> BookingStore
+DriverHistoryView --> BookingStore
+OwnerRequestsView --> BookingStore
+DriverSearchView *-- SearchFilters
+DriverSearchView *-- ListingCard
+DriverSearchView *-- ListingMap
+DriverReservationView *-- ReservationStepper
+OwnerRequestsView *-- RequestCard
+@enduml
+
+@startuml parking-space-management
+title Bounded context: Parking Space Management
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+hide empty members
+
+package "domain" {
+  class ParkingSpace {
+    +id: number
+    +ownerId: number
+    +name: string
+    +address: string
+    +photos: string[]
+    +hourlyRate: number
+    +availability: AvailabilityPeriod[]
+    +features: ParkingSpaceFeature[]
+    +publicationStatus: published | paused
+    +accumulatedIncome: number
+  }
+  class AvailabilityPeriod <<interface>> {
+    +dayOfWeek: string
+    +startTime: string
+    +endTime: string
+  }
+}
+package "application" {
+  abstract class ParkingSpaceRepository {
+    {abstract} +getAll(): Observable<ParkingSpace[]>
+    {abstract} +getById(id): Observable<ParkingSpace>
+    {abstract} +create(command): Observable<ParkingSpace>
+    {abstract} +update(id, command): Observable<ParkingSpace>
+    {abstract} +updateAvailability(id, availability)
+    {abstract} +updatePricing(id, hourlyRate)
+  }
+  class ParkingSpaceManagementStore <<Service>> {
+    +parkingSpaces: Signal<ParkingSpace[]>
+    +selectedParkingSpace: Signal<ParkingSpace | null>
+    +loading: Signal<boolean>
+    +error: Signal<string | null>
+    +loadParkingSpaces()
+    +loadParkingSpace(id)
+    +createParkingSpace(command)
+    +updateParkingSpace(id, command)
+    +updateAvailability(id, availability)
+    +updatePricing(id, hourlyRate)
+  }
+  class CreateParkingSpaceCommand <<interface>>
+  class UpdateParkingSpaceCommand <<interface>>
+}
+package "infrastructure" {
+  class HttpParkingSpaceRepository <<Service>> {
+    GET/POST/PATCH /parking-listings
+  }
+  class InMemoryParkingSpaceRepository
+}
+package "presentation" {
+  class ParkingSpaceList
+  class ParkingSpaceCreate
+  class ParkingSpaceEdit
+  class ParkingSpaceAvailability
+  class ParkingSpacePricing
+  class ParkingSpaceCard
+}
+class FileUploadService
+
+ParkingSpace "1" *-- "0..*" AvailabilityPeriod
+HttpParkingSpaceRepository --|> ParkingSpaceRepository
+InMemoryParkingSpaceRepository --|> ParkingSpaceRepository
+HttpParkingSpaceRepository ..> FileUploadService : photos
+ParkingSpaceManagementStore --> ParkingSpaceRepository
+ParkingSpaceRepository ..> CreateParkingSpaceCommand
+ParkingSpaceRepository ..> UpdateParkingSpaceCommand
+ParkingSpaceList --> ParkingSpaceManagementStore
+ParkingSpaceCreate --> ParkingSpaceManagementStore
+ParkingSpaceEdit --> ParkingSpaceManagementStore
+ParkingSpaceAvailability --> ParkingSpaceManagementStore
+ParkingSpacePricing --> ParkingSpaceManagementStore
+ParkingSpaceList *-- ParkingSpaceCard
+@enduml
+
+@startuml payments
+title Bounded context: Payments
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+hide empty members
+
+package "domain" {
+  class OwnerPayout {
+    -ownerId: number
+    -availableBalance: number
+    -completedAmount: number
+    -inTransitAmount: number
+    -linkedAccount: string
+    -commissionRate: number
+  }
+  class PaymentTransaction {
+    -id: string
+    -reservationId: number
+    -driverName: string
+    -garageName: string
+    -date: Date
+    -durationMinutes: number
+    -amountReceived: number
+    +formattedDuration: string
+  }
+  abstract class PaymentRepository {
+    {abstract} +getOwnerPayout(ownerId): Observable<OwnerPayout>
+    {abstract} +getOwnerTransactions(ownerId): Observable<PaymentTransaction[]>
+    {abstract} +requestPayoutTransfer(ownerId): Observable<OwnerPayout>
+  }
+}
+package "application" {
+  class PaymentsStore <<Service>> {
+    +payout: Signal<OwnerPayout | null>
+    +transactions: Signal<PaymentTransaction[]>
+    +transactionCount: Signal<number>
+    +canTransfer: Signal<boolean>
+    +loading: Signal<boolean>
+    +transferring: Signal<boolean>
+    +error: Signal<string | null>
+    +loadOwnerIncome(ownerId)
+    +transferToBank(ownerId)
+  }
+}
+package "infrastructure" {
+  class PaymentApi <<Service>> {
+    GET /owner-payouts
+    GET /payment-transactions
+    POST /owner-payouts/{id}/transfer
+  }
+  class PaymentAssembler
+  class OwnerPayoutResponse <<interface>>
+  class PaymentTransactionResponse <<interface>>
+}
+package "presentation" {
+  class OwnerPayouts
+  class BalanceCard
+  class TransactionList
+}
+PaymentApi --|> PaymentRepository
+PaymentApi --> PaymentAssembler
+PaymentAssembler ..> OwnerPayout
+PaymentAssembler ..> PaymentTransaction
+PaymentAssembler ..> OwnerPayoutResponse
+PaymentAssembler ..> PaymentTransactionResponse
+PaymentRepository ..> OwnerPayout
+PaymentRepository ..> PaymentTransaction
+PaymentsStore --> PaymentRepository
+OwnerPayouts --> PaymentsStore
+OwnerPayouts *-- BalanceCard
+OwnerPayouts *-- TransactionList
+@enduml
+
+@startuml reputation-notifications
+title Bounded context: Reputation and Notifications
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+hide empty members
+
+package "domain" {
+  class Rating {
+    -id: number
+    -bookingId: number
+    -reviewerId: number
+    -revieweeId: number
+    -score: RatingScore
+    -comment: string | null
+    -createdAt: string
+  }
+  class UserReputation {
+    -id: number
+    -userId: number
+    -averageRating: number
+    -totalRatings: number
+    {static} +fromRatings(id, userId, ratings): UserReputation
+  }
+  class Notification {
+    -id: number
+    -recipientId: number
+    -type: NotificationType
+    -title: string
+    -message: string
+    -createdAt: string
+    -readAt: string | null
+    +isRead: boolean
+    +markAsRead(at)
+  }
+}
+package "application" {
+  interface RatingRepository
+  interface NotificationRepository
+  interface BookingVerificationPort {
+    +checkRatingEligibility(): BookingRatingEligibility
+  }
+  class ReputationService <<Service>>
+  class NotificationService <<Service>>
+  class ReputationNotificationsStore <<Service>> {
+    +ratings: Signal<Rating[]>
+    +reputation: Signal<UserReputation | null>
+    +notifications: Signal<Notification[]>
+    +unreadCount: Signal<number>
+    +loadRatings(userId)
+    +loadReputation(userId)
+    +loadNotifications(recipientId)
+    +markNotificationAsRead(id, recipientId)
+  }
+}
+package "infrastructure" {
+  class HttpRatingRepository
+  class HttpNotificationRepository
+  class HttpBookingVerificationAdapter
+  class RatingsApiEndpoint
+  class UserReputationsApiEndpoint
+  class NotificationsApiEndpoint
+  class RatingAssembler
+  class UserReputationAssembler
+  class NotificationAssembler
+}
+package "presentation" {
+  class ReputationPageComponent
+  class NotificationsPageComponent
+  class RatingFormComponent
+  class ReputationSummaryComponent
+  class NotificationBellComponent
+}
+abstract class BaseApiEndpoint
+interface BaseAssembler
+interface BaseEntity
+
+Rating ..|> BaseEntity
+UserReputation ..|> BaseEntity
+Notification ..|> BaseEntity
+UserReputation ..> Rating : computed from
+HttpRatingRepository ..|> RatingRepository
+HttpNotificationRepository ..|> NotificationRepository
+HttpBookingVerificationAdapter ..|> BookingVerificationPort
+HttpRatingRepository --> RatingsApiEndpoint
+HttpRatingRepository --> UserReputationsApiEndpoint
+HttpNotificationRepository --> NotificationsApiEndpoint
+RatingsApiEndpoint --|> BaseApiEndpoint
+UserReputationsApiEndpoint --|> BaseApiEndpoint
+NotificationsApiEndpoint --|> BaseApiEndpoint
+RatingAssembler ..|> BaseAssembler
+UserReputationAssembler ..|> BaseAssembler
+NotificationAssembler ..|> BaseAssembler
+ReputationService --> RatingRepository
+ReputationService --> BookingVerificationPort
+NotificationService --> NotificationRepository
+ReputationNotificationsStore --> ReputationService
+ReputationNotificationsStore --> NotificationService
+ReputationPageComponent --> ReputationNotificationsStore
+NotificationsPageComponent --> ReputationNotificationsStore
+NotificationBellComponent --> ReputationNotificationsStore
+ReputationPageComponent *-- ReputationSummaryComponent
+ReputationPageComponent *-- RatingFormComponent
+@enduml
+
+@startuml incident-reporting
+title Bounded context: Incident Reporting
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+hide empty members
+
+package "domain" {
+  class Incident {
+    -id: number
+    -reporterId: number
+    -reporterName: string
+    -parkingListingId: number
+    -ownerId: number
+    -spaceName: string
+    -spaceAddress: string
+    -types: IncidentType[]
+    -description: string
+    -photos: string[]
+    -status: open | in-review | resolved
+    -createdAt: string
+    -resolvedAt: string | null
+    +code: string
+    +isResolved: boolean
+    {static} +report(report, now): Incident
+    +startReview(): Incident
+    +resolve(now): Incident
+    +toProps(): IncidentProps
+  }
+}
+package "application" {
+  class IncidentReportingStore <<Service>> {
+    +listings: Signal<ParkingListing[]>
+    +defaultListingId: Signal<number | null>
+    +myIncidents: Signal<Incident[]>
+    +ownerIncidents: Signal<Incident[]>
+    +pendingOwnerCount: Signal<number>
+    +loading: Signal<boolean>
+    +error: Signal<string | null>
+    +report(draft, onSuccess)
+    +startReview(incident)
+    +resolve(incident)
+  }
+  class IncidentDraft <<interface>>
+}
+package "infrastructure" {
+  class IncidentReportingService <<Service>> {
+    +getIncidents(): Observable<Incident[]>
+    +createIncident(incident): Observable<Incident>
+    +updateIncident(incident): Observable<Incident>
+  }
+  class IncidentsApiEndpoint
+  class IncidentAssembler
+  class IncidentResource <<interface>>
+}
+package "presentation" {
+  class DriverIncidentsView
+  class OwnerIncidentsView
+  class IncidentForm
+  class IncidentCard
+}
+class FileUploadService
+class ProfileStore
+class BookingStore
+abstract class BaseApi
+abstract class BaseApiEndpoint
+interface BaseAssembler
+interface BaseEntity
+
+Incident ..|> BaseEntity
+IncidentReportingService --|> BaseApi
+IncidentsApiEndpoint --|> BaseApiEndpoint
+IncidentAssembler ..|> BaseAssembler
+IncidentAssembler ..> Incident
+IncidentAssembler ..> IncidentResource
+IncidentsApiEndpoint --> IncidentAssembler
+IncidentReportingService --> IncidentsApiEndpoint
+IncidentReportingService ..> FileUploadService : uploads photos first
+IncidentReportingStore --> IncidentReportingService
+IncidentReportingStore --> ProfileStore
+IncidentReportingStore --> BookingStore
+IncidentReportingStore ..> IncidentDraft
+DriverIncidentsView --> IncidentReportingStore
+OwnerIncidentsView --> IncidentReportingStore
+DriverIncidentsView *-- IncidentForm
+DriverIncidentsView *-- IncidentCard
+OwnerIncidentsView *-- IncidentCard
+@enduml
+
+@startuml emergency-alerts
+title Bounded context: Emergency Alerts
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+hide empty members
+
+package "domain" {
+  class EmergencyAlert {
+    -id: number
+    -ownerId: number
+    -parkingListingId: number | null
+    -spaceName: string
+    -kind: fire | theft | accident | other
+    -notes: string
+    -latitude: number | null
+    -longitude: number | null
+    -locationSource: gps | space | null
+    -status: active | resolved
+    -createdAt: string
+    -resolvedAt: string | null
+    +code: string
+    +isActive: boolean
+    +hasLocation: boolean
+    +mapUrl: string | null
+    {static} +raise(report, now): EmergencyAlert
+    +resolve(now): EmergencyAlert
+    +toProps(): EmergencyAlertProps
+  }
+}
+package "application" {
+  class EmergencyAlertsStore <<Service>> {
+    +ownerListings: Signal<ParkingListing[]>
+    +ownerAlerts: Signal<EmergencyAlert[]>
+    +activeCount: Signal<number>
+    +loading: Signal<boolean>
+    +error: Signal<string | null>
+    +raise(draft)
+    +resolve(alert)
+  }
+  class EmergencyDraft <<interface>>
+}
+package "infrastructure" {
+  class EmergencyAlertsService <<Service>>
+  class EmergencyAlertsApiEndpoint
+  class EmergencyAlertAssembler
+  class EmergencyAlertResource <<interface>>
+}
+package "presentation" {
+  class OwnerEmergencyView
+  class Geolocation <<util>> {
+    +DevicePosition
+  }
+}
+class BookingStore
+abstract class BaseApi
+abstract class BaseApiEndpoint
+interface BaseAssembler
+interface BaseEntity
+
+EmergencyAlert ..|> BaseEntity
+EmergencyAlertsService --|> BaseApi
+EmergencyAlertsApiEndpoint --|> BaseApiEndpoint
+EmergencyAlertAssembler ..|> BaseAssembler
+EmergencyAlertAssembler ..> EmergencyAlert
+EmergencyAlertAssembler ..> EmergencyAlertResource
+EmergencyAlertsApiEndpoint --> EmergencyAlertAssembler
+EmergencyAlertsService --> EmergencyAlertsApiEndpoint
+EmergencyAlertsStore --> EmergencyAlertsService
+EmergencyAlertsStore --> BookingStore
+EmergencyAlertsStore ..> EmergencyDraft
+OwnerEmergencyView --> EmergencyAlertsStore
+OwnerEmergencyView ..> Geolocation
+@enduml
+
+@startuml report-analytics
+title Bounded context: Report Analytics
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+hide empty members
+
+package "domain" {
+  class OwnerDashboard {
+    +monthlyIncome: number
+    +monthlyChangePercent: number | null
+    +pendingRequests: number
+    +ongoingReservations: number
+    +publishedListings: number
+    +occupancyPercent: number
+    +averageRating: number | null
+    +weeklyIncome: DayIncome[]
+    +recentActivity: OwnerBooking[]
+    +weeklyTotal: number
+    {static} +empty(): OwnerDashboard
+  }
+  class DayIncome <<interface>>
+  class OwnerBooking {
+    -id: number
+    -parkingListingId: number
+    -ownerId: number
+    -driverName: string
+    -spaceName: string
+    -plannedEntry: string
+    -status: BookingStatus
+    -startedAt: string | null
+    -endedAt: string | null
+    -totalCost: number | null
+    +occurredAt: Date
+    +earnedAmount: number
+    +isPending: boolean
+    +isOngoing: boolean
+  }
+}
+package "application" {
+  class ReportAnalyticsStore <<Service>> {
+    +dashboard: Signal<OwnerDashboard>
+    +pendingRequests: Signal<number>
+    +loading: Signal<boolean>
+    +error: Signal<string | null>
+    +load()
+  }
+}
+package "infrastructure" {
+  class ReportAnalyticsService <<Service>> {
+    +getDashboard(ownerId): Observable<OwnerDashboard>
+    GET /owner-dashboard?ownerId=
+  }
+  class OwnerDashboardAssembler
+  class OwnerDashboardResource <<interface>>
+  class OwnerBookingAssembler
+}
+package "presentation" {
+  class OwnerDashboardView
+  class KpiCard
+  class WeeklyIncomeChart
+  class RecentActivity
+}
+abstract class BaseApi
+interface BaseAssembler
+interface BaseEntity
+
+OwnerBooking ..|> BaseEntity
+OwnerBookingAssembler ..|> BaseAssembler
+OwnerDashboard "1" *-- "7" DayIncome
+OwnerDashboard "1" o-- "0..*" OwnerBooking : recent activity
+ReportAnalyticsService --|> BaseApi
+ReportAnalyticsService --> OwnerDashboardAssembler
+OwnerDashboardAssembler ..> OwnerDashboard
+OwnerDashboardAssembler ..> OwnerDashboardResource
+OwnerDashboardAssembler ..> OwnerBookingAssembler
+ReportAnalyticsStore --> ReportAnalyticsService
+OwnerDashboardView --> ReportAnalyticsStore
+OwnerDashboardView *-- KpiCard
+OwnerDashboardView *-- WeeklyIncomeChart
+OwnerDashboardView *-- RecentActivity
+@enduml

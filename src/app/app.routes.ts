@@ -5,8 +5,6 @@ const reportAnalyticsRoutes = () =>
     (m) => m.reportAnalyticsRoutes,
   );
 
-const placeholder = () =>
-  import('./shared/presentation/views/placeholder/placeholder').then((m) => m.Placeholder);
 const profileRoutes = () =>
   import('./profile/presentation/profile.routes').then((m) => m.profileRoutes);
 const bookingDriverRoutes = () =>
@@ -16,6 +14,18 @@ const bookingOwnerRoutes = () =>
 const parkingSpaceRoutes = () =>
   import('./parking-space-management/presentation/parking-space-management.routes').then(
     (m) => m.parkingSpaceManagementRoutes,
+  );
+const incidentDriverRoutes = () =>
+  import('./incident-reporting/presentation/incident-reporting.routes').then(
+    (m) => m.incidentDriverRoutes,
+  );
+const incidentOwnerRoutes = () =>
+  import('./incident-reporting/presentation/incident-reporting.routes').then(
+    (m) => m.incidentOwnerRoutes,
+  );
+const emergencyOwnerRoutes = () =>
+  import('./emergency-alerts/presentation/emergency-alerts.routes').then(
+    (m) => m.emergencyOwnerRoutes,
   );
 import { REPUTATION_NOTIFICATIONS_ROUTES }
   from './reputation-notifications/presentation/reputation-notifications.routes';
@@ -30,7 +40,7 @@ export const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'search' },
       { path: '', loadChildren: bookingDriverRoutes },
-      { path: 'history', loadComponent: placeholder, data: { titleKey: 'nav.driver.history' } },
+      { path: '', loadChildren: incidentDriverRoutes },
       { path: 'profile', loadChildren: profileRoutes },
     ],
   },
@@ -40,6 +50,8 @@ export const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: 'dashboard', loadChildren: reportAnalyticsRoutes },
       { path: '', loadChildren: bookingOwnerRoutes },
+      { path: '', loadChildren: incidentOwnerRoutes },
+      { path: '', loadChildren: emergencyOwnerRoutes },
       {
         path: 'earnings',
         loadChildren: paymentsRoutes,

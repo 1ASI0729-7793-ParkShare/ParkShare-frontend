@@ -1,5 +1,5 @@
 export class OwnerPayout {
-  private _ownerId: string;
+  private _ownerId: number;
   private _availableBalance: number;
   private _completedAmount: number;
   private _inTransitAmount: number;
@@ -7,7 +7,7 @@ export class OwnerPayout {
   private _commissionRate: number;
 
   constructor(props: {
-    ownerId: string;
+    ownerId: number;
     availableBalance: number;
     completedAmount: number;
     inTransitAmount: number;
@@ -23,7 +23,7 @@ export class OwnerPayout {
   }
 
   /** Id del propietario (referencia a otro contexto). */
-  get ownerId(): string {
+  get ownerId(): number {
     return this._ownerId;
   }
 

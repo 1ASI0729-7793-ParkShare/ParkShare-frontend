@@ -11,6 +11,7 @@ const make = (id: number, rate: number, lat: number, lng: number, availability: 
 
 describe('ListingMap', () => {
   let fixture: ComponentFixture<ListingMap>;
+  const pins = () => Array.from(fixture.nativeElement.querySelectorAll('.pk-pin')) as HTMLElement[];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,16 +25,30 @@ describe('ListingMap', () => {
     ]);
     fixture.detectChanges();
     await fixture.whenStable();
+    fixture.detectChanges();
   });
 
-  it('should render one pin per listing with its price', () => {
-    const pins = Array.from(fixture.nativeElement.querySelectorAll('.pin')) as HTMLElement[];
-    expect(pins.map((p) => p.textContent?.trim())).toEqual(['S/ 6.00', 'S/ 5.50']);
-    expect(pins[1].classList.contains('occupied')).toBe(true);
+  it('should create an interactive Leaflet map, not a static image', () => {
+    expect(fixture.nativeElement.querySelector('.leaflet-container')).not.toBeNull();
   });
 
-  it('should place the northern pin above the southern one', () => {
-    const [north, south] = Array.from(fixture.nativeElement.querySelectorAll('.pin')) as HTMLElement[];
-    expect(parseFloat(north.style.top)).toBeLessThan(parseFloat(south.style.top));
+  it('should render one price pin per listing', () => {
+    expect(pins().map((p) => p.textContent?.trim())).toEqual(['S/ 6.00', 'S/ 5.50']);
+    expect(pins()[1].classList.contains('pk-pin--occupied')).toBe(true);
+  });
+
+  it('should emit the listing when its pin is clicked', () => {
+    const selected: number[] = [];
+    fixture.componentInstance.listingSelected.subscribe((l) => selected.push(l.id));
+    pins()[1].closest<HTMLElement>('.leaflet-marker-icon')!.click();
+    expect(selected).toEqual([2]);
+  });
+
+  it('should mark the highlighted listing', async () => {
+    fixture.componentRef.setInput('highlightedId', 1);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(pins()[0].classList.contains('pk-pin--highlighted')).toBe(true);
   });
 });
+

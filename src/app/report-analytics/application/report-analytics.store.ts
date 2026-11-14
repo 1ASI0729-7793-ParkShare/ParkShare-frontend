@@ -1,10 +1,7 @@
 import { computed, DestroyRef, inject, Service, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { forkJoin } from 'rxjs';
 import { CURRENT_OWNER_ID } from '../domain/model/dashboard-types';
-import { OwnerBooking } from '../domain/model/owner-booking.entity';
 import { OwnerDashboard } from '../domain/model/owner-dashboard';
-import { OwnerListing } from '../domain/model/owner-listing.entity';
 import { ReportAnalyticsService } from '../infrastructure/report-analytics.service';
 
 @Service()
@@ -12,22 +9,14 @@ export class ReportAnalyticsStore {
   private readonly service = inject(ReportAnalyticsService);
   private readonly destroyRef = inject(DestroyRef);
 
-  private readonly bookingsSignal = signal<OwnerBooking[]>([]);
-  private readonly listingsSignal = signal<OwnerListing[]>([]);
-  private readonly nowSignal = signal<Date>(new Date());
+  private readonly dashboardSignal = signal<OwnerDashboard>(OwnerDashboard.empty());
   private readonly loadingSignal = signal<boolean>(false);
   private readonly errorSignal = signal<string | null>(null);
 
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
 
-  readonly dashboard = computed(() =>
-    OwnerDashboard.from(
-      this.bookingsSignal().filter((b) => b.ownerId === CURRENT_OWNER_ID),
-      this.listingsSignal().filter((l) => l.ownerId === CURRENT_OWNER_ID),
-      this.nowSignal(),
-    ),
-  );
+  readonly dashboard = this.dashboardSignal.asReadonly();
   readonly pendingRequests = computed(() => this.dashboard().pendingRequests);
 
   constructor() {
@@ -37,13 +26,12 @@ export class ReportAnalyticsStore {
   load = (): void => {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    forkJoin({ bookings: this.service.getBookings(), listings: this.service.getListings() })
+    this.service
+      .getDashboard(CURRENT_OWNER_ID)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: ({ bookings, listings }) => {
-          this.bookingsSignal.set(bookings);
-          this.listingsSignal.set(listings);
-          this.nowSignal.set(new Date());
+        next: (dashboard) => {
+          this.dashboardSignal.set(dashboard);
           this.loadingSignal.set(false);
         },
         error: (err) => {

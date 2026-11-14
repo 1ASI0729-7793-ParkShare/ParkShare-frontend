@@ -13,6 +13,7 @@
           routerLinkActive
           #rla="routerLinkActive"
           [activated]="rla.isActive"
+          [class.emergency]="option.emergency"
         >
           <mat-icon matListItemIcon>{{ option.icon }}</mat-icon>
           @if (badgeFor(option); as count) {

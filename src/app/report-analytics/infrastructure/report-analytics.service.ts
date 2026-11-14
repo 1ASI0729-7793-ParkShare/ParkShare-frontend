@@ -1,19 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 import { BaseApi } from '../../shared/infrastructure/base-api';
-import { OwnerBooking } from '../domain/model/owner-booking.entity';
-import { OwnerListing } from '../domain/model/owner-listing.entity';
-import { OwnerBookingsApiEndpoint } from './owner-bookings-api-endpoint';
-import { OwnerListingsApiEndpoint } from './owner-listings-api-endpoint';
+import { OwnerDashboard } from '../domain/model/owner-dashboard';
+import { OwnerDashboardAssembler } from './owner-dashboard-assembler';
+import { OwnerDashboardResource } from './owner-dashboard-response';
 
 @Service()
 export class ReportAnalyticsService extends BaseApi {
   private readonly http = inject(HttpClient);
-  private readonly bookingsEndpoint = new OwnerBookingsApiEndpoint(this.http);
-  private readonly listingsEndpoint = new OwnerListingsApiEndpoint(this.http);
+  private readonly assembler = new OwnerDashboardAssembler();
+  private readonly url = `${environment.platformProviderApiBaseUrl}${environment.platformProviderOwnerDashboardEndpointPath}`;
 
-  getBookings = (): Observable<OwnerBooking[]> => this.bookingsEndpoint.getAll();
-
-  getListings = (): Observable<OwnerListing[]> => this.listingsEndpoint.getAll();
+  getDashboard = (ownerId: number): Observable<OwnerDashboard> =>
+    this.http
+      .get<OwnerDashboardResource>(this.url, { params: { ownerId: String(ownerId) } })
+      .pipe(map((resource) => this.assembler.toEntityFromResource(resource)));
 }

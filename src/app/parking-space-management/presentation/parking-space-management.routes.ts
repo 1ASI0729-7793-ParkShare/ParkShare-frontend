@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { ParkingSpaceManagementStore } from '../application/parking-space-management.store';
 import { ParkingSpaceRepository } from '../application/parking-space.repository';
-import { InMemoryParkingSpaceRepository } from '../infrastructure/in-memory-parking-space.repository';
+import { HttpParkingSpaceRepository } from '../infrastructure/http-parking-space.repository';
 
 export const parkingSpaceManagementRoutes: Routes = [
   {
@@ -10,7 +10,7 @@ export const parkingSpaceManagementRoutes: Routes = [
       ParkingSpaceManagementStore,
       {
         provide: ParkingSpaceRepository,
-        useClass: InMemoryParkingSpaceRepository,
+        useClass: HttpParkingSpaceRepository,
       },
     ],
     children: [

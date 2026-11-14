@@ -46,6 +46,11 @@ export class BookingStore {
   private readonly errorSignal = signal<string | null>(null);
 
   readonly criteria = this.criteriaSignal.asReadonly();
+  /** Every parking space, regardless of the active search filters. */
+  readonly listings = this.listingsSignal.asReadonly();
+  readonly ownerListings = computed(() =>
+    this.listingsSignal().filter((listing) => listing.ownerId === CURRENT_OWNER_ID),
+  );
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
 
@@ -70,6 +75,14 @@ export class BookingStore {
         .filter((r) => r.driverId === driverId && r.isActive)
         .sort((a, b) => b.id - a.id)[0] ?? null
     );
+  });
+
+  /** The driver's finished or rejected reservations, most recent first. */
+  readonly driverHistory = computed(() => {
+    const driverId = this.profileStore.profile()?.id;
+    return this.reservationsSignal()
+      .filter((r) => r.driverId === driverId && !r.isActive)
+      .sort((a, b) => b.id - a.id);
   });
 
   readonly ownerReservations = computed(() =>

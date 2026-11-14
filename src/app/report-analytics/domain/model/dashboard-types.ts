@@ -1,5 +1,5 @@
 export type BookingStatus = 'requested' | 'confirmed' | 'in-use' | 'completed' | 'rejected';
-export const CURRENT_OWNER_ID = 1;
+export { CURRENT_OWNER_ID } from '../../../shared/domain/model/current-user';
 
 export const WEEK_DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'] as const;
 export type WeekDay = (typeof WEEK_DAYS)[number];
